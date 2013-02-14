@@ -248,7 +248,7 @@ provide specs to your contribution.
 
 * Fork and clone the repository.
 * Intall [Yeoman](http://yeoman.io/gettingstarted_1.0.html).
-* Run `testacular start` to execute all specs and execute all specs when a file change.
+* Run `testacular start` to execute all specs and reload all specs when a file change.
 
 
 ### Coding guidelines
