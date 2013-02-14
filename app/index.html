@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="example">
+  <head>
+    <meta charset="utf-8">
+    <title>Lelylan</title>
+  </head>
+  <body>
+
+    <h1>Service</h1>
+    <div ng-controller="LelylanController">{{device}}</div>
+    <script>
+      function LelylanController($scope, AccessToken, Device) {
+        AccessToken.set({
+          access_token: '',
+          expires_in: '7200' });
+
+        $scope.device = new Device({ name: 'Name', type: 'http://api.lelylan.com/types/50ffa785a90db269f2000002' });
+        $scope.device.$save();
+
+        $scope.$on('lelylan:error:401', function(event) {
+          console.log("(Lelylan Error) Unauthorized Request");
+        });
+        $scope.$on('lelylan:error:411', function(event) {
+          console.log("(Lelylan Error) Missing Content Length");
+        });
+      }
+  </script>
+
+    <script src="scripts/vendor/angular/angular.js"></script>
+    <script src="scripts/vendor/angular/angular-resource.js"></script>
+    <script src="scripts/vendor/angular/angular-cookies.js"></script>
+
+    <!-- build:js scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/models/services.js"></script>
+    <script src="scripts/interceptors/interceptors.js"></script>
+    <!-- endbuild -->
+
+    <script>
+      var example = angular.module('example', ['lelylan']);
+      example.value('lelylan.config', { endpoint: 'http://api.lelylan.com' });
+    </script>
+  </body>
+</html>
