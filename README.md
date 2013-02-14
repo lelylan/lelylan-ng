@@ -1,4 +1,4 @@
-# Lelylan API for Node.js
+# Lelylan API for AngularJS
 
 AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 
@@ -12,16 +12,18 @@ maps every device in your house to a unique URI which will provide a simple acce
 
 ## What is AngualrJS
 
-Lelylan makes it easy for developers to monitor and control all devices in
-your house providing a simple, self descriptive and consistent representation of them. Lelylan
-maps every device in your house to a unique URI which will provide a simple access over it.
+AngularJS lets you write client-side web applications as if you had a smarter browser.
+It lets you use good old HTML as your template language and lets you extend HTML’s syntax
+to express your application’s components clearly and succinctly. It automatically synchronizes
+data from your UI (view) with your JavaScript objects (model) through 2-way data binding.
+[Learn more about](http://angularjs.org/).
 
 
 ### Get an access token
 
 Before using Lelylan APIs you need to set the access token by using
 [AngularJS OAuth2](https://github.com/andreareginato/lelylan-ng-oauth2). If you are not used to
-OAuth2 concepts, check out the [dev center documentation](http://dev.lelylan.com/api/oauth#language=node).
+OAuth2 concepts, check out the [dev center documentation](http://dev.lelylan.com/api/oauth#language=angular).
 
 ```html
 <html ng-app="lelylan">
@@ -102,7 +104,7 @@ Using AngualrJS Lelylan Resources, the access token is automatically refreshed w
 
 ### Realtime services
 
-When using the [subscription](http://dev.lelylan.com/api/realtime#language=node) services (realtime)
+When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular) services (realtime)
 you don't need an access token. In this case you need to set the client credentials.
 
 ```html
@@ -130,7 +132,7 @@ you don't need an access token. In this case you need to set the client credenti
 </html>
 ```
 
-### Suggested practices
+### Good practices
 
 When creating a third party app with different libraries, just define your own.
 
