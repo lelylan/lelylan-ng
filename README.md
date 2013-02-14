@@ -155,12 +155,8 @@ Note how the Angular App is now `ng-app="app"`.
 
 ### Implemented Services
 
-**Devices** - The Device API defines a set of services to monitor and control every existing
-device. Its final goal is to map every device to a unique URI which provides control over it.
-[See examples](http://dev.lelylan.com/api/devices#angular).
-
-**Activations** - Easy way to move the device ownership between people.
-[See examples](http://dev.lelylan.com/api/devices#angular).
+[x] [Devices](http://dev.lelylan.com/api/devices#angular).
+[x] [Activations](http://dev.lelylan.com/api/devices#angular).
 
 **Histories** - When a device updates its properties or executes a function a new history
 resource with a snapshot of all device properties is created by Lelylan, also the ones that
