@@ -28,10 +28,37 @@
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/models/services.js"></script>
-    <script src="scripts/interceptors/interceptors.js"></script>
+
+    <!-- Client -->
+    <script src="scripts/client/activation.js"></script>
+    <script src="scripts/client/deactivation.js"></script>
+    <script src="scripts/client/device.js"></script>
+    <script src="scripts/client/function.js"></script>
+    <script src="scripts/client/history.js"></script>
+    <script src="scripts/client/location.js"></script>
+    <script src="scripts/client/profile.js"></script>
+    <script src="scripts/client/property.js"></script>
+    <script src="scripts/client/status.js"></script>
+    <script src="scripts/client/subscription.js"></script>
+    <script src="scripts/client/type.js"></script>
+
+    <!-- authorization -->
+    <script src="scripts/client/support/basic-auth/basic-request-wrapper.js"></script>
+    <script src="scripts/client/support/basic-auth/basic-auth.js"></script>
+    <script src="scripts/client/support/oauth2/request-wrapper.js"></script>
+    <script src="scripts/client/support/oauth2/access-token.js"></script>
+    <script src="scripts/client/support/oauth2/implicit-flow.js"></script>
+
+    <!-- config -->
+    <script src="scripts/config/config.js"></script>
+
+    <!-- errrors -->
+    <script src="scripts/errors/errors.js"></script>
     <!-- endbuild -->
 
-    <script>angular.module('example', ['lelylan.resources']);</script>
+    <script>
+      var example = angular.module('example', ['lelylan.resources']);
+      example.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
+    </script>
   </body>
 </html>
