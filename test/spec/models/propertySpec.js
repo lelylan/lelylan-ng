@@ -2,10 +2,11 @@
 
 describe('Property', function() {
 
-  var resource    = { id: '1', uri: 'http://api.lelylan.com/properties/1' };
-  var token       = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
-  var headers     = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
-  var dataHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8'};
+  var resource      = { id: '1', uri: 'http://api.lelylan.com/properties/1' };
+  var token         = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
+  var headers       = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token' };
+  var dataHeaders   = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8' };
+  var noAuthHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest' };
   var $httpBackend;
   var property;
 
@@ -47,9 +48,31 @@ describe('Property', function() {
     }));
 
     it('gets the resource', inject(function(Property) {
-      var property = Property.query({ name: 'Name' });
+      var properties = Property.query({ name: 'Name' });
       $httpBackend.flush();
-      expect(property[0].uri).toEqual('http://api.lelylan.com/properties/1');
+      expect(properties[0].uri).toEqual('http://api.lelylan.com/properties/1');
+    }));
+  });
+
+
+  describe('.public', function() {
+
+    beforeEach(inject(function(AccessToken) { AccessToken.set({}); }));
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/properties/public', {}, noAuthHeaders).respond([resource]);
+    });
+
+    it('makes the request', inject(function(Property) {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/properties/public');
+      Property.public();
+      $httpBackend.flush();
+    }));
+
+    it('gets the resource', inject(function(Property) {
+      var properties = Property.public();
+      $httpBackend.flush();
+      expect(properties[0].uri).toEqual('http://api.lelylan.com/properties/1');
     }));
   });
 

@@ -2,10 +2,11 @@
 
 describe('Function', function() {
 
-  var resource = { id: '1', uri: 'http://api.lelylan.com/functions/1' };
+  var resource    = { id: '1', uri: 'http://api.lelylan.com/functions/1' };
   var token       = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
-  var headers  = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
+  var headers     = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
   var dataHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8'};
+  var noAuthHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest' };
   var $httpBackend;
   var _function;
 
@@ -50,6 +51,28 @@ describe('Function', function() {
       var _function = Function.query({ name: 'Name' });
       $httpBackend.flush();
       expect(_function[0].uri).toEqual('http://api.lelylan.com/functions/1');
+    }));
+  });
+
+
+  describe('.public', function() {
+
+    beforeEach(inject(function(AccessToken) { AccessToken.set({}); }));
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/functions/public', {}, noAuthHeaders).respond([resource]);
+    });
+
+    it('makes the request', inject(function(Function) {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/functions/public');
+      Function.public();
+      $httpBackend.flush();
+    }));
+
+    it('gets the resource', inject(function(Function) {
+      var functions = Function.public();
+      $httpBackend.flush();
+      expect(functions[0].uri).toEqual('http://api.lelylan.com/functions/1');
     }));
   });
 

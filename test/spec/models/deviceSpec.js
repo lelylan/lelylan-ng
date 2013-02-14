@@ -199,13 +199,13 @@ describe('Device', function() {
 
     it('makes the request', inject(function(Device) {
       $httpBackend.expect('PUT', 'http://api.lelylan.com/devices/1/functions');
-      device.properties = [{ function: 'http://api.lelylan.com/properties/1' }]
+      device.function = 'http://api.lelylan.com/functions/1'
       device.$execute();
       $httpBackend.flush();
     }));
 
     it('updates the resource', inject(function(Device) {
-      device.properties = [{ uri: 'http://api.lelylan.com/properties/1', value: 'on' }]
+      device.function = 'http://api.lelylan.com/functions/1';
       device.$execute();
       $httpBackend.flush();
       expect(device.properties[0].value).toEqual('on');

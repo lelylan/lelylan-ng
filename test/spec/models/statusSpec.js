@@ -2,10 +2,11 @@
 
 describe('Status', function() {
 
-  var resource = { id: '1', uri: 'http://api.lelylan.com/statuses/1' };
-  var token       = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
-  var headers  = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
-  var dataHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8'};
+  var resource      = { id: '1', uri: 'http://api.lelylan.com/statuses/1' };
+  var token         = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
+  var headers       = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
+  var dataHeaders   = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8'};
+  var noAuthHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest' };
   var $httpBackend;
   var status;
 
@@ -50,6 +51,28 @@ describe('Status', function() {
       var status = Status.query({ name: 'Name' });
       $httpBackend.flush();
       expect(status[0].uri).toEqual('http://api.lelylan.com/statuses/1');
+    }));
+  });
+
+
+  describe('.public', function() {
+
+    beforeEach(inject(function(AccessToken) { AccessToken.set({}); }));
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/statuses/public', {}, noAuthHeaders).respond([resource]);
+    });
+
+    it('makes the request', inject(function(Status) {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/statuses/public');
+      Status.public();
+      $httpBackend.flush();
+    }));
+
+    it('gets the resource', inject(function(Status) {
+      var statuses = Status.public();
+      $httpBackend.flush();
+      expect(statuses[0].uri).toEqual('http://api.lelylan.com/statuses/1');
     }));
   });
 

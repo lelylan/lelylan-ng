@@ -95,7 +95,8 @@ resources.factory('Type', ['RequestWrapper', '$resource', '$http', 'lelylan.conf
   var resource = $resource(
     config.endpoint + '/types/:id',
     { id: '@id' },
-    { update: { method: 'PUT' } }
+    { update: { method: 'PUT' },
+      public: { method: 'GET', params: { id: 'public' }, isArray: true } }
   );
 
   return RequestWrapper.wrap(resource, ['get', 'query', 'save', 'update', 'delete']);
@@ -111,7 +112,8 @@ resources.factory('Property', ['RequestWrapper', '$resource', '$http', 'lelylan.
   var resource = $resource(
     config.endpoint + '/properties/:id',
     { id: '@id' },
-    { update: { method: 'PUT' } }
+    { update: { method: 'PUT' },
+      public: { method: 'GET', params: { id: 'public' }, isArray: true } }
   );
 
   return RequestWrapper.wrap(resource, ['get', 'query', 'save', 'update', 'delete']);
@@ -127,7 +129,8 @@ resources.factory('Function', ['RequestWrapper', '$resource', '$http', 'lelylan.
   var resource = $resource(
     config.endpoint + '/functions/:id',
     { id: '@id' },
-    { update: { method: 'PUT' } }
+    { update: { method: 'PUT' },
+      public: { method: 'GET', params: { id: 'public' }, isArray: true } }
   );
 
   return RequestWrapper.wrap(resource, ['get', 'query', 'save', 'update', 'delete']);
@@ -143,7 +146,8 @@ resources.factory('Status', ['RequestWrapper', '$resource', '$http', 'lelylan.co
   var resource = $resource(
     config.endpoint + '/statuses/:id',
     { id: '@id' },
-    { update: { method: 'PUT' } }
+    { update: { method: 'PUT' },
+      public: { method: 'GET', params: { id: 'public' }, isArray: true } }
   );
 
   return RequestWrapper.wrap(resource, ['get', 'query', 'save', 'update', 'delete']);

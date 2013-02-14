@@ -2,10 +2,11 @@
 
 describe('Type', function() {
 
-  var resource    = { id: '1', uri: 'http://api.lelylan.com/types/1' };
-  var token       = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
-  var headers     = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
-  var dataHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8'};
+  var resource      = { id: '1', uri: 'http://api.lelylan.com/types/1' };
+  var token         = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
+  var headers       = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token' };
+  var dataHeaders   = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8' };
+  var noAuthHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest' };
   var $httpBackend;
   var type;
 
@@ -47,9 +48,31 @@ describe('Type', function() {
     }));
 
     it('gets the resource', inject(function(Type) {
-      var type = Type.query({ name: 'Name' });
+      var types = Type.query({ name: 'Name' });
       $httpBackend.flush();
-      expect(type[0].uri).toEqual('http://api.lelylan.com/types/1');
+      expect(types[0].uri).toEqual('http://api.lelylan.com/types/1');
+    }));
+  });
+
+
+  describe('.public', function() {
+
+    beforeEach(inject(function(AccessToken) { AccessToken.set({}); }));
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/types/public', {}, noAuthHeaders).respond([resource]);
+    });
+
+    it('makes the request', inject(function(Type) {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/types/public');
+      Type.public();
+      $httpBackend.flush();
+    }));
+
+    it('gets the resource', inject(function(Type) {
+      var types = Type.public();
+      $httpBackend.flush();
+      expect(types[0].uri).toEqual('http://api.lelylan.com/types/1');
     }));
   });
 
