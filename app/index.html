@@ -10,9 +10,7 @@
     <div ng-controller="LelylanController">{{device}}</div>
     <script>
       function LelylanController($scope, AccessToken, Device) {
-        AccessToken.set({
-          access_token: '',
-          expires_in: '7200' });
+        AccessToken.set({ access_token: '<your-access-token>', expires_in: '7200' });
 
         $scope.device = new Device({ name: 'Name', type: 'http://api.lelylan.com/types/50ffa785a90db269f2000002' });
         $scope.device.$save();
