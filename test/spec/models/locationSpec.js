@@ -2,14 +2,14 @@
 
 describe('Location', function() {
 
-  var resource = { id: '1', uri: 'http://api.lelylan.com/locations/1' };
+  var resource    = { id: '1', uri: 'http://api.lelylan.com/locations/1' };
   var token       = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
-  var headers  = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
+  var headers     = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
   var dataHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token', 'Content-Type': 'application/json;charset=utf-8'};
   var $httpBackend;
   var location;
 
-  beforeEach(module('lelylan.services'));
+  beforeEach(module('lelylan.resources'));
   beforeEach(inject(function(AccessToken) { AccessToken.set(token); }));
   beforeEach(inject(function($injector) { $httpBackend = $injector.get('$httpBackend'); }));
 

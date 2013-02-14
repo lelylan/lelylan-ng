@@ -10,7 +10,7 @@ describe('Status', function() {
   var $httpBackend;
   var status;
 
-  beforeEach(module('lelylan.services'));
+  beforeEach(module('lelylan.resources'));
   beforeEach(inject(function(AccessToken) { AccessToken.set(token); }));
   beforeEach(inject(function($injector) { $httpBackend = $injector.get('$httpBackend'); }));
 

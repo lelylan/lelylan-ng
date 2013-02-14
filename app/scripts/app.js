@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('lelylan', [
+angular.module('lelylan.resources', [
   'lelylan.services',
   'lelylan.interceptors'
 ]);

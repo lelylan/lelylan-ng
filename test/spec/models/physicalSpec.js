@@ -1,6 +1,5 @@
 'use strict';
 
-// TODO: must set the correct headers as right now the secret (or SHA-1 is not sent)
 describe('Physical', function() {
 
   var $httpBackend, Physical, physical;

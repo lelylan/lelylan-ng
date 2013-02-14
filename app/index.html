@@ -6,20 +6,18 @@
   </head>
   <body>
 
-    <h1>Service</h1>
+    <h1>Simple Lelylan Resources access</h1>
     <div ng-controller="LelylanController">{{device}}</div>
+
     <script>
       function LelylanController($scope, AccessToken, Device) {
+        // Set you access token
         AccessToken.set({ access_token: '<your-access-token>', expires_in: '7200' });
-
-        $scope.device = new Device({ name: 'Name', type: 'http://api.lelylan.com/types/50ffa785a90db269f2000002' });
-        $scope.device.$save();
-
+        // Retrieve all of your devices
+        $scope.device = Device.query();
+        // Listen to unauthorized request
         $scope.$on('lelylan:error:401', function(event) {
-          console.log("(Lelylan Error) Unauthorized Request");
-        });
-        $scope.$on('lelylan:error:411', function(event) {
-          console.log("(Lelylan Error) Missing Content Length");
+          console.log("[Lelylan Error] Unauthorized Request");
         });
       }
   </script>
@@ -34,9 +32,6 @@
     <script src="scripts/interceptors/interceptors.js"></script>
     <!-- endbuild -->
 
-    <script>
-      var example = angular.module('example', ['lelylan']);
-      example.value('lelylan.config', { endpoint: 'http://api.lelylan.com' });
-    </script>
+    <script>angular.module('example', ['lelylan.resources']);</script>
   </body>
 </html>

@@ -7,7 +7,7 @@ describe('Profile', function() {
   var headers  = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
   var $httpBackend;
 
-  beforeEach(module('lelylan.services'));
+  beforeEach(module('lelylan.resources'));
   beforeEach(inject(function(AccessToken) { AccessToken.set(token); }));
   beforeEach(inject(function($injector) { $httpBackend = $injector.get('$httpBackend'); }));
 

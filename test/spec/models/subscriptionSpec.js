@@ -9,7 +9,7 @@ describe('Subscription', function() {
   var $httpBackend;
   var subscription;
 
-  beforeEach(module('lelylan.services'));
+  beforeEach(module('lelylan.resources'));
   beforeEach(inject(function(BasicAuth) { BasicAuth.set(client); }));
   beforeEach(inject(function($injector) { $httpBackend = $injector.get('$httpBackend'); }));
 
