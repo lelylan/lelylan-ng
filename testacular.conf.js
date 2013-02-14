@@ -13,6 +13,7 @@ files = [
   'test/vendor/angular-mocks.js',
   'app/scripts/*.js',
   'app/scripts/**/*.js',
+  'test/spec/*.js',
   'test/spec/**/*.js'
 ];
 

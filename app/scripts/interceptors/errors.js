@@ -1,5 +1,5 @@
 // Inspired by https://github.com/witoldsz/angular-http-auth/blob/master/src/angular-http-auth.js
-angular.module('lelylan.interceptors', [])
+angular.module('lelylan.errors', [])
   .config(['$httpProvider', function($httpProvider) {
 
   var statusCodes = {
