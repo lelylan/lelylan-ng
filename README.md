@@ -30,8 +30,8 @@ OAuth2 concepts, check out the [dev center documentation](http://dev.lelylan.com
 <body>
 
   <!-- Login (using OAuth2) -->
-  <div ng-controller = "LoginController">
-    <login credentials = "{{credentials}}"></login>
+  <div ng-controller="LoginController">
+    <login credentials="{{credentials}}"></login>
   </div>
 
   <script>
@@ -64,8 +64,8 @@ The following example shows the list of owned devices.
 <body>
 
   <!-- Login (using OAuth2) -->
-  <div ng-controller = "LoginController">
-    <login credentials = "{{credentials}}"></login>
+  <div ng-controller="LoginController">
+    <login credentials="{{credentials}}"></login>
   </div>
 
   <script>
