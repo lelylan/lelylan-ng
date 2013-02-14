@@ -63,7 +63,7 @@ The following example shows the list of owned devices.
 
   <!-- Login (using OAuth2) -->
   <div ng-controller = "LoginController">
-    <login credentials = "{{credentials}}"></login>
+    <login credentials ="{{credentials}}"></login>
   </div>
 
   <script>
@@ -108,7 +108,10 @@ you don't need an access token. In this case you need to set the client credenti
 ```html
 <html ng-app="lelylan">
 <body>
+
+  <!-- Lelylan resources access -->
   <div ng-controller="LelylanController">{{subscription}}</div>
+
   <script>
     function LelylanController($scope, BasicAuth, Subscription) {
       var credentials = { id: '<client-id>', secret: '<client-secret>' };
@@ -213,11 +216,13 @@ Through the error object you can access to the status code and a simpe error mes
 ```html
 <html ng-app="lelylan">
 <body>
+
+  <!-- Lelylan errors -->
   <div ng-controller="LelylanController">
-      <div>{{device}}</div>
-      <div class="error" ng-show="error">{{error.status}} {{error.message}}</div>
-      <div class="error-401" ng-show="show==401">Your request is not authorized, please add the login first</div>
-    </div>
+    <div>{{device}}</div>
+    <div class="error" ng-show="error">{{error.status}} {{error.message}}</div>
+    <div class="error-401" ng-show="show==401">Your request is not authorized, please add the login first</div>
+  </div>
 
   <script>
     function LelylanController($scope, Device) {
@@ -251,7 +256,7 @@ Here a simple example where we change the API endpoint.
 <html ng-app="app">
 <body>
 
-  <!--
+  <!-- Lelylan configuration -->
   <script>
     var app = angular.module('app', ['lelylan']);
     app.value('lelylan.config', { endpoint: 'http://api.lelylan.com' });
