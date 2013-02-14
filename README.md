@@ -54,7 +54,7 @@ OAuth2 concepts, check out the [dev center documentation](http://dev.lelylan.com
 </html>
 ```
 
-### Lelylan access
+### Lelylan API
 
 Once you have the access token (you are logged in) you can access to the Lelylan API.
 The following example shows the list of owned devices.
@@ -186,7 +186,7 @@ Through the error object you can access to the status code and a simpe error mes
   <div ng-controller="LelylanController">
     <div>{{device}}</div>
     <div class="error" ng-show="error">{{error.status}} {{error.message}}</div>
-    <div class="error-401" ng-show="show==401">Your request is not authorized, please add the login first</div>
+    <div class="error-401" ng-show="show==401">Unauthorized request. Please, login first</div>
   </div>
 
   <script>
@@ -224,7 +224,7 @@ Here a simple example where we change the API endpoint.
   <!-- Lelylan configuration -->
   <script>
     var app = angular.module('app', ['lelylan']);
-    app.value('lelylan.config', { endpoint: 'http://api.lelylan.com' });
+    app.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
   </script>
 
   <!-- Angular and Lelylan libraries -->
