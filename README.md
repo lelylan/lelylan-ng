@@ -12,11 +12,11 @@ maps every device in your house to a unique URI which will provide a simple acce
 
 ## What is AngualrJS
 
-AngularJS lets you write client-side web applications as if you had a smarter browser.
-It lets you use good old HTML as your template language and lets you extend HTML’s syntax
-to express your application’s components clearly and succinctly. It automatically synchronizes
-data from your UI (view) with your JavaScript objects (model) through 2-way data binding.
-[Learn more about](http://angularjs.org/).
+[AngularJS](http://angularjs.org/) lets you write client-side web applications as if you had
+a smarter browser. It lets you use good old HTML as your template language and lets you extend
+HTML’s syntax to express your application’s components clearly and succinctly. It automatically
+synchronizes data from your UI (view) with your JavaScript objects (model) through 2-way data
+binding.
 
 
 ### Get an access token
@@ -65,7 +65,7 @@ The following example shows the list of owned devices.
 
   <!-- Login (using OAuth2) -->
   <div ng-controller = "LoginController">
-    <login credentials ="{{credentials}}"></login>
+    <login credentials = "{{credentials}}"></login>
   </div>
 
   <script>
