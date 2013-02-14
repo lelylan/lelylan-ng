@@ -2,20 +2,7 @@
 
 angular.module('lelylan.resources', [
 
-  // configuration
-  'lelylan.config',
-
-  // error handling
-  'lelylan.errors',
-
-  // authorization
-  'lelylan.accessToken',
-  'lelylan.requestWrapper',
-  'lelylan.basicAuth',
-  'lelylan.basicRequestWrapper',
-  'lelylan.implicitFlow', // TODO: move it to components
-
-  // REST API
+  // client
   'lelylan.profile',
   'lelylan.device',
   'lelylan.history',
@@ -26,5 +13,18 @@ angular.module('lelylan.resources', [
   'lelylan.function',
   'lelylan.status',
   'lelylan.location',
-  'lelylan.subscription'
+  'lelylan.subscription',
+
+  // authorization
+  'lelylan.accessToken',
+  'lelylan.requestWrapper',
+  'lelylan.basicAuth',
+  'lelylan.basicRequestWrapper',
+  'lelylan.implicitFlow',
+
+  // configuration
+  'lelylan.config',
+
+  // errors
+  'lelylan.errors'
 ]);
