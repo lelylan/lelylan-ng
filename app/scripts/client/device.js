@@ -1,8 +1,8 @@
 'use strict';
 
-var device = angular.module('lelylan.device', ['ngResource']);
+var client = angular.module('lelylan.device', ['ngResource']);
 
-device.factory('Device', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
+client.factory('Device', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
 
   var resource = $resource(
     config.endpoint + '/devices/:id/:action',

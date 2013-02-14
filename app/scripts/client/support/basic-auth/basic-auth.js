@@ -1,8 +1,8 @@
 'use strict';
 
-model = angular.module('lelylan.basicAuth', ['ngResource'])
+var client = angular.module('lelylan.basicAuth', ['ngResource'])
 
-model.factory('BasicAuth', [function() {
+client.factory('BasicAuth', [function() {
   var basicAuth = {};
   var auth = {};
 
@@ -12,7 +12,7 @@ model.factory('BasicAuth', [function() {
   return basicAuth;
 }]);
 
-model.factory('Base64', [function() {
+client.factory('Base64', [function() {
   var base64 = {};
   var cb64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 

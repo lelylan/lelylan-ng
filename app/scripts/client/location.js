@@ -1,8 +1,8 @@
 'use strict';
 
-var model = angular.module('lelylan.location', ['ngResource']);
+var client = angular.module('lelylan.location', ['ngResource']);
 
-model.factory('Location', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
+client.factory('Location', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
 
   var resource = $resource(
     config.endpoint + '/locations/:id',

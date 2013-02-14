@@ -1,8 +1,8 @@
 'use strict';
 
-var model = angular.module('lelylan.accessToken', ['ngResource']);
+var client = angular.module('lelylan.accessToken', ['ngResource']);
 
-model.factory('AccessToken', ['$location', '$http', function($location, $http) {
+client.factory('AccessToken', ['$location', '$http', function($location, $http) {
   var accessToken = {};
   var token = {};
 

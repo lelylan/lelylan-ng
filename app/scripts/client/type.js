@@ -1,11 +1,11 @@
 'use strict';
 
-var model = angular.module('lelylan.status', ['ngResource'])
+var client = angular.module('lelylan.type', ['ngResource']);
 
-model.factory('Status', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
+client.factory('Type', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
 
   var resource = $resource(
-    config.endpoint + '/statuses/:id',
+    config.endpoint + '/types/:id',
     { id: '@id' },
     { update: { method: 'PUT' },
       public: { method: 'GET', params: { id: 'public' }, isArray: true } } );

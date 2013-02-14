@@ -1,13 +1,11 @@
 'use strict';
 
-var model = angular.module('lelylan.requestWrapper', ['ngResource']);
+var client = angular.module('lelylan.basicRequestWrapper', ['ngResource'])
 
-model.factory('RequestWrapper', ['AccessToken', 'ImplicitFlow', '$http', function(AccessToken, ImplicitFlow, $http) {
+client.factory('BasicRequestWrapper', ['BasicAuth', 'Base64', '$http', function(BasicAuth, Base64, $http) {
   var requestWrapper = {};
-  var token;
 
   requestWrapper.wrap = function(resource, actions, options) {
-    token = AccessToken.initialize();
     var wrappedResource = resource;
     for (var i=0; i < actions.length; i++) { request(wrappedResource, actions[i]); };
     return wrappedResource;
@@ -17,14 +15,14 @@ model.factory('RequestWrapper', ['AccessToken', 'ImplicitFlow', '$http', functio
     resource['_' + action] = resource[action];
 
     resource[action] = function(params, data, success, error) {
-      (AccessToken.get().access_token) ? setAuthorizationHeader() : deleteAuthorizationHeader();
-      if (token.expires_at && token.expires_at < new Date()) window.location.replace(ImplicitFlow.url());
+      (BasicAuth.get().id && BasicAuth.get().secret) ? setAuthorizationHeader() : deleteAuthorizationHeader();
       return resource['_' + action].call(this, params, data, success, error);
     };
   };
 
   var setAuthorizationHeader = function() {
-    $http.defaults.headers.common['Authorization'] = 'Bearer ' + token.access_token;
+    var basic = BasicAuth.get();
+    $http.defaults.headers.common['Authorization'] = Base64.encode(basic.id + ':' + basic.secret);
   };
 
   var deleteAuthorizationHeader = function() {

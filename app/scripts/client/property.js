@@ -1,8 +1,8 @@
 'use strict';
 
-var model = angular.module('lelylan.property', ['ngResource'])
+var client = angular.module('lelylan.property', ['ngResource'])
 
-model.factory('Property', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
+client.factory('Property', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
 
   var resource = $resource(
     config.endpoint + '/properties/:id',

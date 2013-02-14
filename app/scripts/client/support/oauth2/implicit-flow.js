@@ -1,9 +1,9 @@
 'use strict';
 
-var model = angular.module('lelylan.implicitFlow', ['ngResource']);
+var client = angular.module('lelylan.implicitFlow', ['ngResource']);
 
 // TODO Here we must set the initial Implicit Flow data (init)
-model.factory('ImplicitFlow', ['AccessToken', '$location', function(AccessToken, $location) {
+client.factory('ImplicitFlow', ['AccessToken', '$location', function(AccessToken, $location) {
   var implicitFlow = {};
   var params;
 

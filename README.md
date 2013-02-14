@@ -250,6 +250,19 @@ provide specs to your contribution.
 * Intall [Yeoman](http://yeoman.io/gettingstarted_1.0.html).
 * Run `testacular start` to execute all specs and reload all specs when a file change.
 
+### Creating distribution
+
+* Run `yeoman build`
+* Run `yeoman server:dist` to have your index.html with the latest build.
+
+Development in Javascript can be tricky sometimes, so keep this in mind.
+
+* When making new tests do not warry about the loading part. The testacular config
+file will automatically load for you all files in`test/spec`.
+* When adding new js files remember to place them in the `<!-- build:js -->` block
+that is declared in `index.html`. If you don't place them, your tests will probably
+pass but your build will not contain the new files.
+
 
 ### Coding guidelines
 

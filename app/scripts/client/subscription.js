@@ -1,8 +1,8 @@
 'use strict';
 
-var model = angular.module('lelylan.subscription', ['ngResource'])
+var client = angular.module('lelylan.subscription', ['ngResource'])
 
-model.factory('Subscription', ['BasicRequestWrapper', '$resource', 'lelylan.config', function(BasicRequestWrapper, $resource, config) {
+client.factory('Subscription', ['BasicRequestWrapper', '$resource', 'lelylan.config', function(BasicRequestWrapper, $resource, config) {
 
   var resource = $resource(
     config.endpoint + '/subscriptions/:id',
