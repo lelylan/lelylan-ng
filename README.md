@@ -95,6 +95,8 @@ When using the [subscription](http://dev.lelylan.com/api/realtime#language=angul
 services you don't need an access token. In this case you need only the client credentials.
 
 ```html
+<!-- Subscription example -->
+
 <html ng-app="lelylan">
 <body>
 
