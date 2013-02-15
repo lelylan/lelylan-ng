@@ -179,7 +179,6 @@ Through the error object you can access to the status code and a simpe error mes
     }
   </script>
 
-  <!-- Angular and Lelylan libraries -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
