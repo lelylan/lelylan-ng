@@ -5,9 +5,8 @@ AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 
 ## What is Lelylan
 
-Lelylan makes it easy for developers to monitor and control all devices in
-your house providing a simple, self descriptive and consistent representation of them. Lelylan
-maps every device in your house to a unique URI which will provide a simple access over it.
+[Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
+in your house providing a simple, self descriptive and consistent REST API.
 
 
 ## What is AngualrJS
@@ -21,22 +20,27 @@ binding.
 
 ### Get an access token
 
-Before using Lelylan APIs you need to set the access token by using
-[AngularJS OAuth2](https://github.com/andreareginato/lelylan-ng-oauth2). If you are not used to
-OAuth2 concepts, check out the [dev center documentation](http://dev.lelylan.com/api/oauth#language=angular).
+Before using Lelylan APIs you need to get an access token (if you are not used to OAuth2 concepts
+check out the [Dev Center Documentation](http://dev.lelylan.com/api/oauth#implicit-grant-angular)).
+
+The fastest way to get the access token is to use the `login` component.
+It takes care of all the steps required by the
+[Implicit Flow](http://dev.lelylan.com/api/oauth#implicit-grant-angular)).
 
 ```html
 <html ng-app="lelylan">
 <body>
 
-  <!-- Login (using OAuth2) -->
   <div ng-controller="LoginController">
-    <login credentials="{{credentials}}"></login>
+    <login client="{{oauth.client}}"
+           redirect="{{oauth.redirect}}"
+           scope="{{oauth.scope}}"
+           state="{{oauth.state}}"></login>
   </div>
 
   <script>
     function LoginController($scope) {
-      $scope.credentials = {
+      $scope.oauth = {
         client:   '<client-id>',
         redirect: '<redirect-uri>',
         scope:    '<scope>',
@@ -44,48 +48,35 @@ OAuth2 concepts, check out the [dev center documentation](http://dev.lelylan.com
     }
   </script>
 
-  <!-- Angular and Lelylan libraries -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-resources.min.js"/></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-oauth2.min.js"/></script>
+  <script src="//s.lelylan.com/angular/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
 
+Using the login component the access token is automatically refreshed when expired.
+
+
 ### Lelylan API
 
-Once you have the access token (you are logged in) you can access to the Lelylan API.
-The following example shows the list of owned devices.
+Once the user logs in, you can access Lelylan APIs. The following example shows how to
+get the user's devices.
 
 ```html
 <html ng-app="lelylan">
 <body>
 
-  <!-- Login (using OAuth2) -->
-  <div ng-controller="LoginController">
-    <login credentials="{{credentials}}"></login>
-  </div>
+  <!-- login component  -->
 
-  <script>
-    function LoginController($scope) {
-      $scope.credentials = {
-        client:   '<client-id>',
-        redirect: '<redirect-uri>',
-        scope:    '<scope>',
-        state:    '<state>' };
-    }
-  </script>
-
-  <!-- Lelylan resources access -->
   <div ng-controller="LelylanController">
-    <div ng-repeat="device in devices">{{device}}</div>
+    <div ng-repeat="device in devices">{{device.name}}</div>
   </div>
 
   <script>
     function LelylanController($scope, Device) {
-      $scope.device = Device.query({ 'properties[value]': 'on' });
+      $scope.device = Device.query();
     }
   </script>
 
@@ -93,48 +84,41 @@ The following example shows the list of owned devices.
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-resources.min.js"/></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-oauth2.min.js"/></script>
+  <script src="//s.lelylan.com/angular/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
 
-Using AngualrJS Lelylan Resources, the access token is automatically refreshed when it expires.
-
-
 ### Realtime services
 
-When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular) services (realtime)
-you don't need an access token. In this case you need to set the client credentials.
+When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
+services you don't need an access token. In this case you need only the client credentials.
 
 ```html
 <html ng-app="lelylan">
 <body>
 
-  <!-- Lelylan resources access -->
   <div ng-controller="LelylanController">{{subscription}}</div>
 
   <script>
     function LelylanController($scope, BasicAuth, Subscription) {
-      var credentials = { id: '<client-id>', secret: '<client-secret>' };
-      BasicAuth.set(credentials);
-
+      BasicAuth.set({ id: '<client-id>', secret: '<client-secret>' });
       $scope.subscription = Subscription.get({ id: '<id>' });
     }
   </script>
 
-  <!-- Angular and Lelylan libraries -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-resources.min.js"/></script>
+  <script src="//s.lelylan.com/angular/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
 
 ### Good practices
 
-When creating a third party app with different libraries, just define your own.
+When creating a third party app made up from different modules, just define your own.
+In this example we define `app`, which combines `lelylan` and `angular-ui`.
 
 ```html
 <html ng-app="app">
@@ -142,17 +126,15 @@ When creating a third party app with different libraries, just define your own.
 
   <script>angular.module('app', ['lelylan', 'ui'])</script>
 
-  <!-- Angular and Lelylan libraries -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-resources.min.js"/></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-oauth2.min.js"/></script>
+  <script src="//s.lelylan.com/angular/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
 
-Note how the Angular App is now `ng-app="app"`.
+Note the fact that the Angular App is now `ng-app="app"`.
 
 
 ### Implemented Services
@@ -168,6 +150,7 @@ Note how the Angular App is now `ng-app="app"`.
 - [x] [Physical devices](http://dev.lelylan.com/api/physicals#angular).
 - [x] [Subscriptions](http://dev.lelylan.com/api/realtime#angular).
 - [x] [User Profile](http://dev.lelylan.com/api/core#get-a-user-angular).
+- [x] [OAuth2](http://dev.lelylan.com/api/oauth#implicit-grant-angular).
 
 
 ### Errors
@@ -182,18 +165,17 @@ Through the error object you can access to the status code and a simpe error mes
 <html ng-app="lelylan">
 <body>
 
-  <!-- Lelylan errors -->
   <div ng-controller="LelylanController">
     <div>{{device}}</div>
-    <div class="error" ng-show="error">{{error.status}} {{error.message}}</div>
-    <div class="error-401" ng-show="show==401">Unauthorized request. Please, login first</div>
+    <div class="error 401" ng-show="error==401">
+      Unauthorized request. Please, login first
+    </div>
   </div>
 
   <script>
     function LelylanController($scope, Device) {
       $scope.device = Device.get({ id: '<id>' });
-      $scope.$on('lelylan:error', function(event, error) { $scope.error = error; });
-      $scope.$on('lelylan:error:401', function(event) { $scope.show = '401'; })
+      $scope.$on('lelylan:error:401', function(event) { $scope.error = '401'; })
     }
   </script>
 
@@ -201,7 +183,7 @@ Through the error object you can access to the status code and a simpe error mes
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-resources.min.js"/></script>
+  <script src="//s.lelylan.com/angular/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
@@ -221,18 +203,15 @@ Here a simple example where we change the API endpoint.
 <html ng-app="app">
 <body>
 
-  <!-- Lelylan configuration -->
   <script>
     var app = angular.module('app', ['lelylan']);
     app.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
   </script>
 
-  <!-- Angular and Lelylan libraries -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-resources.min.js"/></script>
-  <script src="//cdn.lelylan.com/angular/0.1/lelylan-oauth2.min.js"/></script>
+  <script src="//s.lelylan.com/angular/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
@@ -246,23 +225,31 @@ provide specs to your contribution.
 
 ### Running specs
 
+Unit tests.
+
 * Fork and clone the repository.
-* Intall [Yeoman](http://yeoman.io/gettingstarted_1.0.html).
-* Run `testacular start` to execute all specs and reload all specs when a file change.
+* Intall [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
+* Run `testacular start` to execute all unit tests.
+
+E2e tests.
+
+* Fork and clone the repository.
+* Intall [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
+* Run `yeoman server`
+* Run `testacular start testacular.e2e.conf.js` to execute all e2e tests.
 
 ### Creating distribution
 
-* Run `yeoman build`
-* Run `yeoman server:dist` to have your index.html with the latest build.
+* Run `yeoman build` to create the new distribution.
+* Run `yeoman server:dist` to see if everything works fine.
 
-Development in Javascript can be tricky sometimes, so keep this in mind.
+Development in Javascript can be tricky sometimes. Keep what follows in mind.
 
+* When adding new js files remember to add them in the `<!-- build:js -->` block
+declared in `index.html`. If you don't add them, your tests will pass but your build
+will not contain the new files.
 * When making new tests do not warry about the loading part. The testacular config
 file will automatically load for you all files in`test/spec`.
-* When adding new js files remember to place them in the `<!-- build:js -->` block
-that is declared in `index.html`. If you don't place them, your tests will probably
-pass but your build will not contain the new files.
-
 
 ### Coding guidelines
 
