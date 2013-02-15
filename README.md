@@ -23,7 +23,9 @@ binding.
 Before using Lelylan APIs you need to get an access token and the fastest way to get one is to
 use the `login` component. It takes care of all steps required by the [Implicit Flow](http://dev.lelylan.com/api/oauth#implicit-grant-angular))
 and will guide the user through the autorization steps showing a login link.
-Once the user has logged in all Lelylan resource are accessible.
+Once the user has logged in, all Lelylan resource are accessible.
+
+The following example shows all owned devices.
 
 ```html
 <html ng-app="lelylan">
@@ -68,6 +70,8 @@ Using the login component the access token is automatically refreshed when expir
 
 
 ### Implemented Services
+
+Learn how to use Lelylan and AngulasJS in deep.
 
 - [x] [Devices](http://dev.lelylan.com/api/devices#angular).
 - [x] [Activations](http://dev.lelylan.com/api/devices#angular).
