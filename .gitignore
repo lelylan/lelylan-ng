@@ -24,3 +24,4 @@ docs/
 # Builds
 temp/
 dist/
+lib/
