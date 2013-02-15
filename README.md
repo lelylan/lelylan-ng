@@ -94,9 +94,7 @@ get the user's devices.
 When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
 services you don't need an access token. In this case you need only the client credentials.
 
-```html
-<!-- Subscription example -->
-
+```
 <html ng-app="lelylan">
 <body>
 
