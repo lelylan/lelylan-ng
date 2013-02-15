@@ -20,14 +20,11 @@ binding.
 
 ## Getting Started
 
-### Get an access token
-
 Before using Lelylan APIs you need to get an access token (if you are not used to OAuth2 concepts
 check out the [Dev Center Documentation](http://dev.lelylan.com/api/oauth#implicit-grant-angular)).
-
-The fastest way to get the access token is to use the `login` component.
-It takes care of all the steps required by the
-[Implicit Flow](http://dev.lelylan.com/api/oauth#implicit-grant-angular)).
+The fastest way to get an access token is to use the `login` component. It takes care of all
+the steps required by the [Implicit Flow](http://dev.lelylan.com/api/oauth#implicit-grant-angular)).
+Once the user has logged in, he can access to the Lelylan API.
 
 ```html
 <html ng-app="lelylan">
@@ -50,6 +47,16 @@ It takes care of all the steps required by the
     }
   </script>
 
+  <div ng-controller="LelylanController">
+    <div ng-repeat="device in devices">{{device.name}}</div>
+  </div>
+
+  <script>
+    function LelylanController($scope, Device) {
+      $scope.devices = Device.query();
+    }
+  </script>
+
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
@@ -61,35 +68,21 @@ It takes care of all the steps required by the
 Using the login component the access token is automatically refreshed when expired.
 
 
-### Lelylan API
+### Implemented Services
 
-Once the user logs in, you can access Lelylan APIs. The following example shows how to
-get the user's devices.
+- [x] [Devices](http://dev.lelylan.com/api/devices#angular).
+- [x] [Activations](http://dev.lelylan.com/api/devices#angular).
+- [x] [Histories](http://dev.lelylan.com/api/devices/histories#angular).
+- [x] [Types](http://dev.lelylan.com/api/types#angular).
+- [x] [Properties](http://dev.lelylan.com/api/types/properties#angular).
+- [x] [Functions](http://dev.lelylan.com/api/types/functions#angular).
+- [x] [Statuses](http://dev.lelylan.com/api/types/statuses#angular).
+- [x] [Locations](http://dev.lelylan.com/api/locations#angular).
+- [x] [Physical devices](http://dev.lelylan.com/api/physicals#angular).
+- [x] [Subscriptions](http://dev.lelylan.com/api/realtime#angular).
+- [x] [User Profile](http://dev.lelylan.com/api/core#get-a-user-angular).
+- [x] [OAuth2](http://dev.lelylan.com/api/oauth#implicit-grant-angular).
 
-```html
-<html ng-app="lelylan">
-<body>
-
-  <!-- login component  -->
-
-  <div ng-controller="LelylanController">
-    <div ng-repeat="device in devices">{{device.name}}</div>
-  </div>
-
-  <script>
-    function LelylanController($scope, Device) {
-      $scope.device = Device.query();
-    }
-  </script>
-
-  <!-- Angular and Lelylan libraries -->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
-</body>
-</html>
-```
 
 ### Realtime services
 
@@ -116,44 +109,6 @@ services you don't need an access token. In this case you need only the client c
 </body>
 </html>
 ```
-
-### Good practices
-
-When creating a third party app made up from different modules, just define your own.
-In this example we define `app`, which combines `lelylan` and `angular-ui`.
-
-```html
-<html ng-app="app">
-<body>
-
-  <script>angular.module('app', ['lelylan', 'ui'])</script>
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
-</body>
-</html>
-```
-
-Note the fact that the Angular App is now `ng-app="app"`.
-
-
-### Implemented Services
-
-- [x] [Devices](http://dev.lelylan.com/api/devices#angular).
-- [x] [Activations](http://dev.lelylan.com/api/devices#angular).
-- [x] [Histories](http://dev.lelylan.com/api/devices/histories#angular).
-- [x] [Types](http://dev.lelylan.com/api/types#angular).
-- [x] [Properties](http://dev.lelylan.com/api/types/properties#angular).
-- [x] [Functions](http://dev.lelylan.com/api/types/functions#angular).
-- [x] [Statuses](http://dev.lelylan.com/api/types/statuses#angular).
-- [x] [Locations](http://dev.lelylan.com/api/locations#angular).
-- [x] [Physical devices](http://dev.lelylan.com/api/physicals#angular).
-- [x] [Subscriptions](http://dev.lelylan.com/api/realtime#angular).
-- [x] [User Profile](http://dev.lelylan.com/api/core#get-a-user-angular).
-- [x] [OAuth2](http://dev.lelylan.com/api/oauth#implicit-grant-angular).
-
 
 ### Errors
 
@@ -216,6 +171,28 @@ Here a simple example where we change the API endpoint.
 </body>
 </html>
 ```
+
+
+### Good practices
+
+When creating a third party app made up from different modules, just define your own.
+In this example we define `app`, which combines `lelylan` and `angular-ui`.
+
+```html
+<html ng-app="app">
+<body>
+
+  <script>angular.module('app', ['lelylan', 'ui'])</script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
+  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
+</body>
+</html>
+```
+
+Note the fact that the Angular App is now `ng-app="app"`.
 
 
 ## Contributing
