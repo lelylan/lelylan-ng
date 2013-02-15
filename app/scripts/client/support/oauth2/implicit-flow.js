@@ -22,10 +22,12 @@ client.factory('ImplicitFlow', ['AccessToken', '$location', function(AccessToken
 
   // Restore the exact URL existing before the authorization
   implicitFlow.restoreURL = function(scope) {
-    var state = AccessToken.get().state.split(joiner);
-    if (state[0]) AccessToken.set({ state: state[0] });
-    if (state[1]) $location.url(decode(state[1]));
-    scope.endpoint = implicitFlow.url(scope);
+    if (AccessToken.get().state) {
+      var state = AccessToken.get().state.split(joiner);
+      if (state[0]) AccessToken.set({ state: state[0] });
+      if (state[1]) $location.url(decode(state[1]));
+      scope.endpoint = implicitFlow.url(scope);
+    }
   }
 
   // Little hacking encoding (otherwise we are not able to restore the

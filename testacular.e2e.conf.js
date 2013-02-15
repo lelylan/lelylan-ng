@@ -1,27 +1,19 @@
-// Testacular configuration
-
-
 // base path, that will be used to resolve files and exclude
 basePath = '';
 
+
 // list of files / patterns to load in the browser
 files = [
-  JASMINE,
-  JASMINE_ADAPTER,
-  'app/scripts/vendor/angular/angular.js',
-  'app/scripts/vendor/angular/angular-*.js',
-  'test/vendor/angular-mocks.js',
-  'app/scripts/*.js',
-  'app/scripts/**/*.js',
-  'test/spec/*.js',
-  'test/spec/**/*.js'
+  ANGULAR_SCENARIO,
+  ANGULAR_SCENARIO_ADAPTER,
+  'test/spec/components/*.js',
+  'test/spec/components/**/*.js'
 ];
 
 
 // list of files to exclude
 exclude = [
-  'test/spec/components/*.js',
-  'test/spec/components/**/*.js'
+
 ];
 
 
@@ -66,7 +58,13 @@ browsers = ['PhantomJS'];
 singleRun = false;
 
 
-// Continuos Integration
+// Running server address
+proxies = {
+  '/': 'http://localhost:3501/'
+};
+
+
+// Continuos Integration config
 junitReporter = {
   outputFile: 'test_out/unit.xml',
   suite: 'unit'

@@ -6,19 +6,39 @@
   </head>
   <body>
 
-    <h1>Simple Lelylan Resources access</h1>
-    <div ng-controller="LelylanController">{{device}}</div>
+    <h1>Login Component (oauth2 implicit flow)</h1>
+    <div ng-controller = "LoginController">
+      <login site     = "{{oauth.site}}"
+             client   = "{{oauth.client}}"
+             redirect = "{{oauth.redirect}}"
+             scope    = "{{oauth.scope}}"
+             state    = "{{oauth.state}}"></login>
+    </div>
+
+    <script>
+      function LoginController($scope) {
+        $scope.oauth =
+          { site:     'http://localhost:3000',
+            client:   'af4ea5ad03ae9adf3681645f86304c991f9f981b69d1f6862500912c6992910d',
+            redirect: 'http://localhost:3501',
+            scope:    'resources+privates',
+            state:    'state' };
+      }
+    </script>
+
+    <h1>Lelylan Resources access</h1>
+    <div ng-controller="LelylanController">
+      <div ng-repeat="device in devices">
+        <a ng-href="{{device.uri}}">{{device.name}}</a> (with id {{device.id}})
+      </div>
+    </div>
 
     <script>
       function LelylanController($scope, AccessToken, Device) {
-        // Set you access token
-        AccessToken.set({ access_token: '<your-access-token>', expires_in: '7200' });
-        // Retrieve all of your devices
-        $scope.device = Device.query();
-        // Listen to unauthorized request
-        $scope.$on('lelylan:error:401', function(event) {
-          console.log("[Lelylan Error] Unauthorized Request");
-        });
+        $scope.devices = Device.query();
+
+        $scope.$on('lelylan:error:401', function(event) { console.log("[Lelylan Error] Unauthorized Request"); });
+        $scope.$on('lelylan:logout', function(event) { $scope.devices = null; });
       }
   </script>
 
@@ -29,7 +49,7 @@
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
 
-    <!-- Client -->
+    <!-- Client models -->
     <script src="scripts/client/activation.js"></script>
     <script src="scripts/client/deactivation.js"></script>
     <script src="scripts/client/device.js"></script>
@@ -42,22 +62,25 @@
     <script src="scripts/client/subscription.js"></script>
     <script src="scripts/client/type.js"></script>
 
-    <!-- authorization -->
+    <!-- Authorization models -->
     <script src="scripts/client/support/basic-auth/basic-request-wrapper.js"></script>
     <script src="scripts/client/support/basic-auth/basic-auth.js"></script>
     <script src="scripts/client/support/oauth2/request-wrapper.js"></script>
     <script src="scripts/client/support/oauth2/access-token.js"></script>
     <script src="scripts/client/support/oauth2/implicit-flow.js"></script>
 
-    <!-- config -->
+    <!-- Errrors -->
+    <script src="scripts/errors/errors.js"></script>
+
+    <!-- Config -->
     <script src="scripts/config/config.js"></script>
 
-    <!-- errrors -->
-    <script src="scripts/errors/errors.js"></script>
+    <!-- OAuth2 components -->
+    <script src="scripts/components/login.js"></script>
     <!-- endbuild -->
 
     <script>
-      var example = angular.module('example', ['lelylan.resources']);
+      var example = angular.module('example', ['lelylan']);
       example.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
     </script>
   </body>

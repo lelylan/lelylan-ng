@@ -10,7 +10,7 @@ describe('Physical', function() {
           'id': 'status',
           'value': 'on' } ] };
 
-  beforeEach(module('lelylan.resources'));
+  beforeEach(module('lelylan'));
   beforeEach(inject(function($injector) { $httpBackend = $injector.get('$httpBackend'); }));
 
 

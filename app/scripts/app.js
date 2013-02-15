@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('lelylan.resources', [
+angular.module('lelylan', [
 
   // client
   'lelylan.profile',
@@ -26,5 +26,8 @@ angular.module('lelylan.resources', [
   'lelylan.config',
 
   // errors
-  'lelylan.errors'
+  'lelylan.errors',
+
+  // oauth components
+  'lelylan.login'
 ]);

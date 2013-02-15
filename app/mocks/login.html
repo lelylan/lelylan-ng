@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="test">
+  <head>
+    <meta charset="utf-8">
+    <title>Lelylan</title>
+  </head>
+  <body>
+
+    <h1>Login Component (oauth2 implicit flow)</h1>
+    <div ng-controller = "LoginController">
+      <login client   = "{{oauth.client}}"
+             redirect = "{{oauth.redirect}}"
+             scope    = "{{oauth.scope}}"
+             state    = "{{oauth.state}}"></login>
+    </div>
+
+    <script>
+      function LoginController($scope) {
+        $scope.oauth =
+          { client:   '<client>',
+            redirect: '<redirect>',
+            scope:    '<scope>',
+            state:    '<state>' };
+      };
+    </script>
+
+
+    <h1>Events Controller</h1>
+    <div ng-controller="EventsController">
+      <div class="login-event">{{token}}</div>
+      <div class="logout-event">{{logout}}</div>
+      <div class="denied-event">{{denied}}</div>
+    </div>
+
+    <script>
+      function EventsController($scope) {
+        $scope.$on('lelylan:login', function(event, token) {
+          $scope.token = token.access_token;
+        });
+
+        $scope.$on('lelylan:logout', function(event) {
+          $scope.token  = undefined;
+          $scope.logout = 'Logged out';
+        });
+
+        $scope.$on('lelylan:logout:denied', function(event) {
+          $scope.token  = undefined;
+          $scope.denied = 'Access denied';
+        });
+      }
+    </script>
+
+    <script src="../scripts/vendor/angular/angular.js"></script>
+    <script src="../scripts/vendor/angular/angular-resource.js"></script>
+    <script src="../scripts/vendor/angular/angular-cookies.js"></script>
+
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/client/activation.js"></script>
+    <script src="../scripts/client/deactivation.js"></script>
+    <script src="../scripts/client/device.js"></script>
+    <script src="../scripts/client/function.js"></script>
+    <script src="../scripts/client/history.js"></script>
+    <script src="../scripts/client/location.js"></script>
+    <script src="../scripts/client/profile.js"></script>
+    <script src="../scripts/client/property.js"></script>
+    <script src="../scripts/client/status.js"></script>
+    <script src="../scripts/client/subscription.js"></script>
+    <script src="../scripts/client/type.js"></script>
+    <script src="../scripts/client/support/basic-auth/basic-request-wrapper.js"></script>
+    <script src="../scripts/client/support/basic-auth/basic-auth.js"></script>
+    <script src="../scripts/client/support/oauth2/request-wrapper.js"></script>
+    <script src="../scripts/client/support/oauth2/access-token.js"></script>
+    <script src="../scripts/client/support/oauth2/implicit-flow.js"></script>
+    <script src="../scripts/errors/errors.js"></script>
+    <script src="../scripts/config/config.js"></script>
+    <script src="../scripts/components/login.js"></script>
+
+    <!-- Test helpers -->
+    <script src="../scripts/vendor/angular/angular-mocks.js"></script>
+    <script src="../scripts/vendor/lelylan/lelylan-mocks.js"></script>
+  </body>
+</html>

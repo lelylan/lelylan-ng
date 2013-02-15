@@ -25,6 +25,7 @@ var notAuthHeaders = {
   'X-Requested-With': 'XMLHttpRequest'
 };
 
+
 var test = angular.module('test', ['lelylan', 'ngMockE2E']);
 
 test.run(function($httpBackend) {
@@ -32,12 +33,6 @@ test.run(function($httpBackend) {
   $httpBackend.whenGET('http://api.lelylan.com/devices/1', headers).respond(device);
   $httpBackend.whenGET('http://api.lelylan.com/devices/1', notAuthHeaders).respond('401');
   $httpBackend.whenGET('http://api.lelylan.com/devices/2').respond(401);
-  $httpBackend.when('GET', /\/templates\//).passThrough();
 
-  // Used to print sent data when not intercepted (usually a misplaced header)
-  $httpBackend.whenGET('http://api.lelylan.com/devices/1')
-  .respond(function(method, url, data, headers){
-    console.log('Received these data:', method, url, data, headers);
-    return [200, { test: 'missed' }, {}];
-  });
+  $httpBackend.when('GET', /\/templates\//).passThrough();
 });
