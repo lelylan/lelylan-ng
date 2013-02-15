@@ -20,11 +20,10 @@ binding.
 
 ## Getting Started
 
-Before using Lelylan APIs you need to get an access token (if you are not used to OAuth2 concepts
-check out the [Dev Center Documentation](http://dev.lelylan.com/api/oauth#implicit-grant-angular)).
-The fastest way to get an access token is to use the `login` component. It takes care of all
-the steps required by the [Implicit Flow](http://dev.lelylan.com/api/oauth#implicit-grant-angular)).
-Once the user has logged in, he can access to the Lelylan API.
+Before using Lelylan APIs you need to get an access token and the fastest way to get one is to
+use the `login` component. It takes care of all steps required by the [Implicit Flow](http://dev.lelylan.com/api/oauth#implicit-grant-angular))
+and will guide the user through the autorization steps showing a login link.
+Once the user has logged in all Lelylan resource are accessible.
 
 ```html
 <html ng-app="lelylan">
