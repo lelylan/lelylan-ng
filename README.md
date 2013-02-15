@@ -18,6 +18,8 @@ synchronizes data from your UI (view) with your JavaScript objects (model) throu
 binding.
 
 
+## Getting Started
+
 ### Get an access token
 
 Before using Lelylan APIs you need to get an access token (if you are not used to OAuth2 concepts
@@ -94,7 +96,7 @@ get the user's devices.
 When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
 services you don't need an access token. In this case you need only the client credentials.
 
-```
+```html
 <html ng-app="lelylan">
 <body>
 
