@@ -24,4 +24,7 @@ docs/
 # Builds
 temp/
 dist/
-lib/
+app/lib/
+
+# Ignore example file
+app/example.html
