@@ -32,19 +32,16 @@ The following example shows all owned devices.
 <body>
 
   <div ng-controller="LoginController">
-    <login client="{{oauth.client}}"
-           redirect="{{oauth.redirect}}"
-           scope="{{oauth.scope}}"
-           state="{{oauth.state}}"></login>
+    <login client="{{oauth.client}}" 
+           redirect="{{oauth.redirect}}" 
+           scope="{{oauth.scope}}" 
+           state="{{oauth.state}}">
+    </login>
   </div>
 
   <script>
     function LoginController($scope) {
-      $scope.oauth = {
-        client:   '<client-id>',
-        redirect: '<redirect-uri>',
-        scope:    '<scope>',
-        state:    '<state>' };
+      $scope.oauth = { client: '<client-id>', redirect: '<redirect-uri>', scope: '<scope>', state: '<state>' };
     }
   </script>
 
