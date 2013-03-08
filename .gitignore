@@ -28,3 +28,4 @@ app/lib/
 
 # Ignore example file
 app/example.html
+app/example-local.html

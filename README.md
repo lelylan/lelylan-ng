@@ -161,20 +161,33 @@ Here a simple example where we change the API endpoint.
 ```html
 <html ng-app="app">
 <body>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
+  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
 
   <script>
     var app = angular.module('app', ['lelylan']);
     app.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
   </script>
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
 
+#### Login Component
+
+The Login component can be used with any OAuth2 compliant server by
+using the `site` attribute.
+
+```html
+    <div ng-controller="LoginController">
+      <login site="http://localhost:8000"
+             client="{{oauth.client}}"
+             redirect="{{oauth.redirect}}"
+             scope="{{oauth.scope}}"
+             state="{{oauth.state}}"></login>
+    </div>
+```
 
 ### Good practices
 
@@ -184,13 +197,12 @@ In this example we define `app`, which combines `lelylan` and `angular-ui`.
 ```html
 <html ng-app="app">
 <body>
-
-  <script>angular.module('app', ['lelylan', 'ui'])</script>
-
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
   <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
+
+  <script>angular.module('app', ['lelylan', 'ui'])</script>
 </body>
 </html>
 ```
