@@ -32,9 +32,9 @@ The following example shows all owned devices.
 <body>
 
   <div ng-controller="LoginController">
-    <login client="{{oauth.client}}" 
-           redirect="{{oauth.redirect}}" 
-           scope="{{oauth.scope}}" 
+    <login client="{{oauth.client}}"
+           redirect="{{oauth.redirect}}"
+           scope="{{oauth.scope}}"
            state="{{oauth.state}}">
     </login>
   </div>
@@ -97,7 +97,7 @@ services you don't need an access token. In this case you need only the client c
 
   <script>
     function LelylanController($scope, BasicAuth, Subscription) {
-      BasicAuth.set({ id: '<client-id>', secret: '<client-secret>' });
+      BasicAuth.set({ clientID: '<client-id>', clientSecret: '<client-secret>' });
       $scope.subscription = Subscription.get({ id: '<id>' });
     }
   </script>
