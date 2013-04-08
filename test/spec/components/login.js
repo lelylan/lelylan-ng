@@ -12,23 +12,23 @@ describe('<login>', function() {
     });
 
     it('gets the user email', function() {
-      expect(element('.login .welcome').text()).toEqual('Welcome alice@wonderland.com');
+      expect(element('.welcome').text()).toEqual('Welcome alice@wonderland.com');
     });
 
     it('shows the welcome message', function() {
-      expect(element('.login .welcome').css('display')).toEqual('block');
+      expect(element('.welcome').css('display')).toEqual('list-item');
     });
 
     it('shows the logged in user email', function() {
-      expect(element('.login .welcome').text()).toEqual('Welcome alice@wonderland.com');
+      expect(element('.welcome').text()).toEqual('Welcome alice@wonderland.com');
     });
 
     it('shows the logout', function() {
-      expect(element('.login .logout').css('display')).toEqual('block');
+      expect(element('.logout').css('display')).toEqual('list-item');
     });
 
     it('does not show the login', function() {
-      expect(element('.login .login').css('display')).toEqual('none');
+      expect(element('.login').css('display')).toEqual('none');
     });
 
     it('removes the fragment from the URI', function() {
@@ -45,15 +45,15 @@ describe('<login>', function() {
     describe('when logs out', function() {
 
       beforeEach(function() {
-        element('.login .logout a').click();
+        element('.logout a').click();
       });
 
       it('shows the login', function() {
-        expect(element('.login .login').css('display')).toEqual('block');
+        expect(element('.login').css('display')).toEqual('list-item');
       });
 
       it('does not show the logout', function() {
-        expect(element('.login .logout').css('display')).toEqual('none');
+        expect(element('.logout').css('display')).toEqual('none');
       });
 
       it('fires the event lelylan:logout', function() {
@@ -72,11 +72,11 @@ describe('<login>', function() {
       });
 
       it('shows the login', function() {
-        expect(element('.login .login').css('display')).toEqual('block');
+        expect(element('.login').css('display')).toEqual('list-item');
       });
 
       it('does not show the logout', function() {
-        expect(element('.login .logout').css('display')).toEqual('none');
+        expect(element('.logout').css('display')).toEqual('none');
       });
 
       it('fires the event lelylan:access:denied', function() {

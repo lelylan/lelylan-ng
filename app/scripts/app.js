@@ -16,6 +16,7 @@ angular.module('lelylan', [
   'lelylan.subscription',
 
   // authorization
+  'lelylan.loggedUser',
   'lelylan.accessToken',
   'lelylan.requestWrapper',
   'lelylan.basicAuth',

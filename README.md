@@ -9,7 +9,7 @@ AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 in your house providing a simple, self descriptive and consistent REST API.
 
 
-## What is AngualrJS
+## What is AngularJS
 
 [AngularJS](http://angularjs.org/) lets you write client-side web applications as if you had
 a smarter browser. It lets you use good old HTML as your template language and lets you extend
@@ -41,11 +41,17 @@ The following example shows all owned devices.
 
   <script>
     function LoginController($scope) {
-      $scope.oauth = { client: '<client-id>', redirect: '<redirect-uri>', scope: '<scope>', state: '<state>' };
+      $scope.oauth = {
+        client: '<client-id>',
+        redirect: '<redirect-uri>',
+        scope: '<scope>',
+        state: '<state>'
+      };
     }
   </script>
 
   <div ng-controller="LelylanController">
+    <h1>Owned devices</h1>
     <div ng-repeat="device in devices">{{device.name}}</div>
   </div>
 
@@ -132,7 +138,7 @@ Through the error object you can access to the status code and a simpe error mes
   <script>
     function LelylanController($scope, Device) {
       $scope.device = Device.get({ id: '<id>' });
-      $scope.$on('lelylan:error:401', function(event) { $scope.error = '401'; })
+      $scope.$on('lelylan:error:401', function(event) { $scope.error = '401'; });
     }
   </script>
 
@@ -145,6 +151,27 @@ Through the error object you can access to the status code and a simpe error mes
 ```
 
 Learn more about [errors on Lelylan](http://dev.lelylan.com/api/core#errors).
+
+
+### Signed in user
+
+Once the user signs in, the <a href="http://api.lelylan.com/api/core#user-profile">profile resource</a>
+is cached into the `LoggedUser` service.
+
+```html
+<div ng-controller="LelylanController">
+  <h1>Profile</h1>
+  <p>ID: {{me.id}}</p>
+  <p>User: {{me.full_name}}</p>
+  <p>Email: {{me.email}}</p>
+</div>
+
+<script>
+function LelylanController($scope, LoggedUser) {
+  $scope.me = LoggedUser.get();
+}
+</script>
+```
 
 
 ### Configurations

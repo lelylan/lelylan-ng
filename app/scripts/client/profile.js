@@ -2,8 +2,11 @@
 
 var client = angular.module('lelylan.profile', ['ngResource'])
 
-client.factory('Profile', ['RequestWrapper', '$resource', 'lelylan.config',
-  function(RequestWrapper, $resource, config) {
+client.factory('Profile', ['RequestWrapper', '$resource', 'lelylan.config', '$timeout',
+  function(RequestWrapper, $resource, config, $timeout) {
+    var me;
     var resource = $resource(config.endpoint + '/me');
-    return RequestWrapper.wrap(resource, ['get']);
+    var profile  = RequestWrapper.wrap(resource, ['get']);
+
+    return profile
 }]);

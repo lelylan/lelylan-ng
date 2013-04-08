@@ -6,24 +6,24 @@ directives.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');;
 }]);
 
-directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', '$location', '$cookies', '$rootScope',
-  function(AccessToken, ImplicitFlow, Profile, $location, $cookies, $rootScope) {
+directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'LoggedUser', '$location', '$cookies', '$rootScope',
+  function(AccessToken, ImplicitFlow, Profile, LoggedUser, $location, $cookies, $rootScope) {
 
   var template =
-    '<div class="login">' +
-      '<div ng-show="show==\'loggedOut\'" class="login">' +
+    '<ul>' +
+      '<li ng-show="show==\'loggedOut\'" class="login">' +
         '<a ng-href="{{endpoint}}">Login</a>' +
-      '</div>' +
-      '<div ng-show="show==\'loggedIn\'" class="welcome">' +
+      '</li>' +
+      '<li ng-show="show==\'loggedIn\'" class="welcome">' +
         'Welcome {{profile.email}}' +
-      '</div>' +
-      '<div ng-show="show==\'loggedIn\'" class="logout">' +
+      '</li>' +
+      '<li ng-show="show==\'loggedIn\'" class="logout">' +
         '<a ng-click="logout()">Logout</a>' +
-      '</div>' +
-      '<div ng-show="show==\'preloading\'" class="preloading">' +
-        'Loading user data ...' +
-      '</div>'
-    '</div>';
+      '</li>' +
+      '<li ng-show="show==\'preloading\'" class="preloading">' +
+        'Signing In' +
+      '</li>' +
+    '</ul>';
 
   var definition = {
     restrict: 'E',
@@ -59,7 +59,7 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', '$locat
     scope.login = function() {
       showLogin();
       ImplicitFlow.restoreURL(scope);
-      scope.profile = Profile.get();
+      scope.profile = LoggedUser.set(Profile.get());
       setCookie('logged-in');
       fireLoginEvent();
     };
@@ -81,7 +81,7 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', '$locat
     var clear = function() {
       showLogout();
       deleteCookie();
-      scope.profile = null;
+      scope.profile = LoggedUser.set(null);
       AccessToken.delete();
     };
 
