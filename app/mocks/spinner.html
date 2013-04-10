@@ -6,47 +6,17 @@
   </head>
   <body>
 
-    <h1>Login Component (oauth2 implicit flow)</h1>
-    <div ng-controller = "LoginController">
-      <login client   = "{{oauth.client}}"
-             redirect = "{{oauth.redirect}}"
-             scope    = "{{oauth.scope}}"
-             state    = "{{oauth.state}}"></login>
+    <h1>Spinner</h1>
+    <div ng-controller="LelylanController">
+      <div id="lelylan-request-loading" style="display:none;">Loading Request</div>
     </div>
 
-    <script>
-      function LoginController($scope) {
-        $scope.oauth =
-          { client: '<client-id>',
-            redirect: '<redirect>',
-            scope: '<scope>',
-            state: '<state>' };
-      };
-    </script>
-
-
-    <h1>Events Controller</h1>
-    <div ng-controller="EventsController">
-      <div class="login-event">{{token}}</div>
-      <div class="logout-event">{{logout}}</div>
-      <div class="denied-event">{{denied}}</div>
-    </div>
+    </hr>
 
     <script>
-      function EventsController($scope) {
-        $scope.$on('lelylan:login', function(event, token) {
-          $scope.token = token.access_token;
-        });
-
-        $scope.$on('lelylan:logout', function(event) {
-          $scope.token  = undefined;
-          $scope.logout = 'Logged out';
-        });
-
-        $scope.$on('lelylan:logout:denied', function(event) {
-          $scope.token  = undefined;
-          $scope.denied = 'Access denied';
-        });
+      function LelylanController($http) {
+        var url = 'http://types.lelylan.com/types/public';
+        $http({ method: 'GET', url: url });
       }
     </script>
 

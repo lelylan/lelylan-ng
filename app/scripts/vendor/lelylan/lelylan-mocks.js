@@ -35,4 +35,5 @@ test.run(function($httpBackend) {
   $httpBackend.whenGET('http://api.lelylan.com/devices/2').respond(401);
 
   $httpBackend.when('GET', /\/templates\//).passThrough();
+  $httpBackend.when('GET', /types.lelylan.com/).passThrough(); // to test the spinner visualization
 });

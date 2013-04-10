@@ -26,7 +26,8 @@ angular.module('lelylan', [
   // configuration
   'lelylan.config',
 
-  // errors
+  // requests flow
+  'lelylan.requests',
   'lelylan.errors',
 
   // oauth components

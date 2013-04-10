@@ -3,67 +3,46 @@
 AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 
 
-## What is Lelylan
+## Introduction
+
+### What is Lelylan
 
 [Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
-in your house providing a simple, self descriptive and consistent REST API.
+in your house providing a simple and consistent REST API.
 
-
-## What is AngularJS
+### Why AngularJS
 
 [AngularJS](http://angularjs.org/) lets you write client-side web applications as if you had
 a smarter browser. It lets you use good old HTML as your template language and lets you extend
-HTML’s syntax to express your application’s components clearly and succinctly. It automatically
-synchronizes data from your UI (view) with your JavaScript objects (model) through 2-way data
-binding.
+HTML’s syntax to express your application’s components clearly and succinctly.
 
 
 ## Getting Started
 
-Before using Lelylan APIs you need to get an access token and the fastest way to get one is to
-use the `login` component. It takes care of all steps required by the [Implicit Flow](http://dev.lelylan.com/api/oauth#implicit-grant-angular))
-and will guide the user through the autorization steps showing a login link.
-Once the user has logged in, all Lelylan resource are accessible.
-
-The following example shows all owned devices.
+Include the lelylan-ng library and embed the
+[Login Component](http://dev.lelylan.com/api/oauth#implicit-grant-angular)) using the `<login>` tag.
+The following example gets all owned devices.
 
 ```html
 <html ng-app="lelylan">
 <body>
-
-  <div ng-controller="LoginController">
-    <login client="{{oauth.client}}"
-           redirect="{{oauth.redirect}}"
-           scope="{{oauth.scope}}"
-           state="{{oauth.state}}">
-    </login>
-  </div>
-
-  <script>
-    function LoginController($scope) {
-      $scope.oauth = {
-        client: '<client-id>',
-        redirect: '<redirect-uri>',
-        scope: '<scope>',
-        state: '<state>'
-      };
-    }
-  </script>
-
+  <!-- Login component -->
+  <login client="<client-id>" redirect="<redirect-uri>" scope="<scope>" state="<state>"></login>
+  <!-- Visualize owned devices name -->
   <div ng-controller="LelylanController">
-    <h1>Owned devices</h1>
+    <h1>Devices</h1>
     <div ng-repeat="device in devices">{{device.name}}</div>
   </div>
-
+  <!-- Gets owned device -->
   <script>
     function LelylanController($scope, Device) {
       $scope.devices = Device.query();
     }
   </script>
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
+  <!-- Javascript libraries -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-cookies.min.js"></script>
   <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
@@ -93,27 +72,16 @@ Learn how to use Lelylan and AngulasJS in deep.
 ### Realtime services
 
 When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
-services you don't need an access token. In this case you need only the client credentials.
+services you must set the client credentials (no access token required).
 
 ```html
-<html ng-app="lelylan">
-<body>
-
-  <div ng-controller="LelylanController">{{subscription}}</div>
-
-  <script>
-    function LelylanController($scope, BasicAuth, Subscription) {
-      BasicAuth.set({ clientID: '<client-id>', clientSecret: '<client-secret>' });
-      $scope.subscription = Subscription.get({ id: '<id>' });
-    }
-  </script>
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
-</body>
-</html>
+<div ng-controller="LelylanController">{{subscription}}</div>
+<script>
+function LelylanController($scope, BasicAuth, Subscription) {
+  BasicAuth.set({ clientID: '<client-id>', clientSecret: '<client-secret>' });
+  $scope.subscription = Subscription.get({ id: '<id>' });
+}
+</script>
 ```
 
 ### Errors
@@ -125,29 +93,19 @@ code is returned. It also offers a granular error control throught by firing a
 Through the error object you can access to the status code and a simpe error message.
 
 ```html
-<html ng-app="lelylan">
-<body>
-
-  <div ng-controller="LelylanController">
-    <div>{{device}}</div>
-    <div class="error 401" ng-show="error==401">
-      Unauthorized request. Please, login first
-    </div>
+<div ng-controller="LelylanController">
+  <div>{{device}}</div>
+  <div class="error 401" ng-show="error==401">
+    Unauthorized request. Please, login first.
   </div>
+</div>
 
-  <script>
-    function LelylanController($scope, Device) {
-      $scope.device = Device.get({ id: '<id>' });
-      $scope.$on('lelylan:error:401', function(event) { $scope.error = '401'; });
-    }
-  </script>
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
-</body>
-</html>
+<script>
+function LelylanController($scope, Device) {
+  $scope.device = Device.get({ id: '<id>' });
+  $scope.$on('lelylan:error:401', function(event) { $scope.error = '401'; });
+}
+</script>
 ```
 
 Learn more about [errors on Lelylan](http://dev.lelylan.com/api/core#errors).
@@ -155,15 +113,12 @@ Learn more about [errors on Lelylan](http://dev.lelylan.com/api/core#errors).
 
 ### Signed in user
 
-Once the user signs in, the <a href="http://api.lelylan.com/api/core#user-profile">profile resource</a>
+Once the user signs in the <a href="http://api.lelylan.com/api/core#user-profile">profile resource</a>
 is cached into the `LoggedUser` service.
 
 ```html
 <div ng-controller="LelylanController">
-  <h1>Profile</h1>
-  <p>ID: {{me.id}}</p>
-  <p>User: {{me.full_name}}</p>
-  <p>Email: {{me.email}}</p>
+  Welcome {{me.full_name}}
 </div>
 
 <script>
@@ -183,35 +138,19 @@ Lelylan Configuration accepts an object with the following valid params.
 Here a simple example where we change the API endpoint.
 
 ```html
-<html ng-app="app">
-<body>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
-
-  <script>
-    var app = angular.module('app', ['lelylan']);
-    app.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
-  </script>
-</body>
-</html>
+<script>
+  var app = angular.module('app', ['lelylan']);
+  app.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
+</script>
 ```
 
-#### Login Component
 
-The Login component can be used with any OAuth2 compliant server by
-using the `site` attribute.
+### Spinner definition
 
-```html
-    <div ng-controller="LoginController">
-      <login site="http://localhost:8000"
-             client="{{oauth.client}}"
-             redirect="{{oauth.redirect}}"
-             scope="{{oauth.scope}}"
-             state="{{oauth.state}}"></login>
-    </div>
-```
+Lelylan Client show any div with id 'lelylan-requests-loading' when a request is resolving.
+Add a spinner inside this class whenever you need to give a visual feedback about an ongoing
+request.
+
 
 ### Good practices
 
@@ -221,9 +160,9 @@ In this example we define `app`, which combines `lelylan` and `angular-ui`.
 ```html
 <html ng-app="app">
 <body>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-cookies.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-cookies.min.js"></script>
   <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
 
   <script>angular.module('app', ['lelylan', 'ui'])</script>
@@ -236,8 +175,8 @@ Note the fact that the Angular App is now `ng-app="app"`.
 
 ## Contributing
 
-Fork the repo on github and send a pull requests with topic branches. Do not forget to
-provide specs to your contribution.
+Fork the repo on github and send a pull requests with topic branches.
+Do not forget to provide specs to your contribution.
 
 
 ### Running specs
@@ -257,34 +196,28 @@ E2e tests.
 
 ### Creating distribution
 
-* Run `yeoman build` to create the new distribution.
-* Run `yeoman server:dist` to see if everything works fine.
+Run `yeoman build` to create the new distribution. All needed files will be places in 'dist/'.
+Create a `lib/latest` folder into `app/` and save there the following files.
 
-Development in Javascript can be tricky sometimes. Keep what follows in mind.
-
-* When adding new js files remember to add them in the `<!-- build:js -->` block
-declared in `index.html`. If you don't add them, your tests will pass but your build
-will not contain the new files.
-* When making new tests do not warry about the loading part. The testacular config
-file will automatically load for you all files in`test/spec`.
+Run `yeoman build` to create the new distribution.
+Run `yeoman server:dist` to see if everything works fine.
 
 ### Coding guidelines
 
 Follow [github](https://github.com/styleguide/) guidelines.
-
 
 ### Feedback
 
 Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs.
 [Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
 
-
 ### Links
 
 * [GIT Repository](http://github.com/lelylan/lelylan-ng)
-* [Lelylan Resources Website](http://lelylan.github.com/lelylan-ng).
+* [Lelylan Client Site](http://lelylan.github.com/lelylan-ng).
+* [Lelylan Device Component](http://lelylan.github.com/device-component).
+* [Lelylan Type Component](http://lelylan.github.com/type-component).
 * [Lelylan Dev Center](http://dev.lelylan.com)
-* [Lelylan Site](http://lelylan.com)
 
 
 ## Authors
