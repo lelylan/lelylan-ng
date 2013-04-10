@@ -21,7 +21,6 @@ HTML’s syntax to express your application’s components clearly and succinctl
 
 Include the lelylan-ng library and embed the
 [Login Component](http://dev.lelylan.com/api/oauth#implicit-grant-angular)) using the `<login>` tag.
-The following example gets all owned devices.
 
 ```html
 <html ng-app="lelylan">
@@ -89,7 +88,6 @@ function LelylanController($scope, BasicAuth, Subscription) {
 Lelylan Resources fires a generic `lelylan:error` event whenever 4xx or 5xx status
 code is returned. It also offers a granular error control throught by firing a
 `lelylan:error:<status>` event for every specific error.
-
 Through the error object you can access to the status code and a simpe error message.
 
 ```html
@@ -147,9 +145,9 @@ Here a simple example where we change the API endpoint.
 
 ### Spinner definition
 
-Lelylan Client show any div with id 'lelylan-requests-loading' when a request is resolving.
-Add a spinner inside this class whenever you need to give a visual feedback about an ongoing
-request.
+When you need to show a spinner (or similar) element for a pending request to Lelylan add
+a an HTMl tag with the id `lelylan-requests-loading`. It will show up when a request is fired
+and it will hide when the request is resolved.
 
 
 ### Good practices
@@ -196,11 +194,8 @@ E2e tests.
 
 ### Creating distribution
 
-Run `yeoman build` to create the new distribution. All needed files will be places in 'dist/'.
-Create a `lib/latest` folder into `app/` and save there the following files.
-
-Run `yeoman build` to create the new distribution.
-Run `yeoman server:dist` to see if everything works fine.
+* Run `yeoman build` to create the new distribution.
+* Run `yeoman server:dist` to see if everything works fine.
 
 ### Coding guidelines
 
