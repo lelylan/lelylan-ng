@@ -209,9 +209,9 @@ Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs.
 ### Links
 
 * [GIT Repository](http://github.com/lelylan/lelylan-ng)
-* [Lelylan Client Site](http://lelylan.github.com/lelylan-ng).
-* [Lelylan Device Component](http://lelylan.github.com/device-component).
-* [Lelylan Type Component](http://lelylan.github.com/type-component).
+* [Lelylan Client Site](http://lelylan.github.com/lelylan-ng)
+* [Lelylan Device Component](http://lelylan.github.com/device-component)
+* [Lelylan Type Component](http://lelylan.github.com/type-component)
 * [Lelylan Dev Center](http://dev.lelylan.com)
 
 
