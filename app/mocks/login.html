@@ -3,49 +3,59 @@
   <head>
     <meta charset="utf-8">
     <title>Lelylan</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+      .main { margin-top:50px; }
+    </style>
   </head>
   <body>
 
-    <h1>Login Component (oauth2 implicit flow)</h1>
-    <div ng-controller = "LoginController">
-      <login client   = "{{oauth.client}}"
-             redirect = "{{oauth.redirect}}"
-             scope    = "{{oauth.scope}}"
-             state    = "{{oauth.state}}"></login>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner-flat">
+        <div class="container">
+          <div class="nav-collapse collapse">
+            <login class="nav pull-right" client="{{oauth.client}}" redirect="{{oauth.redirect}}" scope="{{oauth.scope}}" state="{{oauth.state}}" text="Sign In"></login>
+            <ul class="nav pull-right">
+              <li><a href="/what">Item One</a></li>
+              <li><a href="/how">Item Two</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container main ng-cloak">
+      <div class="row">
+        <h1>Events Controller</h1>
+        <div ng-controller="EventsController">
+          <div class="message">{{message}}</div>
+        </div>
+      </div>
     </div>
 
     <script>
       function LoginController($scope) {
-        $scope.oauth =
-          { client: '<client-id>',
-            redirect: '<redirect>',
-            scope: '<scope>',
-            state: '<state>' };
+        $scope.oauth = {
+          client: '<client-id>',
+          redirect: '<redirect>',
+          scope: '<scope>',
+          state: '<state>'
+        };
       };
     </script>
-
-
-    <h1>Events Controller</h1>
-    <div ng-controller="EventsController">
-      <div class="login-event">{{token}}</div>
-      <div class="logout-event">{{logout}}</div>
-      <div class="denied-event">{{denied}}</div>
-    </div>
 
     <script>
       function EventsController($scope) {
         $scope.$on('lelylan:login', function(event, token) {
-          $scope.token = token.access_token;
+          $scope.message = 'Signed in with token ' + token.access_token;
         });
 
         $scope.$on('lelylan:logout', function(event) {
-          $scope.token  = undefined;
-          $scope.logout = 'Logged out';
+          $scope.message = 'Signed out';
         });
 
         $scope.$on('lelylan:logout:denied', function(event) {
-          $scope.token  = undefined;
-          $scope.denied = 'Access denied';
+          $scope.message = 'Access denied';
         });
       }
     </script>

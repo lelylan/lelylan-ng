@@ -10,12 +10,12 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
   function(AccessToken, ImplicitFlow, Profile, LoggedUser, $location, $cookies, $rootScope) {
 
   var template =
-    '<ul>' +
-      '<li ng-show="show==\'loggedOut\'" class="login">' +
-        '<a ng-href="{{endpoint}}">Login</a>' +
+    '<ul class="nav pull-right">' +
+      '<li class="float: right;" ng-show="show==\'loggedOut\'" class="login">' +
+        '<a ng-href="{{endpoint}}">{{text}}</a>' +
       '</li>' +
       '<li ng-show="show==\'loggedIn\'" class="welcome">' +
-        'Welcome {{profile.email}}' +
+        '<a>Welcome {{profile.email}}</a>' +
       '</li>' +
       '<li ng-show="show==\'loggedIn\'" class="logout">' +
         '<a ng-click="logout()">Logout</a>' +
@@ -25,17 +25,21 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
       '</li>' +
     '</ul>';
 
+
   var definition = {
     restrict: 'E',
     replace: true,
+    transclude: true,
     template: template,
     scope: {
-      site: '@site',
-      client: '@client',
-      redirect: '@redirect',
-      scope: '@scope',
-      state: '@state',
-      flow: '@flow' }
+      site: '@',
+      client: '@',
+      redirect: '@',
+      scope: '@',
+      state: '@',
+      flow: '@',
+      text: '@'
+    }
   };
 
   definition.link = function postLink(scope, element, attrs) {
