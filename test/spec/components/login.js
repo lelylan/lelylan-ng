@@ -36,11 +36,8 @@ describe('<login>', function() {
     });
 
     it('fires the event lelylan:login', function() {
-      expect(element('.login-event').text()).toEqual('token');
-      expect(element('.logout-event').text()).toBe('');
-      expect(element('.denied-event').text()).toBe('');
+      expect(element('.message').text()).toEqual('Signed in with token token');
     });
-
 
     describe('when logs out', function() {
 
@@ -48,21 +45,10 @@ describe('<login>', function() {
         element('.logout a').click();
       });
 
-      it('shows the login', function() {
-        expect(element('.login').css('display')).toEqual('list-item');
-      });
-
-      it('does not show the logout', function() {
-        expect(element('.logout').css('display')).toEqual('none');
-      });
-
       it('fires the event lelylan:logout', function() {
-        expect(element('.login-event').text()).toBe('');
-        expect(element('.logout-event').text()).toEqual('Logged out');
-        expect(element('.denied-event').text()).toBe('');
+        expect(element('.message').text()).toBe('Signed out');
       });
     });
-
 
     describe('when the authorization is denied', function() {
 
@@ -71,18 +57,8 @@ describe('<login>', function() {
         browser().navigateTo(page + fragment);
       });
 
-      it('shows the login', function() {
-        expect(element('.login').css('display')).toEqual('list-item');
-      });
-
-      it('does not show the logout', function() {
-        expect(element('.logout').css('display')).toEqual('none');
-      });
-
       it('fires the event lelylan:access:denied', function() {
-        expect(element('.login-event').text()).toBe('');
-        expect(element('.logout-event').text()).toBe('');
-        expect(element('.denied-event').text()).toEqual('Access denied');
+        expect(element('.message').text()).toEqual('Access denied');
       });
     });
 

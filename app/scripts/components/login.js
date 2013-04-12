@@ -11,7 +11,7 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
 
   var template =
     '<ul class="nav pull-right">' +
-      '<li class="float: right;" ng-show="show==\'loggedOut\'" class="login">' +
+      '<li ng-show="show==\'loggedOut\'" class="login">' +
         '<a ng-href="{{endpoint}}">{{text}}</a>' +
       '</li>' +
       '<li ng-show="show==\'loggedIn\'" class="welcome">' +
@@ -24,7 +24,6 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
         'Signing In' +
       '</li>' +
     '</ul>';
-
 
   var definition = {
     restrict: 'E',
