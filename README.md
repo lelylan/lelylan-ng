@@ -146,7 +146,7 @@ Here a simple example where we change the API endpoint.
 ### Spinner definition
 
 When you need to show a spinner (or similar) element for a pending request to Lelylan add
-a an HTMl tag with the id `lelylan-requests-loading`. It will show up when a request is fired
+a an HTMl tag with the id `lelylan-request-loading`. It will show up when a request is fired
 and it will hide when the request is resolved.
 
 
