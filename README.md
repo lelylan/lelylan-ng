@@ -127,7 +127,6 @@ function LelylanController($scope) {
     console.log('The user did not authorize the third party app');
   });
 }
-</script>
 ```
 
 ### Signed in user
