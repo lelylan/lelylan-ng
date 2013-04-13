@@ -113,7 +113,7 @@ Learn more about [errors on Lelylan](http://dev.lelylan.com/api/core#errors).
 Lelylan client fires an event when the user authorizes access, denies access and log out from a
 third party app.
 
-```html
+```
 function LelylanController($scope) {
   $scope.$on('lelylan:login', function(event, token) {
     console.log('The user authorized the third party app with access token' + token.access_token);
