@@ -108,6 +108,27 @@ function LelylanController($scope, Device) {
 
 Learn more about [errors on Lelylan](http://dev.lelylan.com/api/core#errors).
 
+### OAuth2 events
+
+Lelylan client fires an event when the user authorizes access, denies access and log out from a
+third party app.
+
+```html
+function LelylanController($scope) {
+  $scope.$on('lelylan:login', function(event, token) {
+    console.log('The user authorized the third party app with access token' + token.access_token);
+  });
+
+  $scope.$on('lelylan:logout', function(event) {
+    console.log('The user has signed out');
+  });
+
+  $scope.$on('lelylan:logout:denied', function(event) {
+    console.log('The user did not authorize the third party app');
+  });
+}
+</script>
+```
 
 ### Signed in user
 
