@@ -11,17 +11,11 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
 
   var template =
     '<ul class="nav pull-right">' +
-      '<li ng-show="show==\'loggedOut\'" class="login">' +
-        '<a ng-href="{{endpoint}}">{{text}}</a>' +
+      '<li ng-show="show==\'out\'" class="login">' +
+        '<a href="#" ng-href="{{endpoint}}">{{text}}</a>' +
       '</li>' +
-      '<li ng-show="show==\'loggedIn\'" class="welcome">' +
-        '<a>Welcome {{profile.email}}</a>' +
-      '</li>' +
-      '<li ng-show="show==\'loggedIn\'" class="logout">' +
-        '<a ng-click="logout()">Logout</a>' +
-      '</li>' +
-      '<li ng-show="show==\'preloading\'" class="preloading">' +
-        'Signing In' +
+      '<li ng-show="show==\'in\'" class="logout">' +
+        '<a href="#" ng-click="logout()">Logout {{profile.email}}</a>' +
       '</li>' +
     '</ul>';
 
@@ -42,8 +36,6 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
   };
 
   definition.link = function postLink(scope, element, attrs) {
-
-    scope.show = 'preloading';
 
     scope.$watch('site', function(value) {
       initialize();
@@ -97,8 +89,8 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
       scope.endpoint = ImplicitFlow.url(scope);
     };
 
-    var showLogin  = function() { scope.show = 'loggedIn'; }
-    var showLogout = function() { scope.show = 'loggedOut'; }
+    var showLogin  = function() { scope.show = 'in'; }
+    var showLogout = function() { scope.show = 'out'; }
 
     var getCookie    = function() { return $cookies[scope.client]; };
     var setCookie    = function(value) { $cookies[scope.client] = value; };

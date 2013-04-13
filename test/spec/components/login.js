@@ -11,19 +11,8 @@ describe('<login>', function() {
       browser().navigateTo(page + fragment);
     });
 
-    it('gets the user email', function() {
-      expect(element('.welcome').text()).toEqual('Welcome alice@wonderland.com');
-    });
-
-    it('shows the welcome message', function() {
-      expect(element('.welcome').css('display')).toEqual('list-item');
-    });
-
-    it('shows the logged in user email', function() {
-      expect(element('.welcome').text()).toEqual('Welcome alice@wonderland.com');
-    });
-
-    it('shows the logout', function() {
+    it('shows the logout message', function() {
+      expect(element('.logout').text()).toEqual('Logout alice@wonderland.com');
       expect(element('.logout').css('display')).toEqual('list-item');
     });
 
@@ -41,9 +30,7 @@ describe('<login>', function() {
 
     describe('when logs out', function() {
 
-      beforeEach(function() {
-        element('.logout a').click();
-      });
+      beforeEach(function() { element('.logout a').click(); });
 
       it('fires the event lelylan:logout', function() {
         expect(element('.message').text()).toBe('Signed out');
