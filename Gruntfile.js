@@ -174,4 +174,6 @@ module.exports = function( grunt ) {
       done(err);
     });
   });
+
+  grunt.registerTask("build-concat", "intro clean coffee compass mkdirs usemin-handler rjs concat css img rev usemin manifest copy time");
 };

@@ -1,7 +1,7 @@
 angular.module('lelylan.requests', [])
 .config(['$httpProvider', function($httpProvider) {
   var $http, interceptor = ['$q', '$injector', function ($q, $injector) {
-    var error;
+    var requestError;
 
     var toggle = function(id, action) {
       if (window.document.getElementById(id)) {
@@ -17,7 +17,7 @@ angular.module('lelylan.requests', [])
       return response;
     }
 
-    function error(response) {
+    function requesterror(response) {
       $http = $http || $injector.get('$http'); // HACK: get $http via $injector because of circular dependency problem
       if ($http.pendingRequests.length < 1) {
         toggle('lelylan-request-loading', 'none');
@@ -28,7 +28,7 @@ angular.module('lelylan.requests', [])
 
     return function (promise) {
       toggle('lelylan-request-loading', 'block')
-      return promise.then(success, error);
+      return promise.then(success, requestError);
     }
   }];
 

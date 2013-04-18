@@ -42,7 +42,7 @@ Include the lelylan-ng library and embed the
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
+  <script src="//s.lelylan.com/lelylan-ng/0.1.0/lelylan.min.js"/></script>
 </body>
 </html>
 ```
@@ -163,10 +163,10 @@ Here a simple example where we change the API endpoint.
 ```
 
 
-### Spinner definition
+### Loading notification
 
 When you need to show a spinner (or similar) element for a pending request to Lelylan add
-a an HTMl tag with the id `lelylan-request-loading`. It will show up when a request is fired
+an HTMl tag with the id `lelylan-request-loading`. It will show up when a request is fired
 and it will hide when the request is resolved.
 
 
@@ -181,7 +181,7 @@ In this example we define `app`, which combines `lelylan` and `angular-ui`.
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/angularjs/0.1.0/lelylan.min.js"/></script>
+  <script src="//s.lelylan.com/lelylan-ng/0.1.0/lelylan.min.js"/></script>
 
   <script>angular.module('app', ['lelylan', 'ui'])</script>
 </body>
@@ -212,10 +212,10 @@ E2e tests.
 * Run `yeoman server`
 * Run `testacular start testacular.e2e.conf.js` to execute all e2e tests.
 
-### Creating distribution
+### Creating your own distribution
 
-* Run `yeoman build` to create the new distribution.
-* Run `yeoman server:dist` to see if everything works fine.
+* Run `yeoman build` to create a minified distribution.
+* Run `yeoman build-concat` to create a distribution without minifying your javascript files.
 
 ### Coding guidelines
 
