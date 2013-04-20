@@ -8,7 +8,8 @@ client.factory('Type', ['RequestWrapper', '$resource', 'lelylan.config', functio
     config.endpoint + '/types/:id',
     { id: '@id' },
     { update: { method: 'PUT' },
-      public: { method: 'GET', params: { id: 'public' }, isArray: true } } );
+      public: { method: 'GET', params: { id: 'public' }, isArray: true },
+      popular: { method: 'GET', params: { id: 'popular' }, isArray: true }} );
 
   return RequestWrapper.wrap(resource, ['get', 'query', 'save', 'update', 'delete']);
 }]);

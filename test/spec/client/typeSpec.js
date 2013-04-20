@@ -77,6 +77,28 @@ describe('Type', function() {
   });
 
 
+  describe('.popular', function() {
+
+    beforeEach(inject(function(AccessToken) { AccessToken.set({}); }));
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/types/popular', {}, noAuthHeaders).respond([resource]);
+    });
+
+    it('makes the request', inject(function(Type) {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/types/popular');
+      Type.popular();
+      $httpBackend.flush();
+    }));
+
+    it('gets the resource', inject(function(Type) {
+      var types = Type.popular();
+      $httpBackend.flush();
+      expect(types[0].uri).toEqual('http://api.lelylan.com/types/1');
+    }));
+  });
+
+
   describe('#$save', function() {
 
     beforeEach(function() {
