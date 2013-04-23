@@ -108,6 +108,31 @@ function LelylanController($scope, Device) {
 
 Learn more about [errors on Lelylan](http://dev.lelylan.com/api/core#errors).
 
+### OAuth2 configurations
+
+The login compoent accepts the following attributes.
+
+* `redirect` - [Registered](http://localhost:3000/oauth/applications) application URI where the user is redirected after authorization.
+* `client` - [Registered](href="http://localhost:3000/oauth/applications) Client ID.
+* `scope` - Application privileges. Learn more about [valid scopes](http://localhost:4000/api/oauth#scopes) in Lelylan.
+* `state` - Optional opaque value used by the client to maintain state between the request and callback
+* `site` - A string that represents the authorization endpoint. `http://people.lelylan.com` by deafault.
+* `text` - The login link description. `Sign In` by deafault.
+
+Here a simple example.
+
+```html
+<div ng-controller = "LoginController">
+  <login client="{{oauth.client}}" redirect="{{oauth.redirect}}" scope="{{oauth.scope}}"></login>
+</div>
+
+<script>
+  function LoginController($scope) {
+    $scope.oauth = { client: '<client-id>', redirect: '<redirect-uri>', scope: '<scope>' };
+  }
+</script>
+```
+
 ### OAuth2 events
 
 Lelylan client fires an event when the user authorizes access, denies access and log out from a

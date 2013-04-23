@@ -124,9 +124,9 @@ module.exports = function( grunt ) {
     // renames JS/CSS to prepend a hash of their contents for easier
     // versioning
     rev: {
-      js: 'scripts/**/*.js',
-      css: 'styles/**/*.css',
-      img: 'images/**'
+      js: 'none.js',
+      css: 'none.css',
+      img: 'none'
     },
 
     // usemin handler should point to the file containing
