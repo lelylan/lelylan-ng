@@ -14,6 +14,7 @@ angular.module('lelylan', [
   'lelylan.status',
   'lelylan.location',
   'lelylan.subscription',
+  'lelylan.category',
 
   // authorization
   'lelylan.loggedUser',
