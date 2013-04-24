@@ -4,7 +4,7 @@ describe('Profile', function() {
 
   var resource = { id: '1', name: 'Alice' };
   var token    = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
-  var headers  = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'Bearer token'};
+  var headers  = { Accept: 'application/json, text/plain, */*', 'Authorization': 'Bearer token'};
   var $httpBackend;
 
   beforeEach(module('lelylan'));

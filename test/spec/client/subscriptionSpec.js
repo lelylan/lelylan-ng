@@ -4,8 +4,8 @@ describe('Subscription', function() {
 
   var resource    = { id: '1', uri: 'http://api.lelylan.com/subscriptions/1' };
   var client      = { clientID: 'id', clientSecret: 'secret' };
-  var headers     = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'aWQ6c2VjcmV0'};
-  var dataHeaders = { 'X-XSRF-TOKEN': undefined, 'Accept': 'application/json, text/plain, */*', 'X-Requested-With': 'XMLHttpRequest', 'Authorization': 'aWQ6c2VjcmV0', 'Content-Type': 'application/json;charset=utf-8'};
+  var headers     = { Accept: 'application/json, text/plain, */*', 'Authorization': 'aWQ6c2VjcmV0'};
+  var dataHeaders = { Accept: 'application/json, text/plain, */*', 'Authorization': 'aWQ6c2VjcmV0', 'Content-Type': 'application/json;charset=utf-8'};
   var $httpBackend;
   var subscription;
 
@@ -137,4 +137,3 @@ describe('Subscription', function() {
     }));
   });
 });
-
