@@ -19,8 +19,8 @@ HTML’s syntax to express your application’s components clearly and succinctl
 
 ## Getting Started
 
-Include the lelylan-ng library and embed the
-[Login Component](http://dev.lelylan.com/api/oauth#implicit-grant-angular)) using the `<login>` tag.
+Include `lelylan-ng` and embed the
+[login component](http://dev.lelylan.com/api/oauth#implicit-grant-angular)) using the `<login>` tag.
 
 ```html
 <html ng-app="lelylan">
@@ -49,6 +49,31 @@ Include the lelylan-ng library and embed the
 
 Using the login component the access token is automatically refreshed when expired.
 
+
+### Promises
+
+Every request returns a [Resource](http://code.angularjs.org/1.1.3/docs/api/ngResource.$resource)
+or a collection that contain additional properties.
+
+* `$then`: the `then` method of a [promise](http://code.angularjs.org/1.1.3/docs/api/ng.$q) derived from the underlying $http call.
+* `$resolved`: `true` if the promise has been resolved (either with success or rejection);
+
+```html
+<div ng-controller="LelylanController">
+  <div ng-show="message">{{message}}</div>
+  <div ng-repeat="device in devices">{{device.id}}</div>
+</div>
+
+<script>
+  function LelylanController($scope, Device) {
+    var success = function(response) { $scope.devices = response.resource; };
+    var error   = function(error) { $scope.message = 'An error has occurred'; };
+
+    var request = Device.query();
+    request.$then(success, error);
+  }
+</script>
+```
 
 ### Implemented Services
 
