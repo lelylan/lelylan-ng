@@ -10,6 +10,11 @@ AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 [Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
 in your house providing a simple and consistent REST API.
 
+### What is a Type
+
+A type describes the structure of a device. In its simplest form every type can be defined as
+the combination of three key elements: properties, functions and statuses.
+[Learn more about](http://dev.lelylan.com/api/types).
 ### Why AngularJS
 
 [AngularJS](http://angularjs.org/) lets you write client-side web applications as if you had
@@ -17,9 +22,17 @@ a smarter browser. It lets you use good old HTML as your template language and l
 HTML’s syntax to express your application’s components clearly and succinctly.
 
 
+## Distributions
+
+The library is released in the following distributions.
+
+* [lelylan-ng.min.js](//s.lelylan.com/lelylan-ng/0.1.0/lelylan-ng.min.js) (minified)
+* [lelylan-ng.js](//s.lelylan.com/lelylan-ng/0.1.0/lelylan-ng.js) (not minified)
+
+
 ## Getting Started
 
-Include `lelylan-ng` and embed the
+Require the `lelylan-ng` library and embed the
 [login component](http://dev.lelylan.com/api/oauth#implicit-grant-angular)) using the `<login>` tag.
 
 ```html
@@ -42,18 +55,18 @@ Include `lelylan-ng` and embed the
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-cookies.min.js"></script>
-  <script src="//s.lelylan.com/lelylan-ng/0.1.0/lelylan.min.js"/></script>
+  <script src="//s.lelylan.com/lelylan-ng/0.1.0/lelylan-ng.min.js"/></script>
 </body>
 </html>
 ```
 
-Using the login component the access token is automatically refreshed when expired.
+The login component automatically refreshed the access token when it expires.
 
 
 ### Promises
 
 Every request returns a [Resource](http://code.angularjs.org/1.1.3/docs/api/ngResource.$resource)
-or a collection that contain additional properties.
+or a collection of them. Each one contains additional properties.
 
 * `$then`: the `then` method of a [promise](http://code.angularjs.org/1.1.3/docs/api/ng.$q) derived from the underlying $http call.
 * `$resolved`: `true` if the promise has been resolved (either with success or rejection);
@@ -96,7 +109,7 @@ Learn how to use Lelylan and AngulasJS in deep.
 ### Realtime services
 
 When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
-services you must set the client credentials (no access token required).
+service you need to set the client credentials (no access token required).
 
 ```html
 <div ng-controller="LelylanController">{{subscription}}</div>
@@ -110,10 +123,12 @@ function LelylanController($scope, BasicAuth, Subscription) {
 
 ### Errors
 
-Lelylan Resources fires a generic `lelylan:error` event whenever 4xx or 5xx status
-code is returned. It also offers a granular error control throught by firing a
-`lelylan:error:<status>` event for every specific error.
-Through the error object you can access to the status code and a simpe error message.
+Lelylan Resources fires a generic `lelylan:error` event whenever a 4xx or 5xx status code is
+returned. It also gives you granular error control by firing a `lelylan:error:<status>` event for
+every specific error. An object containing the following params is sent to the listener event.
+
+* `status` - HTTP status code
+* `meassage` - Descriptive error message
 
 ```html
 <div ng-controller="LelylanController">
@@ -126,12 +141,12 @@ Through the error object you can access to the status code and a simpe error mes
 <script>
 function LelylanController($scope, Device) {
   $scope.device = Device.get({ id: '<id>' });
-  $scope.$on('lelylan:error:401', function(event) { $scope.error = '401'; });
+  $scope.$on('lelylan:error:401', function(error) { $scope.error = '401'; });
 }
 </script>
 ```
 
-Learn more about [errors on Lelylan](http://dev.lelylan.com/api/core#errors).
+Learn more about [errors on Lelylan Dev Center](http://dev.lelylan.com/api/core#errors).
 
 ### OAuth2 configurations
 
@@ -142,9 +157,7 @@ The login compoent accepts the following attributes.
 * `scope` - Application privileges. Learn more about [valid scopes](http://localhost:4000/api/oauth#scopes) in Lelylan.
 * `state` - Optional opaque value used by the client to maintain state between the request and callback
 * `site` - A string that represents the authorization endpoint. `http://people.lelylan.com` by deafault.
-* `text` - The login link description. `Sign In` by deafault.
-
-Here a simple example.
+* `text` - The login description. `Sign In` by deafault.
 
 ```html
 <div ng-controller = "LoginController">
@@ -160,8 +173,11 @@ Here a simple example.
 
 ### OAuth2 events
 
-Lelylan client fires an event when the user authorizes access, denies access and log out from a
-third party app.
+Lelylan client fires the following events.
+
+* `lelylan:login` - the user has authorized the third party app
+* `lelylan:login:denied` - the user has not authorized the third party app
+* `lelylan:logout` - the user has logged out
 
 ```javascript
 function LelylanController($scope) {
@@ -181,7 +197,7 @@ function LelylanController($scope) {
 
 ### Signed in user
 
-Once the user signs in the <a href="http://api.lelylan.com/api/core#user-profile">profile resource</a>
+When a user signs in, the [profile](http://api.lelylan.com/api/core#user-profile)
 is cached into the `LoggedUser` service.
 
 ```html
@@ -196,14 +212,11 @@ function LelylanController($scope, LoggedUser) {
 </script>
 ```
 
-
 ### Configurations
 
-Lelylan Configuration accepts an object with the following valid params.
+Lelylan Configuration accepts the following options.
 
 * `endpoint` - A string that represents the API endpoint (`http://api.lelylan.com` by deafault).
-
-Here a simple example where we change the API endpoint.
 
 ```html
 <script>
@@ -212,13 +225,11 @@ Here a simple example where we change the API endpoint.
 </script>
 ```
 
-
 ### Loading notification
 
-When you need to show a spinner (or similar) element for a pending request to Lelylan add
-an HTMl tag with the id `lelylan-request-loading`. It will show up when a request is fired
-and it will hide when the request is resolved.
-
+When a request is sent any HTML element with id `lelylan-request-loading` shows up until the
+request is resolved. Its a good practice to place a spinner into this element to communicate to
+the user that something is happening.
 
 ### Good practices
 
@@ -249,22 +260,22 @@ Do not forget to provide specs to your contribution.
 
 ### Running specs
 
-Unit tests.
+* Fork and clone the repository
+* Install [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/)
+* Run `grunt test`
 
-* Fork and clone the repository.
-* Intall [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
-* Run `grunt test` to execute all unit tests.
+When developing use the following tasks (watch option active).
 
-E2e tests.
-
-* Fork and clone the repository.
-* Intall [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
-* Run `grunt test karma.e2e.conf.js` to execute all components tests.
+* `grunt unit` for unit tests
+* `grunt e2e` for e2e tests
 
 ### Creating your own distribution
 
-* Run `yeoman build` to create a minified distribution.
-* Run `yeoman build-concat` to create a distribution without minifying your javascript files.
+* Fork and clone the repository
+* Install [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/)
+* Run `grunt`
+
+The new distribution files will be created in 'dist/'.
 
 ### Coding guidelines
 
@@ -278,7 +289,7 @@ Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs.
 ### Links
 
 * [GIT Repository](http://github.com/lelylan/lelylan-ng)
-* [Lelylan Client Site](http://lelylan.github.com/lelylan-ng)
+* [Site](http://lelylan.github.com/lelylan-ng)
 * [Lelylan Device Component](http://lelylan.github.com/device-component)
 * [Lelylan Type Component](http://lelylan.github.com/type-component)
 * [Lelylan Dev Center](http://dev.lelylan.com)
@@ -291,7 +302,7 @@ Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs.
 
 ## Contributors
 
-Special thanks to the following people for submitting patches.
+Special thanks to the [all people](https://github.com/lelylan/lelylan-ng/contributors) submitting patches.
 
 
 ## Changelog

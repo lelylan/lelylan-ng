@@ -101,8 +101,8 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
 
 
     var fireLoginEvent  = function() { $rootScope.$broadcast('lelylan:login', AccessToken.get()); }
+    var fireDeniedEvent = function() { $rootScope.$broadcast('lelylan:login:denied'); }
     var fireLogoutEvent = function() { $rootScope.$broadcast('lelylan:logout'); }
-    var fireDeniedEvent = function() { $rootScope.$broadcast('lelylan:logout:denied'); }
   };
 
   return definition

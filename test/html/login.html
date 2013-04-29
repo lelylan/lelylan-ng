@@ -52,7 +52,7 @@
           $scope.message = 'Signed out';
         });
 
-        $scope.$on('lelylan:logout:denied', function(event) {
+        $scope.$on('lelylan:login:denied', function(event) {
           $scope.message = 'Access denied';
         });
       }
