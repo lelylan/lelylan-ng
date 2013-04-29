@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <style>
       .main { margin-top:50px; }
+      .navbar a, .navbar a:hover { color: #333; font-size: 16px; }
     </style>
   </head>
   <body>
@@ -24,9 +25,16 @@
 
     <div class="container main ng-cloak">
       <div class="row">
-        <h1>Events Controller</h1>
+        <h1>Login Test Page</h1>
         <div ng-controller="EventsController">
-          <div class="message">{{message}}</div>
+          <p class="lead message">{{message}}</p>
+        </div>
+        <h3>Use the following links to move between the signed in and out page</h3>
+        <div>
+          <p class="lead">
+            <a href="http://localhost:3100/html/index.html#access_token=token&token_type=bearer&expires_in=7200&state=state5c6007a2/html/index.html">Authenticated page</a><br/>
+            <a href="http://localhost:3100/html/index.html">Not authenticated page</a>
+          </p>
         </div>
       </div>
     </div>
@@ -45,7 +53,7 @@
     <script>
       function EventsController($scope) {
         $scope.$on('lelylan:login', function(event, token) {
-          $scope.message = 'Signed in with token ' + token.access_token;
+          $scope.message = 'Signed in with token "' + token.access_token + '"';
         });
 
         $scope.$on('lelylan:logout', function(event) {

@@ -2,7 +2,7 @@
 
 describe('<login>', function() {
 
-  var page = '/html/login.html';
+  var page = '/html/index.html';
 
   describe('when receives the access token', function() {
 
@@ -25,7 +25,7 @@ describe('<login>', function() {
     });
 
     it('fires the event lelylan:login', function() {
-      expect(element('.message').text()).toEqual('Signed in with token token');
+      expect(element('.message').text()).toEqual('Signed in with token "token"');
     });
 
     describe('when logs out', function() {

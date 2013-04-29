@@ -3,15 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Lelylan</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+      #lelylan-request-loading { display: none }
+    </style>
   </head>
   <body>
 
-    <h1>Spinner</h1>
-    <div ng-controller="LelylanController">
-      <div id="lelylan-request-loading" style="display:none;">Loading Request</div>
+    <div class="container main ng-cloak">
+      <div class="row">
+        <h1>Spinner</h1>
+        <p class="lead">
+          When reloading the page you should see for a moment a loading message.
+        </p>
+        <div ng-controller="LelylanController">
+          <p id="lelylan-request-loading" class="lead"><strong>Loading</strong></p>
+        </div>
+      </div>
     </div>
-
-    </hr>
 
     <script>
       function LelylanController($http) {
@@ -20,36 +29,36 @@
       }
     </script>
 
-    <script src="../scripts/vendor/angular/angular.js"></script>
-    <script src="../scripts/vendor/angular/angular-resource.js"></script>
-    <script src="../scripts/vendor/angular/angular-cookies.js"></script>
+    <script src="/components/unstable-angular-complete/angular.js"></script>
+    <script src="/components/unstable-angular-complete/angular-resource.js"></script>
+    <script src="/components/unstable-angular-complete/angular-cookies.js"></script>
 
-    <script src="../scripts/app.js"></script>
-    <script src="../scripts/client/activation.js"></script>
-    <script src="../scripts/client/deactivation.js"></script>
-    <script src="../scripts/client/device.js"></script>
-    <script src="../scripts/client/function.js"></script>
-    <script src="../scripts/client/history.js"></script>
-    <script src="../scripts/client/location.js"></script>
-    <script src="../scripts/client/profile.js"></script>
-    <script src="../scripts/client/property.js"></script>
-    <script src="../scripts/client/status.js"></script>
-    <script src="../scripts/client/subscription.js"></script>
-    <script src="../scripts/client/category.js"></script>
-    <script src="../scripts/client/type.js"></script>
-    <script src="../scripts/client/support/logged-user.js"></script>
-    <script src="../scripts/client/support/basic-auth/basic-request-wrapper.js"></script>
-    <script src="../scripts/client/support/basic-auth/basic-auth.js"></script>
-    <script src="../scripts/client/support/oauth2/request-wrapper.js"></script>
-    <script src="../scripts/client/support/oauth2/access-token.js"></script>
-    <script src="../scripts/client/support/oauth2/implicit-flow.js"></script>
-    <script src="../scripts/interceptors/errors.js"></script>
-    <script src="../scripts/interceptors/requests.js"></script>
-    <script src="../scripts/config/config.js"></script>
-    <script src="../scripts/components/login.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/client/activation.js"></script>
+    <script src="/scripts/client/deactivation.js"></script>
+    <script src="/scripts/client/device.js"></script>
+    <script src="/scripts/client/function.js"></script>
+    <script src="/scripts/client/history.js"></script>
+    <script src="/scripts/client/location.js"></script>
+    <script src="/scripts/client/profile.js"></script>
+    <script src="/scripts/client/property.js"></script>
+    <script src="/scripts/client/status.js"></script>
+    <script src="/scripts/client/subscription.js"></script>
+    <script src="/scripts/client/category.js"></script>
+    <script src="/scripts/client/type.js"></script>
+    <script src="/scripts/client/support/logged-user.js"></script>
+    <script src="/scripts/client/support/basic-auth/basic-request-wrapper.js"></script>
+    <script src="/scripts/client/support/basic-auth/basic-auth.js"></script>
+    <script src="/scripts/client/support/oauth2/request-wrapper.js"></script>
+    <script src="/scripts/client/support/oauth2/access-token.js"></script>
+    <script src="/scripts/client/support/oauth2/implicit-flow.js"></script>
+    <script src="/scripts/interceptors/errors.js"></script>
+    <script src="/scripts/interceptors/requests.js"></script>
+    <script src="/scripts/config/config.js"></script>
+    <script src="/scripts/components/login.js"></script>
 
     <!-- Test helpers -->
-    <script src="../scripts/vendor/angular/angular-mocks.js"></script>
-    <script src="../scripts/vendor/lelylan/lelylan-mocks.js"></script>
+    <script src="/components/unstable-angular-complete/angular-mocks.js"></script>
+    <script src="/mocks/mocks.js"></script>
   </body>
 </html>

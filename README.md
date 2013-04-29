@@ -175,7 +175,8 @@ The login compoent accepts the following attributes.
 
 Lelylan client fires the following events.
 
-* `lelylan:login` - the user has authorized the third party app
+* `lelylan:login` - the user has authorized the third party app.
+The listener receives the [access token](dev.lelylan.com/api/oauth#implicit-grant-angular) obect.
 * `lelylan:login:denied` - the user has not authorized the third party app
 * `lelylan:logout` - the user has logged out
 
@@ -276,6 +277,20 @@ When developing use the following tasks (watch option active).
 * Run `grunt`
 
 The new distribution files will be created in 'dist/'.
+
+### Stubbing
+
+In `test/html` you can find the stubbed versions of lelylan-ng where all HTTP request are
+simulated to be able to work in isolation.
+
+* Run `grunt server`
+
+And then open the following pages to live test lelylan-ng.
+
+* [Login component signed in](http://localhost:3100/html/index.html#access_token=token&token_type=bearer&expires_in=7200&state=state5c6007a2/html/index.html)
+* [Login component not signed in](http://localhost:3100/html/index.html)
+* [Events](http://localhost:3100/html/events.html)
+* [Spinner](http://localhost:3100/html/spinner.html)
 
 ### Coding guidelines
 

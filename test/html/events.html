@@ -3,16 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Lelylan</title>
+    <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body>
 
-    <h1>Errors Event Controller</h1>
-    <div ng-controller="EventsController">
-      <div class="error" ng-show="status">{{error.status}} {{error.message}}</div>
-      <div class="error-401" ng-show="status==401"></div>
-      <div class="error-404" ng-show="status==404"></div>
+    <div class="container main ng-cloak">
+      <div class="row">
+        <h1>Errors Event Controller</h1>
+        <div ng-controller="EventsController">
+          <p class="lead error" ng-show="status">{{error.status}} {{error.message}}</p>
+          <p class="lead error-401" ng-show="status==401"></p>
+          <p class="lead error-404" ng-show="status==404"></p>
+        </div>
+      </div>
     </div>
-    </hr>
 
     <script>
       function EventsController($scope, Device) {
