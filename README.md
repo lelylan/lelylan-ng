@@ -253,14 +253,13 @@ Unit tests.
 
 * Fork and clone the repository.
 * Intall [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
-* Run `testacular start` to execute all unit tests.
+* Run `grunt test` to execute all unit tests.
 
 E2e tests.
 
 * Fork and clone the repository.
 * Intall [Yeoman](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
-* Run `yeoman server`
-* Run `testacular start testacular.e2e.conf.js` to execute all e2e tests.
+* Run `grunt test karma.e2e.conf.js` to execute all components tests.
 
 ### Creating your own distribution
 

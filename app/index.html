@@ -1,46 +1,34 @@
 <!DOCTYPE html>
-<html ng-app="example">
+<html ng-app="app">
   <head>
-    <meta charset="utf-8">
     <title>Lelylan</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+      .container { margin-top: 20px; }
+      code { font-size: 15px; }
+    </style>
   </head>
   <body>
 
-    <login class="nav" redirect="http://localhost:3501/"
-           client="81e265dbf00569f9ba39dcc0dc0043020cdb4d2030ad77233be7c27aa447977e"
-           scope="resources privates"
-           site="http://localhost:3000">
-    </login>
+    <div class="container">
+      <h1>
+        Welcome to Angular Lelylan Client
+      </h1>
 
-    <div ng-controller="LelylanController">
-      <div ng-show="message">{{message}}</div>
-      <div ng-repeat="device in devices">{{device.id}}</div>
+      <p class="lead">
+        Run <code>grunt test</code> to run all tests.<br/>
+        Run <code>grunt test:unit</code> to run the client tests.
+        Run <code>grunt test:component</code> to run the oauth2 component tests.
+      </p>
     </div>
 
-    <script>
-      function LelylanController($scope, Device) {
-        var request = Device.query();
+    <script src="components/unstable-angular-complete/angular.js"></script>
+    <script src="components/unstable-angular-complete/angular-resource.js"></script>
+    <script src="components/unstable-angular-complete/angular-cookies.js"></script>
 
-        var success = function(response) {
-          $scope.devices = response.resource;
-        };
-
-        var error = function(error) {
-          $scope.message = 'An error has occurred';
-        };
-
-        request.$then(success, error);
-      }
-    </script>
-
-    <script src="scripts/vendor/angular/angular.js"></script>
-    <script src="scripts/vendor/angular/angular-resource.js"></script>
-    <script src="scripts/vendor/angular/angular-cookies.js"></script>
-
-    <!-- build:js scripts/lelylan.min.js -->
+    <!-- build:js lelylan-ng.js -->
     <script src="scripts/app.js"></script>
 
-    <!-- client models -->
     <script src="scripts/client/activation.js"></script>
     <script src="scripts/client/deactivation.js"></script>
     <script src="scripts/client/device.js"></script>
@@ -54,7 +42,6 @@
     <script src="scripts/client/category.js"></script>
     <script src="scripts/client/type.js"></script>
 
-    <!-- authorization models -->
     <script src="scripts/client/support/logged-user.js"></script>
     <script src="scripts/client/support/basic-auth/basic-request-wrapper.js"></script>
     <script src="scripts/client/support/basic-auth/basic-auth.js"></script>
@@ -62,20 +49,16 @@
     <script src="scripts/client/support/oauth2/access-token.js"></script>
     <script src="scripts/client/support/oauth2/implicit-flow.js"></script>
 
-    <!-- errors -->
     <script src="scripts/interceptors/errors.js"></script>
     <script src="scripts/interceptors/requests.js"></script>
 
-    <!-- config -->
     <script src="scripts/config/config.js"></script>
 
-    <!-- oauth2 components -->
     <script src="scripts/components/login.js"></script>
     <!-- endbuild -->
 
     <script>
-      var example = angular.module('example', ['lelylan']);
-      example.value('lelylan.config', { endpoint: 'http:///localhost\\:9000' });
+      angular.module('app', ['lelylan']);
     </script>
   </body>
 </html>

@@ -8,7 +8,6 @@
 *.swp
 *.swo
 *.DS_Store
-*.sass-cache
 
 # Ignore dependency libraries
 node_modules
@@ -22,12 +21,18 @@ node_modules
 # Documentation
 docs/
 
-# Builds
-temp/
-dist/
-build/
-app/build
+# Temporary files
+.sass-cache/
 
-# Ignore example file
-app/example.html
-app/example-local.html
+# Yeoman
+.bowerrc
+.editorconfig
+.gitattributes
+.jshintrc
+.tmp/
+
+# Dev
+app/index-dev.html
+
+# Dist
+dist/
