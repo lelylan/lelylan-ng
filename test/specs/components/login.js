@@ -2,7 +2,7 @@
 
 describe('<login>', function() {
 
-  var page = '../../../mocks/login.html';
+  var page = '/html/login.html';
 
   describe('when receives the access token', function() {
 

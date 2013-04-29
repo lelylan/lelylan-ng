@@ -19,7 +19,6 @@ module.exports = function (grunt) {
     var component = require('./component.json')
     yeomanConfig.name    = component.name    || 'no-name';
     yeomanConfig.version = component.version || '0.0.0.undefined';
-    console.log(yeomanConfig);
   } catch (e) {}
 
   grunt.initConfig({
@@ -71,6 +70,8 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               mountFolder(connect, '.tmp'),
+              mountFolder(connect, yeomanConfig.app),
+              mountFolder(connect, yeomanConfig.dist),
               mountFolder(connect, yeomanConfig.test)
             ];
           }
@@ -107,6 +108,18 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
+        singleRun: true
+      },
+      e2e: {
+        configFile: 'karma.e2e.conf.js',
+        singleRun: true
+      },
+      unitdev: {
+        configFile: 'karma.conf.js',
+        singleRun: false
+      },
+      e2edev: {
+        configFile: 'karma.e2e.conf.js',
         singleRun: false
       }
     },
@@ -292,13 +305,28 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
-    'coffee',
+    'compass:server',
     'connect:test',
-    'karma'
+    'karma:unit',
+    'karma:e2e'
+  ]);
+
+  grunt.registerTask('unit', [
+    'clean:server',
+    'compass:server',
+    'karma:unitdev'
+  ]);
+
+  grunt.registerTask('e2e', [
+    'clean:server',
+    'compass:server',
+    'connect:test',
+    'karma:e2edev'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
+    'test',
     'useminPrepare',
     'concat',
     'ngmin',

@@ -2,7 +2,7 @@
 
 describe('Errors', function() {
 
-  var page = '../../../mocks/errors.html';
+  var page = '/html/events.html';
 
   describe('when makes an unauthorized request', function() {
 

@@ -12,10 +12,10 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
   var template =
     '<ul class="nav pull-right">' +
       '<li ng-show="show==\'out\'" class="login">' +
-        '<a href="javascript:" ng-href="{{endpoint}}">{{text || \'Sign In\'}}</a>' +
+        '<a ng-href="{{endpoint}}">{{text || \'Sign In\'}}</a>' +
       '</li>' +
       '<li ng-show="show==\'in\'" class="logout">' +
-        '<a href="javascript:" ng-click="logout()">Logout {{profile.email}}</a>' +
+        '<a ng-click="logout()">Logout {{profile.email}}</a>' +
       '</li>' +
     '</ul>';
 

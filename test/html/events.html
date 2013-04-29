@@ -3,59 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>Lelylan</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <style>
-      .main { margin-top:50px; }
-    </style>
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner-flat">
-        <div class="container">
-            <login class="nav pull-right" client="{{oauth.client}}" redirect="{{oauth.redirect}}" scope="{{oauth.scope}}" state="{{oauth.state}}"></login>
-            <ul class="nav pull-right">
-              <li><a href="/what">Item One</a></li>
-              <li><a href="/how">Item Two</a></li>
-            </ul>
-        </div>
-      </div>
+    <h1>Errors Event Controller</h1>
+    <div ng-controller="EventsController">
+      <div class="error" ng-show="status">{{error.status}} {{error.message}}</div>
+      <div class="error-401" ng-show="status==401"></div>
+      <div class="error-404" ng-show="status==404"></div>
     </div>
-
-    <div class="container main ng-cloak">
-      <div class="row">
-        <h1>Events Controller</h1>
-        <div ng-controller="EventsController">
-          <div class="message">{{message}}</div>
-        </div>
-      </div>
-    </div>
+    </hr>
 
     <script>
-      function LoginController($scope) {
-        $scope.oauth = {
-          client: '<client-id>',
-          redirect: '<redirect>',
-          scope: '<scope>',
-          state: '<state>'
-        };
+      function EventsController($scope, Device) {
+        Device.get({ id: '2' });
+
+        $scope.$on('lelylan:error', function(event, error) { $scope.error = error; });
+        $scope.$on('lelylan:error:401', function(event, error) { $scope.status = error.status; });
+        $scope.$on('lelylan:error:404', function(event, error) { $scope.status = error.status; });
       };
-    </script>
-
-    <script>
-      function EventsController($scope) {
-        $scope.$on('lelylan:login', function(event, token) {
-          $scope.message = 'Signed in with token ' + token.access_token;
-        });
-
-        $scope.$on('lelylan:logout', function(event) {
-          $scope.message = 'Signed out';
-        });
-
-        $scope.$on('lelylan:logout:denied', function(event) {
-          $scope.message = 'Access denied';
-        });
-      }
     </script>
 
     <script src="/components/unstable-angular-complete/angular.js"></script>
