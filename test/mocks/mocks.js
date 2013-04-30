@@ -26,9 +26,9 @@ var notAuthHeaders = {
 };
 
 
-var test = angular.module('test', ['lelylan', 'ngMockE2E']);
+angular.module('test', ['lelylan', 'ngMockE2E']);
 
-test.run(function($httpBackend) {
+angular.module('test').run(function($httpBackend) {
   $httpBackend.whenGET('http://api.lelylan.com/me').respond(profile);
   $httpBackend.whenGET('http://api.lelylan.com/devices/1', headers).respond(device);
   $httpBackend.whenGET('http://api.lelylan.com/devices/1', notAuthHeaders).respond('401');
@@ -37,3 +37,7 @@ test.run(function($httpBackend) {
   $httpBackend.when('GET', /\/templates\//).passThrough();
   $httpBackend.when('GET', /types.lelylan.com/).passThrough(); // to test the spinner visualization
 });
+
+angular.module('test').config(['$locationProvider', function($locationProvider) {
+  $locationProvider.html5Mode(true).hashPrefix('!');
+}]);
