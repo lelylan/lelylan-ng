@@ -12,7 +12,7 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
   var template =
     '<ul class="nav pull-right">' +
       '<li ng-show="show==\'out\'" class="login">' +
-        '<a ng-href="{{endpoint}}">{{text || \'Sign In\'}}</a>' +
+        '<a ng-href="{{endpoint}}">{{value || \'Sign In\'}}</a>' +
       '</li>' +
       '<li ng-show="show==\'in\'" class="logout">' +
         '<a ng-click="logout()">Logout {{profile.email}}</a>' +
@@ -31,7 +31,7 @@ directives.directive('login', ['AccessToken', 'ImplicitFlow', 'Profile', 'Logged
       scope: '@',
       state: '@',
       flow: '@',
-      text: '@'
+      value: '@'
     }
   };
 
