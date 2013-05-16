@@ -157,7 +157,7 @@ The login compoent accepts the following attributes.
 * `scope` - Application privileges. Learn more about [valid scopes](http://localhost:4000/api/oauth#scopes) in Lelylan.
 * `state` - Optional opaque value used by the client to maintain state between the request and callback
 * `site` - A string that represents the authorization endpoint. `http://people.lelylan.com` by deafault.
-* `text` - The login description. `Sign In` by deafault.
+* `value` - The login descriptive value. `Sign In` by deafault.
 
 ```html
 <div ng-controller = "LoginController">
