@@ -10,11 +10,6 @@ AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 [Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
 in your house providing a simple and consistent REST API.
 
-### What is a Type
-
-A type describes the structure of a device. In its simplest form every type can be defined as
-the combination of three key elements: properties, functions and statuses.
-[Learn more about](http://dev.lelylan.com/api/types).
 ### Why AngularJS
 
 [AngularJS](http://angularjs.org/) lets you write client-side web applications as if you had
