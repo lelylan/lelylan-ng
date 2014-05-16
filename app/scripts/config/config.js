@@ -1,5 +1,4 @@
 'use strict';
 
-angular.module('lelylan.config', []).value('lelylan.config', {
-  endpoint: 'http://api.lelylan.com'
-});
+angular.module('lelylan.client.config', [])
+  .value('lelylan.client.config', { endpoint: 'http://api.lelylan.com' });

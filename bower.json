@@ -1,0 +1,16 @@
+{
+  "name": "device",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.2.14",
+    "ng-oauth": "*",
+    "base64": "~0.3.0"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.0",
+    "jasmine": "~2.0.0",
+    "jasmine-jquery": "~2.0.3",
+    "angular-mocks": "1.2.14",
+    "angular-scenario": "1.2.14"
+  }
+}

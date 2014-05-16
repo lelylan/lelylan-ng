@@ -1,0 +1,18 @@
+{
+  "id": "1",
+  "uri": "http://api.lelylan.com/statuses/1",
+  "name": "Setting intensity",
+  "created_at": "2012-09-01T14:10:43Z",
+  "updated_at": "2012-09-01T14:10:43Z",
+  "properties":[{
+    "id": "1",
+    "uri": "http://api.lelylan.com/properties/1",
+    "value": ["on"],
+    "pending": false
+  }, {
+    "id": "1",
+    "uri": "http://api.lelylan.com/properties/1",
+    "value": ["0..100"],
+    "pending": true
+  }]
+}

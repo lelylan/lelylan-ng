@@ -1,36 +1,14 @@
 'use strict';
 
-angular.module('lelylan', [
-
-  // client
-  'lelylan.profile',
-  'lelylan.device',
-  'lelylan.history',
-  'lelylan.activation',
-  'lelylan.deactivation',
-  'lelylan.type',
-  'lelylan.property',
-  'lelylan.function',
-  'lelylan.status',
-  'lelylan.location',
-  'lelylan.subscription',
-  'lelylan.category',
-
-  // authorization
-  'lelylan.loggedUser',
-  'lelylan.accessToken',
-  'lelylan.requestWrapper',
-  'lelylan.basicAuth',
-  'lelylan.basicRequestWrapper',
-  'lelylan.implicitFlow',
-
-  // configuration
-  'lelylan.config',
-
-  // requests flow
-  'lelylan.requests',
-  'lelylan.errors',
-
-  // oauth components
-  'lelylan.login'
+angular.module('lelylan.client', [
+  'oauth',
+  'lelylan.client.config',
+  'lelylan.client.category',
+  'lelylan.client.device',
+  'lelylan.client.activation',
+  'lelylan.client.type',
+  'lelylan.client.property',
+  'lelylan.client.function',
+  'lelylan.client.status',
+  'lelylan.client.subscription'
 ]);
