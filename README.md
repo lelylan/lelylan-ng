@@ -47,6 +47,9 @@ in your house providing a simple and consistent REST API.
 </html>
 ```
 
+[Learn more](http://dev.lelylan.com/developers/#oauth-implicit-grant-angular)
+about how the OAuth2 directive works.
+
 
 ## $http requests
 
@@ -68,7 +71,7 @@ Device.query().
 Note: lelylan-ng takes the access token from the oauth2 directive.
 
 
-### Implemented Services
+## Implemented Services
 
 Learn how to use Lelylan and AngulasJS in deep.
 
@@ -80,6 +83,13 @@ Learn how to use Lelylan and AngulasJS in deep.
 - [x] [Statuses](http://dev.lelylan.com/types#statuses-api)
 - [x] [Subscriptions](http://dev.lelylan.com/developers#subscriptions-api)
 - [x] [Profile](http://dev.lelylan.com/developers#core-concepts-get-me)
+
+
+## Links
+
+* [GIT Repository](http://github.com/lelylan/lelylan-ng)
+* [OAuth2 directive](https://github.com/andreareginato/oauth-ng)
+* [Lelylan Dev Center](http://dev.lelylan.com)
 
 
 ## Contributing
@@ -113,11 +123,6 @@ Follow [github](https://github.com/styleguide/) guidelines.
 Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs.
 [Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that
 can improve the project.
-
-### Links
-
-* [GIT Repository](http://github.com/lelylan/lelylan-ng)
-* [Lelylan Dev Center](http://dev.lelylan.com)
 
 ## Authors
 
