@@ -67,10 +67,10 @@ All methods are fully descibed in the [Dev Center](http://dev.lelylan.com#angula
 
 ## Requests
 
-Every requests generates an HTTP request and returns a [promise](https://docs.angularjs.org/api/ng/service/$http)
+Every request returns a [promise](https://docs.angularjs.org/api/ng/service/$http)
 with two $http specific methods: `success` and `error`.
 
-```
+```js
 Device.query().
   success(function(data, status, headers, config) {
     // this callback will be called asynchronously
@@ -114,14 +114,6 @@ angular.module('example')
   .value('lelylan.client.config', { endpoint: 'http:///localhost\\:9000' });
 ```
 
-
-## Links
-
-* [GIT Repository](http://github.com/lelylan/lelylan-ng)
-* [OAuth2 directive](https://github.com/andreareginato/oauth-ng)
-* [Lelylan Dev Center](http://dev.lelylan.com)
-
-
 ## Contributing
 
 Fork the repo on github and send a pull requests with topic branches.
@@ -153,6 +145,12 @@ Follow [github](https://github.com/styleguide/) guidelines.
 Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs.
 [Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that
 can improve the project.
+
+## Links
+
+* [GIT Repository](http://github.com/lelylan/lelylan-ng)
+* [OAuth2 directive](https://github.com/andreareginato/oauth-ng)
+* [Lelylan Dev Center](http://dev.lelylan.com)
 
 ## Authors
 
