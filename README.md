@@ -22,7 +22,7 @@ in your house providing a simple and consistent REST API.
     <!-- OAuth2 directive -->
     <oauth2
       site="http://people.lelylan.com"
-      client-id="&lt;client-id&gt;"
+      client-id="<client-id>"
       redirect-uri="http://redirect.example.com"
       scope="devices"
       profile="http://api.lelylan.com/me">

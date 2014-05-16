@@ -18,9 +18,13 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="app">
+  <body ng-app="lelylan.client">
 
     <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/ng-oauth/dist/ng-oauth.js"></script>
+    <script src="bower_components/base64/base64.js"></script>
     <!-- endbower -->
 
     <!-- build:js({.tmp,app}) lelylan-ng.js -->
@@ -32,7 +36,7 @@
     <script src="scripts/services/client/device.js"></script>
     <script src="scripts/services/client/property.js"></script>
     <script src="scripts/services/client/function.js"></script>
-    <script src="scripts/services/client/stauts.js"></script>
+    <script src="scripts/services/client/status.js"></script>
     <script src="scripts/services/client/type.js"></script>
     <script src="scripts/services/client/subscription.js"></script>
     <!-- endbuild -->
