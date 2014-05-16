@@ -3,20 +3,17 @@
 AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 
 
+## Introduction
+
+### What is Lelylan
+
+[Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
+in your house providing a simple and consistent REST API.
+
+
 ## Installation
 
-### Using Bower
-
-* `bower install lelylan-ng --save`
-
-### Using Github
-
-* [lelylan-ng.min.js](https://github.com/lelylan/distoauth-ng)
-
-In this case you'll have to manually install also the following libraries.
-
-* [oauth-ng.js](https://github.com/andreareginato/oauth-ng/blob/master/dist/oauth-ng.js)
-* [base64.js](https://github.com/davidchambers/Base64.js/blob/master/base64.js)
+`bower install lelylan-ng --save`
 
 
 ## Getting Started
@@ -54,7 +51,7 @@ In this case you'll have to manually install also the following libraries.
 ```
 
 
-### How to use
+## $http requests
 
 Every requests generates an HTTP request and returns a [promise](https://docs.angularjs.org/api/ng/service/$http)
 with two $http specific methods: `success` and `error`.
