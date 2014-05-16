@@ -2,10 +2,7 @@
 
 AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 
-
-## Introduction
-
-### What is Lelylan
+### What is Lelylan?
 
 [Lelylan](http://lelylan.com) makes it easy for developers to monitor and control all devices
 in your house providing a simple and consistent REST API.
