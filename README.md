@@ -96,7 +96,7 @@ Subscription.get({ id: '<id>' }).success(function(data) { scope.subscription = d
 
 ## Signed in user
 
-When a user signs with the [oauth-ng](https://github.com/andreareginato/oauth-ng)
+When a user logs in with the [oauth-ng](https://github.com/andreareginato/oauth-ng)
 directive the corrent user is cached in the Profile service.
 
 ```js
@@ -107,7 +107,7 @@ Profile.get().success(function(data) { scope.me = data });
 
 Lelylan client accepts the following options.
 
-* `endpoint` - A string representing the API endpoint (`http://api.lelylan.com` by deafault).
+* `endpoint` - A string representing the API endpoint (`http://api.lelylan.com` by default).
 
 ```js
 angular.module('example', ['lelylan.client']);

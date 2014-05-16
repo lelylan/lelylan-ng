@@ -1,11 +1,11 @@
 {
-  "name": "device-directive",
+  "name": "lelylan-ng",
   "version": "0.1.0",
   "author": "Andrea Reginato <dev@lelylan.com>",
-  "description": "AngularJS directive for Lelylan devices",
+  "description": "AngularJS client library for Lelylan",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lelylan/device-component-ng.git"
+    "url": "https://github.com/lelylan/lelylan-ng.git"
   },
   "dependencies": {},
   "devDependencies": {

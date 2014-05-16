@@ -15,15 +15,25 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  // configurable paths
+  var yeomanConfig = {
+    app: 'app',
+    dist: 'dist',
+    test: 'test'
+  };
+
+  try {
+    var component = require('./bower.json')
+    yeomanConfig.name    = component.name    || 'no-name';
+    yeomanConfig.version = component.version || '0.0.0.undefined';
+  } catch (e) {}
+
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
-    yeoman: {
-      // configurable paths
-      app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
-    },
+    yeoman: yeomanConfig,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -148,10 +158,6 @@ module.exports = function (grunt) {
       }
     },
 
-
-
-
-
     // Renames files for browser caching purposes
     rev: {
       dist: {
@@ -189,10 +195,10 @@ module.exports = function (grunt) {
     imagemin: {
       dist: {
         files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
+          //expand: true,
+          //cwd: '<%= yeoman.app %>/images',
+          //src: '{,*/}*.{png,jpg,jpeg,gif}',
+          //dest: '<%= yeoman.dist %>/images'
         }]
       }
     },
@@ -252,26 +258,26 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            '*.html',
-            'views/{,*/}*.html',
-            'bower_components/**/*',
-            'images/{,*/}*.{webp}',
-            'fonts/*'
+            //'*.{ico,png,txt}',
+            //'.htaccess',
+            //'*.html',
+            //'views/{,*/}*.html',
+            //'bower_components/**/*',
+            //'images/{,*/}*.{webp}',
+            //'fonts/*'
           ]
         }, {
-          expand: true,
-          cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
-          src: ['generated/*']
+          //expand: true,
+          //cwd: '.tmp/images',
+          //dest: '<%= yeoman.dist %>/images',
+          //src: ['generated/*']
         }]
       },
       styles: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
+        //expand: true,
+        //cwd: '<%= yeoman.app %>/styles',
+        //dest: '.tmp/styles/',
+        //src: '{,*/}*.css'
       }
     },
 
@@ -303,18 +309,39 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+
+    //uglify: {
+      //options: {
+        //banner: '/* <%= yeoman.name %> - v<%= yeoman.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n'
+      //}
+    //},
+
+    uglify: {
+      options: {
+        banner: '/* <%= yeoman.name %> - v<%= yeoman.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/<%= yeoman.name %>.min.js': [
+            '<%= yeoman.dist %>/<%= yeoman.name %>.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      options: {
+        banner: '/* <%= yeoman.name %> - v<%= yeoman.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n'
+      },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/<%= yeoman.name %>.js': [
+            '.tmp/scripts/{,*/}*.js',
+            '<%= yeoman.app %>/scripts/services/{,*/}*.js',
+            '<%= yeoman.app %>/scripts/{,*/}*.js'
+          ]
+        }
+      }
+    },
 
     // Test settings
     karma: {
@@ -356,19 +383,21 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
     'useminPrepare',
-    'concurrent:dist',
-    'autoprefixer',
     'concat',
     'ngmin',
-    'copy:dist',
-    'cdnify',
-    'cssmin',
     'uglify',
-    'rev',
-    'usemin',
-    'htmlmin'
+    'concat'
+
+
+
+    //'clean:dist',
+    //'useminPrepare',
+    //'concat',
+    //'ngmin',
+    //'copy:dist',
+    //'uglify',
+    //'concat',
   ]);
 
   grunt.registerTask('default', [
