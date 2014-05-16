@@ -86,7 +86,7 @@ Device.query().
 ## Realtime services
 
 When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
-service you need to set the client credentials (no access token required).
+service you need to set the client credentials first (no access token required).
 
 ```js
 Subscription.auth({ clientId: '<client-id>', clientSecret: '<client-secret>' });
@@ -96,7 +96,8 @@ Subscription.get({ id: '<id>' }).success(function(data) { scope.subscription = d
 
 ### Signed in user
 
-When a user signs with the oauth-ng directive the corrent user is cached in the Prifile service.
+When a user signs with the [oauth-ng](https://github.com/andreareginato/oauth-ng)
+directive the corrent user is cached in the Profile service.
 
 ```js
 Profile.get().success(function(data) { scope.me = data });
