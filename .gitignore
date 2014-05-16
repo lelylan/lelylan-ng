@@ -28,8 +28,5 @@ app/bower_components
 .jshintrc
 .tmp/
 
-# Dist
-dist/
-
 # Coverage
 coverage/

@@ -1,8 +1,17 @@
 {
   "name": "lelylan-ng",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
+  "main": ["dist/lelylan-ng.js"],
+  "ignore": [
+    "app",
+    "test",
+    "bower.json",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "package.json"
+  ],
   "dependencies": {
-    "angular": "1.2.14",
+    "angular": "1.2.16",
     "ng-oauth": "*",
     "base64": "~0.3.0"
   },
@@ -10,7 +19,10 @@
     "jquery": "~2.1.0",
     "jasmine": "~2.0.0",
     "jasmine-jquery": "~2.0.3",
-    "angular-mocks": "1.2.14",
-    "angular-scenario": "1.2.14"
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16"
+  },
+  "resolutions": {
+    "angular": "~1.2.16"
   }
 }

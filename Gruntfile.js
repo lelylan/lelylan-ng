@@ -387,17 +387,7 @@ module.exports = function (grunt) {
     'concat',
     'ngmin',
     'uglify',
-    'concat'
-
-
-
-    //'clean:dist',
-    //'useminPrepare',
-    //'concat',
-    //'ngmin',
-    //'copy:dist',
-    //'uglify',
-    //'concat',
+    'concat',
   ]);
 
   grunt.registerTask('default', [
