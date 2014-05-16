@@ -51,7 +51,21 @@ in your house providing a simple and consistent REST API.
 about how the OAuth2 directive works.
 
 
-## $http requests
+## Implemented Services
+
+All methods are fully descibed in the [Dev Center](http://dev.lelylan.com#angular).
+
+- [x] [Devices](http://dev.lelylan.com/developers#devices-api)
+- [x] [Activations](http://dev.lelylan.com/developers#activations-api)
+- [x] [Types](http://dev.lelylan.com/types#types-api)
+- [x] [Properties](http://dev.lelylan.com/types#properties-api)
+- [x] [Functions](http://dev.lelylan.com/types#functions-api)
+- [x] [Statuses](http://dev.lelylan.com/types#statuses-api)
+- [x] [Subscriptions](http://dev.lelylan.com/developers#subscriptions-api)
+- [x] [Profile](http://dev.lelylan.com/developers#core-concepts-get-me)
+
+
+## Requests
 
 Every requests generates an HTTP request and returns a [promise](https://docs.angularjs.org/api/ng/service/$http)
 with two $http specific methods: `success` and `error`.
@@ -68,21 +82,37 @@ Device.query().
   });
 ```
 
-Note: lelylan-ng takes the access token from the oauth2 directive.
+
+## Realtime services
+
+When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
+service you need to set the client credentials (no access token required).
+
+```js
+Subscription.auth({ clientId: '<client-id>', clientSecret: '<client-secret>' });
+Subscription.get({ id: '<id>' }).success(function(data) { scope.subscription = data })
+```
 
 
-## Implemented Services
+### Signed in user
 
-All methods are fully descibed in the [Dev Cener](http://dev.lelylan.com#angular).
+When a user signs with the oauth-ng directive the corrent user is cached in the Prifile service.
 
-- [x] [Devices](http://dev.lelylan.com/developers#devices-api-angular)
-- [x] [Activations](http://dev.lelylan.com/developers#activations-api-angular)
-- [x] [Types](http://dev.lelylan.com/types#types-api-angular)
-- [x] [Properties](http://dev.lelylan.com/types#properties-api-angular)
-- [x] [Functions](http://dev.lelylan.com/types#functions-api-angular)
-- [x] [Statuses](http://dev.lelylan.com/types#statuses-api-angular)
-- [x] [Subscriptions](http://dev.lelylan.com/developers#subscriptions-api-angular)
-- [x] [Profile](http://dev.lelylan.com/developers#core-concepts-get-me-angular)
+```js
+Profile.get().success(function(data) { scope.me = data });
+```
+
+### Configurations
+
+Lelylan Configuration accepts the following options.
+
+* `endpoint` - A string representing the API endpoint (`http://api.lelylan.com` by deafault).
+
+```js
+angular.module('example', ['lelylan.client']);
+angular.module('example')
+  .value('lelylan.client.config', { endpoint: 'http:///localhost\\:9000' });
+```
 
 
 ## Links

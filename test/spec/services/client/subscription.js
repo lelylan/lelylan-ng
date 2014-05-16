@@ -32,7 +32,7 @@ describe('Subscription', function() {
   });
 
   beforeEach(function() {
-    Subscription.authenticate(credentials);
+    Subscription.auth(credentials);
   });
 
 

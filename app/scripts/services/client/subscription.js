@@ -30,7 +30,7 @@ client.factory('Subscription', ['$http', '$window', 'lelylan.client.config', fun
   }
 
 
-  service.authenticate = function(params) {
+  service.auth = function(params) {
     credentials = params;
   }
 
