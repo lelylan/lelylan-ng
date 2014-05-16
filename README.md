@@ -94,7 +94,7 @@ Subscription.get({ id: '<id>' }).success(function(data) { scope.subscription = d
 ```
 
 
-### Signed in user
+## Signed in user
 
 When a user signs with the [oauth-ng](https://github.com/andreareginato/oauth-ng)
 directive the corrent user is cached in the Profile service.
@@ -103,9 +103,9 @@ directive the corrent user is cached in the Profile service.
 Profile.get().success(function(data) { scope.me = data });
 ```
 
-### Configurations
+## Configurations
 
-Lelylan Configuration accepts the following options.
+Lelylan client accepts the following options.
 
 * `endpoint` - A string representing the API endpoint (`http://api.lelylan.com` by deafault).
 
