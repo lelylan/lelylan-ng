@@ -73,16 +73,16 @@ Note: lelylan-ng takes the access token from the oauth2 directive.
 
 ## Implemented Services
 
-Learn how to use Lelylan and AngulasJS in deep.
+All methods are fully descibed in the [Dev Cener](http://dev.lelylan.com#angular).
 
-- [x] [Devices](http://dev.lelylan.com/developers#devices-api)
-- [x] [Activations](http://dev.lelylan.com/developers#activations-api)
-- [x] [Types](http://dev.lelylan.com/types#types-api)
-- [x] [Properties](http://dev.lelylan.com/types#properties-api)
-- [x] [Functions](http://dev.lelylan.com/types#functions-api)
-- [x] [Statuses](http://dev.lelylan.com/types#statuses-api)
-- [x] [Subscriptions](http://dev.lelylan.com/developers#subscriptions-api)
-- [x] [Profile](http://dev.lelylan.com/developers#core-concepts-get-me)
+- [x] [Devices](http://dev.lelylan.com/developers#devices-api-angular)
+- [x] [Activations](http://dev.lelylan.com/developers#activations-api-angular)
+- [x] [Types](http://dev.lelylan.com/types#types-api-angular)
+- [x] [Properties](http://dev.lelylan.com/types#properties-api-angular)
+- [x] [Functions](http://dev.lelylan.com/types#functions-api-angular)
+- [x] [Statuses](http://dev.lelylan.com/types#statuses-api-angular)
+- [x] [Subscriptions](http://dev.lelylan.com/developers#subscriptions-api-angular)
+- [x] [Profile](http://dev.lelylan.com/developers#core-concepts-get-me-angular)
 
 
 ## Links
