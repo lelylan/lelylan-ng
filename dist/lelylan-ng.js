@@ -1,4 +1,4 @@
-/* lelylan-ng - v0.1.0-alpha.1 - 2014-05-17 */
+/* lelylan-ng - v0.1.0-beta.1 - 2014-05-17 */
 
 'use strict';
 
@@ -70,7 +70,7 @@ client.factory('Category', ['$http', 'lelylan.client.config', function($http, co
   var service = {};
   var base = config.endpoint + '/categories';
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
   }
 
@@ -91,7 +91,7 @@ client.factory('Device', ['$http', 'lelylan.client.config', function($http, conf
     return $http.get(base + '/' + id);
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
   }
 
@@ -132,8 +132,12 @@ client.factory('Function', ['$http', 'lelylan.client.config', function($http, co
     return $http.get(base + '/' + id);
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
+  }
+
+  service.public = function(params) {
+    return $http.get(base + '/public', { params: params });
   }
 
   service.create = function(params) {
@@ -165,8 +169,12 @@ client.factory('Property', ['$http', 'lelylan.client.config', function($http, co
     return $http.get(base + '/' + id);
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
+  }
+
+  service.public = function(params) {
+    return $http.get(base + '/public', { params: params });
   }
 
   service.create = function(params) {
@@ -198,8 +206,12 @@ client.factory('Status', ['$http', 'lelylan.client.config', function($http, conf
     return $http.get(base + '/' + id);
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
+  }
+
+  service.public = function(params) {
+    return $http.get(base + '/public', { params: params });
   }
 
   service.create = function(params) {
@@ -232,7 +244,7 @@ client.factory('Subscription', ['$http', '$window', 'lelylan.client.config', fun
     return $http.get(base + '/' + id, { headers: headers() });
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params, headers: headers() });
   }
 
@@ -278,8 +290,12 @@ client.factory('Type', ['$http', 'lelylan.client.config', function($http, config
     return $http.get(base + '/' + id);
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
+  }
+
+  service.public = function(params) {
+    return $http.get(base + '/public', { params: params });
   }
 
   service.create = function(params) {
