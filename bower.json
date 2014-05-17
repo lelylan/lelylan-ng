@@ -1,6 +1,6 @@
 {
   "name": "lelylan-ng",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta",
   "main": ["dist/lelylan-ng.js"],
   "ignore": [
     "app",

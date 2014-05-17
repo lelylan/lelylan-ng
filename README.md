@@ -88,8 +88,8 @@ Device.query().
 
 ## Realtime services
 
-When using the [subscription](http://dev.lelylan.com/api/realtime#language=angular)
-service you need to set the client credentials first (no access token required).
+When using the [subscription](http://dev.lelylan.com/developers#subscriptions-api)
+service you first need to set the client credentials (no access token required).
 
 ```js
 Subscription.auth({ clientId: '<client-id>', clientSecret: '<client-secret>' });
@@ -136,7 +136,8 @@ Do not forget to provide specs to your contribution.
 
 * Fork and clone the repository
 * Run `npm install`
-* Run `grunt`
+* Run `bower install`
+* Run `grunt build`
 
 The new distribution files will be created in the `dist/` folder.
 
@@ -153,8 +154,8 @@ can improve the project.
 ## Links
 
 * [GIT Repository](http://github.com/lelylan/lelylan-ng)
-* [OAuth2 directive](https://github.com/andreareginato/oauth-ng)
 * [Lelylan Dev Center](http://dev.lelylan.com)
+* [OAuth2 directive](https://github.com/andreareginato/oauth-ng)
 
 ## Authors
 
