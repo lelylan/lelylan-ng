@@ -53,7 +53,7 @@ describe('Device', function() {
   });
 
 
-  describe('.query', function() {
+  describe('.all', function() {
 
     beforeEach(function() {
       $httpBackend.when('GET', 'http://api.lelylan.com/devices?name=alice', {}, headers)
@@ -62,12 +62,12 @@ describe('Device', function() {
 
     it('makes the request', function() {
       $httpBackend.expect('GET', 'http://api.lelylan.com/devices?name=alice');
-      Device.query({ name: 'alice' });
+      Device.all({ name: 'alice' });
       $httpBackend.flush();
     });
 
     it('gets the resource', function() {
-      Device.query({ name: 'alice' }).success(function(response) { result = response })
+      Device.all({ name: 'alice' }).success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/devices/1');
     });

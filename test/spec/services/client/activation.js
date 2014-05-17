@@ -19,7 +19,7 @@ describe('Activation', function() {
 
 
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = 'base/test/spec/fixtures'
+    jasmine.getFixtures().fixturesPath = 'base/test/spec/fixtures';
   });
 
   beforeEach(function() {

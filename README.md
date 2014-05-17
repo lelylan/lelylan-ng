@@ -47,9 +47,6 @@ in your house providing a simple and consistent REST API.
 </html>
 ```
 
-[Learn more](http://dev.lelylan.com/developers/#oauth-implicit-grant-angular)
-about how the OAuth2 directive works.
-
 
 ## Implemented Services
 
@@ -63,6 +60,12 @@ All methods are fully descibed in the [Dev Center](http://dev.lelylan.com#angula
 - [x] [Statuses](http://dev.lelylan.com/types#statuses-api)
 - [x] [Subscriptions](http://dev.lelylan.com/developers#subscriptions-api)
 - [x] [Profile](http://dev.lelylan.com/developers#core-concepts-get-me)
+
+
+## OAuth 2.0
+
+Every request needs an oauth access token to be authorized. To make this possible
+we use the [oauth-ng](https://github.com/andreareginato/oauth-ng) directive.
 
 
 ## Requests

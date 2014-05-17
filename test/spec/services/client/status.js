@@ -53,7 +53,7 @@ describe('Status', function() {
   });
 
 
-  describe('.query', function() {
+  describe('.all', function() {
 
     beforeEach(function() {
       $httpBackend.when('GET', 'http://api.lelylan.com/statuses?name=alice', {}, headers)
@@ -62,12 +62,33 @@ describe('Status', function() {
 
     it('makes the request', function() {
       $httpBackend.expect('GET', 'http://api.lelylan.com/statuses?name=alice');
-      Status.query({ name: 'alice' });
+      Status.all({ name: 'alice' });
       $httpBackend.flush();
     });
 
     it('gets the resource', function() {
-      Status.query({ name: 'alice' }).success(function(response) { result = response })
+      Status.all({ name: 'alice' }).success(function(response) { result = response })
+      $httpBackend.flush();
+      expect(result[0].uri).toEqual('http://api.lelylan.com/statuses/1');
+    });
+  });
+
+
+  describe('.public', function() {
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/statuses/public?name=alice', {}, headers)
+      .respond([resource]);
+    });
+
+    it('makes the request', function() {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/statuses/public?name=alice');
+      Status.public({ name: 'alice' });
+      $httpBackend.flush();
+    });
+
+    it('gets the resource', function() {
+      Status.public({ name: 'alice' }).success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/statuses/1');
     });

@@ -57,7 +57,7 @@ describe('Subscription', function() {
   });
 
 
-  describe('.query', function() {
+  describe('.all', function() {
 
     beforeEach(function() {
       $httpBackend.when('GET', 'http://api.lelylan.com/subscriptions?name=alice', {}, headers)
@@ -66,12 +66,12 @@ describe('Subscription', function() {
 
     it('makes the request', function() {
       $httpBackend.expect('GET', 'http://api.lelylan.com/subscriptions?name=alice');
-      Subscription.query({ name: 'alice' });
+      Subscription.all({ name: 'alice' });
       $httpBackend.flush();
     });
 
     it('gets the resource', function() {
-      Subscription.query({ name: 'alice' }).success(function(response) { result = response })
+      Subscription.all({ name: 'alice' }).success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/subscriptions/1');
     });

@@ -12,8 +12,12 @@ client.factory('Status', ['$http', 'lelylan.client.config', function($http, conf
     return $http.get(base + '/' + id);
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
+  }
+
+  service.public = function(params) {
+    return $http.get(base + '/public', { params: params });
   }
 
   service.create = function(params) {

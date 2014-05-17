@@ -12,7 +12,7 @@ client.factory('Device', ['$http', 'lelylan.client.config', function($http, conf
     return $http.get(base + '/' + id);
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params });
   }
 

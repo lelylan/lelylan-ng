@@ -31,7 +31,7 @@ describe('Category', function() {
   });
 
 
-  describe('.query', function() {
+  describe('.all', function() {
 
     beforeEach(function() {
       $httpBackend.when('GET', 'http://api.lelylan.com/categories', {}, headers)
@@ -40,12 +40,12 @@ describe('Category', function() {
 
     it('makes the request', function() {
       $httpBackend.expect('GET', 'http://api.lelylan.com/categories');
-      Category.query({});
+      Category.all();
       $httpBackend.flush();
     });
 
     it('gets the resource', function() {
-      Category.query({}).success(function(response) { result = response })
+      Category.all().success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/devices/1');
     });

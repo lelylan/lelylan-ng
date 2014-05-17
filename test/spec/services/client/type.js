@@ -53,7 +53,7 @@ describe('Type', function() {
   });
 
 
-  describe('.query', function() {
+  describe('.all', function() {
 
     beforeEach(function() {
       $httpBackend.when('GET', 'http://api.lelylan.com/types?name=alice', {}, headers)
@@ -62,12 +62,33 @@ describe('Type', function() {
 
     it('makes the request', function() {
       $httpBackend.expect('GET', 'http://api.lelylan.com/types?name=alice');
-      Type.query({ name: 'alice' });
+      Type.all({ name: 'alice' });
       $httpBackend.flush();
     });
 
     it('gets the resource', function() {
-      Type.query({ name: 'alice' }).success(function(response) { result = response })
+      Type.all({ name: 'alice' }).success(function(response) { result = response })
+      $httpBackend.flush();
+      expect(result[0].uri).toEqual('http://api.lelylan.com/types/1');
+    });
+  });
+
+
+  describe('.public', function() {
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/types/public?name=alice', {}, headers)
+      .respond([resource]);
+    });
+
+    it('makes the request', function() {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/types/public?name=alice');
+      Type.public({ name: 'alice' });
+      $httpBackend.flush();
+    });
+
+    it('gets the resource', function() {
+      Type.public({ name: 'alice' }).success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/types/1');
     });

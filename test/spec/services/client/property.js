@@ -53,7 +53,7 @@ describe('Property', function() {
   });
 
 
-  describe('.query', function() {
+  describe('.all', function() {
 
     beforeEach(function() {
       $httpBackend.when('GET', 'http://api.lelylan.com/properties?name=alice', {}, headers)
@@ -62,12 +62,33 @@ describe('Property', function() {
 
     it('makes the request', function() {
       $httpBackend.expect('GET', 'http://api.lelylan.com/properties?name=alice');
-      Property.query({ name: 'alice' });
+      Property.all({ name: 'alice' });
       $httpBackend.flush();
     });
 
     it('gets the resource', function() {
-      Property.query({ name: 'alice' }).success(function(response) { result = response })
+      Property.all({ name: 'alice' }).success(function(response) { result = response })
+      $httpBackend.flush();
+      expect(result[0].uri).toEqual('http://api.lelylan.com/properties/1');
+    });
+  });
+
+
+  describe('.public', function() {
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/properties/public?name=alice', {}, headers)
+      .respond([resource]);
+    });
+
+    it('makes the request', function() {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/properties/public?name=alice');
+      Property.public({ name: 'alice' });
+      $httpBackend.flush();
+    });
+
+    it('gets the resource', function() {
+      Property.public({ name: 'alice' }).success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/properties/1');
     });

@@ -13,7 +13,7 @@ client.factory('Subscription', ['$http', '$window', 'lelylan.client.config', fun
     return $http.get(base + '/' + id, { headers: headers() });
   }
 
-  service.query = function(params) {
+  service.all = function(params) {
     return $http.get(base, { params: params, headers: headers() });
   }
 
