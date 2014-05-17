@@ -172,8 +172,6 @@ for submitting patches.
 See [changelog](https://github.com/lelylan/lelylan-ng/blob/master/CHANGELOG.md).
 
 
-## Licence
+## License
 
-Lelylan is released under
-[The MIT licence](https://github.com/lelylan/lelylan-ng/blob/master/CHANGELOG.md).
-
+See [license](https://github.com/lelylan/lelylan-ng/blob/master/LICENSE.md).
