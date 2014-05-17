@@ -1,4 +1,24 @@
-/* lelylan-ng - v0.1.0-alpha - 2014-05-16 */
+/* lelylan-ng - v0.1.0-alpha.1 - 2014-05-17 */
+
+'use strict';
+
+angular.module('lelylan.client', [
+  'oauth',
+  'lelylan.client.config',
+  'lelylan.client.category',
+  'lelylan.client.device',
+  'lelylan.client.activation',
+  'lelylan.client.type',
+  'lelylan.client.property',
+  'lelylan.client.function',
+  'lelylan.client.status',
+  'lelylan.client.subscription'
+]);
+
+'use strict';
+
+angular.module('lelylan.client.config', [])
+  .value('lelylan.client.config', { endpoint: 'http://api.lelylan.com' });
 
 'use strict';
 
@@ -276,23 +296,3 @@ client.factory('Type', ['$http', 'lelylan.client.config', function($http, config
 
   return service;
 }]);
-
-'use strict';
-
-angular.module('lelylan.client', [
-  'oauth',
-  'lelylan.client.config',
-  'lelylan.client.category',
-  'lelylan.client.device',
-  'lelylan.client.activation',
-  'lelylan.client.type',
-  'lelylan.client.property',
-  'lelylan.client.function',
-  'lelylan.client.status',
-  'lelylan.client.subscription'
-]);
-
-'use strict';
-
-angular.module('lelylan.client.config', [])
-  .value('lelylan.client.config', { endpoint: 'http://api.lelylan.com' });

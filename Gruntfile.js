@@ -336,8 +336,8 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.dist %>/<%= yeoman.name %>.js': [
             '.tmp/scripts/{,*/}*.js',
-            '<%= yeoman.app %>/scripts/services/{,*/}*.js',
-            '<%= yeoman.app %>/scripts/{,*/}*.js'
+            '<%= yeoman.app %>/scripts/{,*/}*.js',
+            '<%= yeoman.app %>/scripts/services/{,*/}*.js'
           ]
         }
       }
