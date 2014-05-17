@@ -13,7 +13,7 @@ in your house providing a simple and consistent REST API.
 `bower install lelylan-ng --save`
 
 
-## Getting Started
+## Example
 
 ```html
 <html ng-app="example">
