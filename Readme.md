@@ -1,13 +1,13 @@
 # Lelylan Client for AngularJS website
 
 Source code for the AngularJS Lelylan Client [website](http://lelylan.github.com/lelylan-ng).
+[![lelylan-ng](http://i.imgur.com/dLN4isF.png)](http://lelylan.github.com/lelylan-ng)
 
 
 ## Contributing
 
 Fork the repo on github and send a pull requests with topic branches.
 
-![lelylan-ng](http://i.imgur.com/dLN4isF.png)
 
 ### Feedback
 
