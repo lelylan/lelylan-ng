@@ -16,11 +16,13 @@
       </a>
       <ul>
         <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#application">Application</a></li>
-        <li><a href="#context">Context</a></li>
-        <li><a href="#request">Request</a></li>
-        <li><a href="#response">Response</a></li>
-        <li><a href="#links">Links</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#tutorial">Tutorial</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#requests">Requests</a></li>
+        <li><a href="#realtime">Realtime Services</a></li>
+        <li><a href="#user">Signed in User</a></li>
+        <li><a href="#configurations">Configurations</a></li>
       </ul>
     </div>
     <div id="heading">
@@ -37,6 +39,59 @@
       <a href="http://lelylan.com" target="blank">Lelylan</a>, a new platform
       to monitor and control any devices through a simple and robust REST API.
       </p>
+    </div>
+    </section>
+
+
+    <section>
+    <div class="content">
+      <h1 id="getting-started">Getting Started</h1>
+
+      <h2>Installation</h2>
+
+      <p>
+      Install lelylan-ng using Bower.
+      </p>
+
+      <pre><code>$ bower install lelylan-ng --save</code></pre>
+
+      <h2>Code Sample</h2>
+
+      <p>
+      The code above lets you get your devices. To fully understand what's going on
+      read the detailed <a href="#tutorial">tutorial section</a>.
+      </p>
+
+<pre><code><xmp><html ng-app="example">
+  <body>
+
+    <!-- OAuth2 directive -->
+    <oauth2
+      site="http://people.lelylan.com"
+      client-id="<client-id>"
+      redirect-uri="http://redirect.example.com"
+      scope="devices"
+      profile="http://api.lelylan.com/me">
+    </oauth2>
+
+    <!-- Show the owned devices -->
+    <div ng-controller="ExampleController">
+      <div ng-repeat="device in devices">{{device.name}}</div>
+    </div>
+
+    <!-- Gets the owned device -->
+    <script>
+      function ExampleController($scope, Device) {
+        Device.query().success(function(data) { $scope.devices = data });
+      }
+    </script>
+
+    <script>
+      angular.module('example', ['lelylan.client']);
+    </script>
+  </body>
+</html></xmp></code></pre>
+
     </div>
     </section>
 
@@ -141,7 +196,7 @@
       <h2>Add lelylan client</h2>
 
       <p>
-      Add the <code>lelylan.client</code> module to your AngularJS app.
+      Add the Lelylan client to your AngularJS app.
       </p>
 
       <pre><code><xmp>// app/scripts/app.js
@@ -268,5 +323,131 @@ angular.module('newProjectApp')
     </div>
     </section>
 
+    <section>
+    <div class="content">
+      <h1 id="services">Implemented services</h1>
+      <p>
+      All methods are fully descibed in the <a href="http://dev.lelylan.com">Dev Center</a>.
+      </p>
+
+      <ul class="task-list">
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/developers#devices-api">Devices API</a>
+        </li>
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/developers#activations-api">Activations API</a>
+        </li>
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/types#types-api">Types API</a>
+        </li>
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/types#properties-api">Properties API</a>
+        </li>
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/types#functions-api">Functions API</a>
+        </li>
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/types#statuses-api">Statuses API</a>
+        </li>
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/developers#subscriptions-api">Subscriptions API</a>
+        </li>
+        <li class="task-list-item">
+        <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""><a href="http://dev.lelylan.com/developers#core-concepts-get-me">Profile API</a>
+        </li>
+      </ul>
+
+    </div>
+    </section>
+
+    <section>
+    <div class="content">
+      <h1 id="requests">Requests</h1>
+      <p>
+      Every request returns a
+      <a href="https://docs.angularjs.org/api/ng/service/%24http">promise</a>
+      with two $http specific methods: <code>success</code> and <code>error</code>.
+      </p>
+
+<pre><code><xmp>Device.all().
+  success(function(data, status, headers, config) {
+    // this callback will be called asynchronously
+    // when the response is available
+  }).
+  error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });</xmp></code></pre>
+
+    </div>
+    </section>
+
+    <section>
+    <div class="content">
+      <h1 id="realtime">Realtime services</h1>
+
+      <p>
+        When using the <a href="http://dev.lelylan.com/developers#subscriptions-api">subscription</a>
+        service you first need to set the client credentials
+      </p>
+
+<pre><code><xmp>Subscription.auth({ clientId: '<client-id>', clientSecret: '<client-secret>' });
+Subscription.all().success(function(data) { scope.subscriptions = data })</xmp></code></pre>
+
+      <p>
+      In this case no access token required.
+      </p>
+
+    </div>
+    </section>
+
+    <section>
+    <div class="content">
+      <h1 id="user">Signed in user</h1>
+
+      <p>
+      When a user logs in with the
+      <a href="https://github.com/andreareginato/oauth-ng">oauth-ng</a>
+      directive the current user is accessible through the Profile service.
+      </p>
+
+      <pre><code><xmp>Profile.get().success(function(data) { scope.profile = data });</xmp></code></pre>
+
+    </div>
+    </section>
+
+    <section>
+    <div class="content">
+      <h1 id="configurations">Configurations</h1>
+
+      <p>
+      Lelylan client accepts the following options.
+      </p>
+
+      <ul>
+        <li><code>endpoint</code> - A string representing the API endpoint
+        (http://api.lelylan.com by default).</li>
+      </ul>
+
+      <p>
+      Here a simple example.
+      </p>
+
+      <pre><code><xmp>angular.module('example', ['lelylan.client']);
+  .value('lelylan.client.config', { endpoint: 'http:///localhost\\:9000' });</xmp></code></pre>
+
+    </div>
+    </section>
+
+    <section>
+    <div class="content">
+      <h1 id=""></h1>
+      <p>
+      </p>
+
+      <img src="http://i.imgur.com/dLN4isF.png"></img>
+
+    </div>
+    </section>
   </body>
 </html>

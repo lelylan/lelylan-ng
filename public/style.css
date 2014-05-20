@@ -69,6 +69,8 @@ code {
 
 h1 {
   font-size: 2em;
+  margin-top: 0em;
+  padding-top: 1em;
 }
 
 h1:not(:first-child) {
@@ -154,10 +156,15 @@ section:nth-child(2n) {
   border-bottom: none;
 }
 
+#menu i.icon-menu {
+  font-size: 1.5em;
+}
+
 #menu ul {
   display: none;
   position: absolute;
-  top: 35px;
+  width: 200px;
+  top: 2.8em;
   right: 0;
   margin: 0;
   border: 1px solid #efefef;
@@ -180,6 +187,15 @@ section:nth-child(2n) {
 
 #menu ul li a:hover {
   text-decoration: underline;
+}
+
+ul.task-list {
+  list-style-type: none;
+  padding-left:10px;
+}
+
+ul.task-list .task-list-item-checkbox {
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 700px) {
