@@ -23,6 +23,7 @@
         <li><a href="#realtime">Realtime Services</a></li>
         <li><a href="#user">Signed in User</a></li>
         <li><a href="#configurations">Configurations</a></li>
+        <li><a href="#links">Links</a></li>
       </ul>
     </div>
     <div id="heading">
@@ -327,7 +328,7 @@ angular.module('newProjectApp')
     <div class="content">
       <h1 id="services">Implemented services</h1>
       <p>
-      All methods are fully descibed in the <a href="http://dev.lelylan.com">Dev Center</a>.
+      All methods are fully descibed in the <a href="http://dev.lelylan.com" target="blank">Dev Center</a>.
       </p>
 
       <ul class="task-list">
@@ -365,7 +366,7 @@ angular.module('newProjectApp')
       <h1 id="requests">Requests</h1>
       <p>
       Every request returns a
-      <a href="https://docs.angularjs.org/api/ng/service/%24http">promise</a>
+      <a href="https://docs.angularjs.org/api/ng/service/%24http" target="blank">promise</a>
       with two $http specific methods: <code>success</code> and <code>error</code>.
       </p>
 
@@ -387,7 +388,7 @@ angular.module('newProjectApp')
       <h1 id="realtime">Realtime services</h1>
 
       <p>
-        When using the <a href="http://dev.lelylan.com/developers#subscriptions-api">subscription</a>
+        When using the <a href="http://dev.lelylan.com/developers#subscriptions-api" target="blank">subscription</a>
         service you first need to set the client credentials
       </p>
 
@@ -407,7 +408,7 @@ Subscription.all().success(function(data) { scope.subscriptions = data })</xmp><
 
       <p>
       When a user logs in with the
-      <a href="https://github.com/andreareginato/oauth-ng">oauth-ng</a>
+      <a href="https://github.com/andreareginato/oauth-ng" target="blank">oauth-ng</a>
       directive the current user is accessible through the Profile service.
       </p>
 
@@ -441,13 +442,24 @@ Subscription.all().success(function(data) { scope.subscriptions = data })</xmp><
 
     <section>
     <div class="content">
-      <h1 id=""></h1>
-      <p>
-      </p>
+      <h1 id="links">Links</h1>
 
-      <img src="http://i.imgur.com/dLN4isF.png"></img>
-
+      <ul>
+        <li>
+        <a href="https://github.com/lelylan/lelylan-ng/" target="blank">Github Repository</a>
+        </li>
+        <li>
+        <a href="https://dev.lelylan.com" target="blank">Lelylan Dev Center</a>
+        </li>
+        <li>
+        <a href="https://lelylan.com" target="blank">Lelylan website</a>
+        </li>
+        <li>
+        <a href="https://twitter.com/lelylan" target="blank">Twitter @lelylan</a>
+        </li>
+      </ul>
     </div>
     </section>
+
   </body>
 </html>
