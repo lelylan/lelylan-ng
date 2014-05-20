@@ -1,4 +1,4 @@
-# Lelylan Client for AngularJS
+# AngularJS client for Lelylan API
 
 AngularJS client library for [Lelylan API](http://dev.lelylan.com).
 
@@ -41,9 +41,10 @@ can improve the project.
 
 ## Links
 
-* [GIT Repository](http://github.com/lelylan/lelylan-ng)
+* [Github repository](http://github.com/lelylan/lelylan-ng)
+* [Github oauth-ng repository](https://github.com/andreareginato/oauth-ng)
 * [Lelylan Dev Center](http://dev.lelylan.com)
-* [OAuth2 directive](https://github.com/andreareginato/oauth-ng)
+* [Lelylan website](http://lelylan.com)
 
 ## Authors
 
