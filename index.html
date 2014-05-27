@@ -79,13 +79,13 @@
     </oauth>
 
     <!-- shows owned devices -->
-    <div ng-controller="AppCtrl">
+    <div ng-controller="MainCtrl">
       <div ng-repeat="device in devices">{{device.name}}</div>
     </div>
 
     <!-- gets owned devices -->
     <script>
-      function AppCtrl($scope, Device) {
+      function MainCtrl($scope, Device) {
         Device.all().success(function(data) { $scope.devices = data });
       }
     </script>
