@@ -17,7 +17,7 @@
       <ul>
         <li><a href="#introduction">Introduction</a></li>
         <li><a href="#getting-started">Getting Started</a></li>
-        <li><a href="#tutorial">Tutorial</a></li>
+        <li><a href="#howto">How To</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#requests">Requests</a></li>
         <li><a href="#realtime">Realtime Services</a></li>
@@ -29,6 +29,9 @@
     <div id="heading">
       <div id="logo">lelylan-ng</div>
       <div id="tagline">AngularJS Client Library for Lelylan</a></div>
+      <p class="btn-group">
+        <a href="https://github.com/lelylan/lelylan-ng/" class="btn" target="_blank">See on Github</a>
+      </p>
     </div>
     </section>
 
@@ -38,7 +41,7 @@
       <p>
       Build web apps for the Connected Home using the power of AngularJS and
       <a href="http://lelylan.com" target="blank">Lelylan</a>, a new platform
-      to monitor and control any devices through a simple and robust REST API.
+      to monitor and control your devices through a simple, open and robust REST API.
       </p>
     </div>
     </section>
@@ -51,66 +54,77 @@
       <h2>Installation</h2>
 
       <p>
-      Install lelylan-ng using Bower.
+      Install lelylan-ng using <a href="http://bower.io/" target="_blank">Bower</a>.
       </p>
 
       <pre><code>$ bower install lelylan-ng --save</code></pre>
 
-      <h2>Code Sample</h2>
+      <h2>Basic Example</h2>
 
       <p>
-      The code above lets you get your devices. To fully understand what's going on
-      read the detailed <a href="#tutorial">tutorial section</a>.
+      This example shows you how the client works.
       </p>
 
-<pre><code><xmp><html ng-app="example">
+<pre><code><xmp><html ng-app="app">
   <body>
 
-    <!-- OAuth2 directive -->
-    <oauth2
+    <!-- oauth directive -->
+    <oauth
       site="http://people.lelylan.com"
-      client-id="<client-id>"
-      redirect-uri="http://redirect.example.com"
-      scope="devices"
-      profile="http://api.lelylan.com/me">
-    </oauth2>
+      client-id="CLIENT_ID_HERE"
+      redirect-uri="REDIRECT_URI_HERE"
+      profile-uri="http://api.lelylan.com/me"
+      scope="devices">
+    </oauth>
 
-    <!-- Show the owned devices -->
-    <div ng-controller="ExampleController">
+    <!-- shows owned devices -->
+    <div ng-controller="AppCtrl">
       <div ng-repeat="device in devices">{{device.name}}</div>
     </div>
 
-    <!-- Gets the owned device -->
+    <!-- gets owned devices -->
     <script>
-      function ExampleController($scope, Device) {
-        Device.query().success(function(data) { $scope.devices = data });
+      function AppCtrl($scope, Device) {
+        Device.all().success(function(data) { $scope.devices = data });
       }
     </script>
 
+    <!-- bootstrap app -->
     <script>
-      angular.module('example', ['lelylan.client']);
+      angular.module('app', ['lelylan.client']);
     </script>
   </body>
 </html></xmp></code></pre>
+
+      <p>
+      To fully understand how it works read the <a href="#howto">next section</a>.
+      </p>
 
     </div>
     </section>
 
 
+
     <section>
     <div class="content">
-      <h1 id="tutorial">Tutorial</h1>
+      <h1 id="howto">Create your first app with lelylan-ng</h1>
+
       <p>
-      In this tutorial we describe step by step how to create a web app that lets
-      you show the status of your devices.
+      In this section you will learn how to create a web app showing the list of your
+      devices.
+      </p>
+
+      <p class="btn-group">
+      <a href="#" class="btn" target="_blank">View Demo</a>
+      <a href="https://github.com/lelylan/lelylan-ng" class="btn" target="_blank">Download Source</a>
       </p>
 
 
-      <h2 id="setup">Yeoman</h2>
+      <h2 id="setup">Setup</h2>
 
       <p>
       To build our app we'll use <a href="http://yeoman.io" target="blank">Yeoman</a>, a collection of tools
-      and frameworks that can help developers quickly build web applications.
+      and frameworks helping developers to quickly build web applications.
       </p>
 
       <ul>
@@ -174,17 +188,18 @@
       </p>
 
 
+
       <h2>Install lelylan-ng</h2>
 
       <p>
-      Install lelylan-ng using Bower.
+      Install lelylan-ng using <a href="http://bower.io/">Bower</a>.
       </p>
 
       <pre><code>$ bower install lelylan-ng --save</code></pre>
 
       <p>
-      With this command lelylan-ng and all its dependencies are downloaded. To automatically
-      add them to the <code>index.html</code> page stop and restart the server.
+      Now you have <code>oauth-ng</code> and all its dependencies ready to be used.
+      Restart the server to automatically add them to your index page.
       </p>
 
       <pre><code>$ grunt serve</code></pre>
@@ -201,88 +216,54 @@
       </p>
 
       <pre><code><xmp>// app/scripts/app.js
-angular.module('newProjectApp', ['lelylan.client'])
-...</xmp></code></pre>
+angular.module('newProjectApp', ['lelylan.client', ... ])</xmp></code></pre>
+
+
+      <h2 id="server">OAuth 2.0 Server</h2>
 
       <p>
-      This lets you access to all the directives and the services defined in lelylan-ng and its
-      dependencies.
-      </p>
-
-
-      <h2>Authorize your app</h2>
-
-      <p>
-        Lelylan API uses the OAuth 2.0 protocol for authentication and authorization.
-        OAuth lets users grant the access to the desired resources to third party applications,
-        giving them the possibility to enable and disable those accesses whenever they want.
-      </p>
-
-      <p>
-      You need to <a href="http://people.lelylan.com/oauth/applications" target="blank">register your applications</a>
-      before getting started. A registered OAuth application is assigned with a unique Client ID
-      and a Redirect URI needed to make the authorization flow work. You will need them soon.
+      Lelylan uses an OAuth 2.0 server for authentication and authorization.
+      <a href="http://people.lelylan.com/oauth/applications" target="blank">Register</a>
+      a new application and take its credentials (client id and redirect uri) before moving
+      to the next step.
       </p>
 
       <a href="http://people.lelylan.com/oauth/applications" target="blank">
         <img src="public/images/application.png"></img>
       </a>
 
-      <p>
-      To get the authorization token you need to use
-      <a href="https://github.com/andreareginato/oauth-ng" target="blank">oauth-ng</a>, an
-      AngularJS directive for the OAuth2 Implicit Flow. What it does is quite simple.
-      It shows you a <code>Login</code> link pointing to the authorization page for
-      your application and save the access token once you authorize the application.
-      </p>
+      <h2>Add the oauth-ng directive</h2>
 
       <p>
-      Open the <code>main.html</code> view and set the oauth directive replacing the the
-      <code>client-id</code> and the <code>redirect-uri</code> with your application ones.
+      To get an authorization token you need to use
+      <a href="andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>, an
+      AngularJS directive for OAuth 2.0. Open your main.html view and place the
+      <code>oauth</code> tag with the required configurations.
       </p>
 
-      <pre><code><xmp>// apps/views/main.html
-...
-<oauth2
+      <pre><code><xmp><oauth
   site="http://people.lelylan.com"
-  client-id="<client-id>"
-  redirect-uri="<redirect-uri>"
-  scope="devices"
-  profile="http://api.lelylan.com/me">
-</oauth2>
-...</xmp></code></pre>
+  client-id="CLIENT_ID_HERE"
+  redirect-uri="REDIRECT_URI_HERE"
+  profile-uri="http://api.lelylan.com/me"
+  scope="devices">
+</oauth></xmp></code></pre>
 
-      <p>
-      The oauth component accepts the following attributes.
+      <p class="notice">
+      Check out the <a href="andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>
+      docs if you want to better understand how it works.
       </p>
 
-      <ul>
-        <li><strong>site</strong> - Lelylan authorization endpoint.</li>
-        <li><strong>client-id</strong> - Registered Client ID.</li>
-        <li><strong>redirect-uri</strong> - Registered URI where the user is redirected after the authorization.</li>
-        <li><strong>scope</strong> - Application privileges. <a href="http://dev.lelylan.com/developers#oauth-scopes" target="blank">Learn more</a>.</li>
-        <li><strong>profile</strong> - Lelylan API endpoint returning the profile resource</li>
-        <li><strong>state</strong> - Optional opaque value used by the client to maintain state between the request and callback</li>
-      </ul>
 
 
       <h2>Get your devices</h2>
 
       <p>
-      A device is everything you interact with everyday of your life. You interact with
-      lights, alarms, cooling and heating systems, smoke and gas sensors, appliances, rolling
-      shutters and windows, irrigations, video surveillance, gates, multimedia (audio and video)
-      and much more. The Devices API defines a set of services to monitor, control, simulate
-      and connect everything.
-      </p>
-
-      <p>
-      To get all your devices you need to use the <code>Device#all</code> method. Open the
+      To get your devices use the <code>Device#all</code> method. Open the
       main controller and replace the existing code with the following.
       </p>
 
-      <pre><code><xmp>// apps/scripts/controllers/main.js
-angular.module('newProjectApp')
+      <pre><code><xmp>angular.module('newProjectApp')
   .controller('MainCtrl', function ($scope, Device) {
     Device.all()
       .success(function(data) { $scope.devices = data })
@@ -290,33 +271,23 @@ angular.module('newProjectApp')
   });</xmp></code></pre>
 
       <p>
-      This is what happens. You inject the <code>Device</code> service and use the
-      <code>Device.all()</code> method to get all of your devices. The request returns
-      a promise with two $http specific methods.
+      This is what the code above does. It injects the <code>Device</code> service and call
+      the <code>Device.all()</code> method to get all of your devices and returns a promise
+      with two $http specific methods: success and error.
       </p>
-
-      <ul>
-        <li><strong>success</strong> - used to save the devices into <code>$scope.devices</code>.</li>
-        <li><strong>error</strong> - used to set an error message into <code>$scope.error</code>.</li>
-      </ul>
 
 
       <h2>Show your devices</h2>
 
       <p>
-      Open the <code>main.html</code> view and list your devices using
-      <code>$scope.devices</code>.
+      Supposing you have devices, now you need to show them. Open the <code>main.html</code>
+      view and list your devices by showing their names.
       </p>
 
-      <pre><code><xmp>// apps/views/main.html
-<div ng-if="devices" ng-repeat="device in devices">{{device.name}}<div>
-<div ng-if="error">{{error}}</div></xmp></code></pre>
+      <pre><code><xmp><div ng-if="devices" ng-repeat="device in devices">{{device.name}}<div></xmp></code></pre>
 
       <p>
-      What you are doing here is a loop between all devices to show their names
-      or the visualization of an error message whenever you are not logged in and
-      the request to get the devices fails.
-      Here the final result.
+      Here the final result (with some graphical changes).
       </p>
 
       <img src="public/images/result.png"></img>
@@ -328,7 +299,7 @@ angular.module('newProjectApp')
     <div class="content">
       <h1 id="services">Implemented services</h1>
       <p>
-      All methods are fully descibed in the <a href="http://dev.lelylan.com" target="blank">Dev Center</a>.
+      All methods are fully described in the <a href="http://dev.lelylan.com" target="blank">Dev Center</a>.
       </p>
 
       <ul class="task-list">
@@ -385,19 +356,23 @@ angular.module('newProjectApp')
 
     <section>
     <div class="content">
-      <h1 id="realtime">Realtime services</h1>
+      <h1 id="realtime">Subscription services</h1>
 
       <p>
-        When using the <a href="http://dev.lelylan.com/developers#subscriptions-api" target="blank">subscription</a>
-        service you first need to set the client credentials
+      When using the
+      <a href="http://dev.lelylan.com/developers#subscriptions-api" target="blank">subscriptions</a> API
+      the access token is not required. In this case the authentication is done by setting the
+      client ID and the client Secret.
       </p>
 
-<pre><code><xmp>Subscription.auth({ clientId: '<client-id>', clientSecret: '<client-secret>' });
-Subscription.all().success(function(data) { scope.subscriptions = data })</xmp></code></pre>
+<pre><code><xmp>Subscription.auth({
+  clientId: 'CLIENT_ID_HERE',
+  clientSecret: 'CLIENT_SECRET_HERE'
+});
 
-      <p>
-      In this case no access token required.
-      </p>
+Subscription.all().success(function(data) {
+  scope.subscriptions = data
+})</xmp></code></pre>
 
     </div>
     </section>
@@ -446,7 +421,7 @@ Subscription.all().success(function(data) { scope.subscriptions = data })</xmp><
 
       <ul>
         <li>
-        <a href="https://github.com/lelylan/lelylan-ng/" target="blank">Github Repository</a>
+        <a href="https://github.com/lelylan/lelylan-ng" target="blank">Github Repository</a>
         </li>
         <li>
         <a href="https://dev.lelylan.com" target="blank">Lelylan Dev Center</a>
@@ -455,11 +430,29 @@ Subscription.all().success(function(data) { scope.subscriptions = data })</xmp><
         <a href="https://lelylan.com" target="blank">Lelylan website</a>
         </li>
         <li>
-        <a href="https://twitter.com/lelylan" target="blank">Twitter @lelylan</a>
+        <a href="https://twitter.com/lelylan" target="blank">@lelylan</a>
         </li>
       </ul>
     </div>
     </section>
 
+
+    <section>
+    <div class="content">
+      <h1 id="thanks">Thanks</h1>
+
+      <p>
+      <a href="mailto:touch@lelylan.com" target="_blank">Mail</a> or
+      <a href="http://twitter.com/lelylan" target="_blank">Tweet</a>
+      us for any idea that can improve the project.
+      </p>
+
+      <p>
+      This project was created and released as open-source thanks to <a href="http://lelylan.com" target="_blank">Lelylan</a>
+      and all people contributing with their code, ideas and passion.
+      </p>
+
+    </div>
+    </section>
   </body>
 </html>
