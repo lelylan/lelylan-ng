@@ -15,7 +15,7 @@
   "dependencies": {
     "angular": "1.2.16",
     "base64": "~0.3.0",
-    "oauth-ng": "~0.2.0-beta"
+    "oauth-ng": "~0.2.0-beta.1"
   },
   "devDependencies": {
     "jquery": "~2.1.0",

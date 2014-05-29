@@ -3,7 +3,7 @@
 
 ## 0.2.0 (June 1, 2014)
 
-* Moved the oauth directive to the [oauth-ng](https://github.com/andreareginato/oauth-ng) repo.
+* Moved the oauth directive to the [oauth-ng](http://andreareginato.github.io/oauth-ng/) repo.
 * Moved from $resource to $http.
 * Refactoring test suite.
 * Code refactoring.

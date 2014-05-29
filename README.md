@@ -42,7 +42,7 @@ can improve the project.
 ## Links
 
 * [Github repository](http://github.com/lelylan/lelylan-ng)
-* [Github oauth-ng repository](https://github.com/andreareginato/oauth-ng)
+* [Github oauth-ng repository](http://andreareginato.github.io/oauth-ng)
 * [Lelylan Dev Center](http://dev.lelylan.com)
 * [Lelylan website](http://lelylan.com)
 
