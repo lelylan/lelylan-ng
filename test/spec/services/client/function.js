@@ -27,9 +27,8 @@ describe('Function', function() {
   });
 
   beforeEach(function() {
-    $rootScope.$broadcast('oauth2:login', token);
+    AccessToken.setToken(token);
   });
-
 
 
   describe('.find', function() {

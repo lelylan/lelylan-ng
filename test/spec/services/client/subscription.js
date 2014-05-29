@@ -28,13 +28,12 @@ describe('Subscription', function() {
   });
 
   beforeEach(function() {
-    $rootScope.$broadcast('oauth2:login', token);
+    AccessToken.setToken(token);
   });
 
   beforeEach(function() {
     Subscription.auth(credentials);
   });
-
 
 
   describe('.find', function() {

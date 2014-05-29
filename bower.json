@@ -1,7 +1,9 @@
 {
   "name": "lelylan-ng",
-  "version": "0.1.0-beta",
-  "main": ["dist/lelylan-ng.js"],
+  "version": "0.2.0-beta",
+  "main": [
+    "dist/lelylan-ng.js"
+  ],
   "ignore": [
     "app",
     "test",
@@ -12,8 +14,8 @@
   ],
   "dependencies": {
     "angular": "1.2.16",
-    "ng-oauth": "*",
-    "base64": "~0.3.0"
+    "base64": "~0.3.0",
+    "oauth-ng": "~0.2.0-beta"
   },
   "devDependencies": {
     "jquery": "~2.1.0",
@@ -21,8 +23,5 @@
     "jasmine-jquery": "~2.0.3",
     "angular-mocks": "1.2.16",
     "angular-scenario": "1.2.16"
-  },
-  "resolutions": {
-    "angular": "~1.2.16"
   }
 }

@@ -27,16 +27,14 @@ describe('Device', function() {
   });
 
   beforeEach(function() {
-    $rootScope.$broadcast('oauth2:login', token);
+    AccessToken.setToken(token);
   });
-
 
 
   describe('.find', function() {
 
     beforeEach(function() {
-      $httpBackend.when('GET', 'http://api.lelylan.com/devices/1', {}, headers)
-      .respond(resource);
+      $httpBackend.when('GET', 'http://api.lelylan.com/devices/1', {}, headers).respond(resource);
     });
 
     it('makes the request', function() {

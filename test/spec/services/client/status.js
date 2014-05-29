@@ -27,7 +27,7 @@ describe('Status', function() {
   });
 
   beforeEach(function() {
-    $rootScope.$broadcast('oauth2:login', token);
+    AccessToken.setToken(token);
   });
 
 

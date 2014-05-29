@@ -14,7 +14,7 @@ module.exports = function(config) {
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/jquery/dist/jquery.js',
-      'app/bower_components/ng-oauth/dist/ng-oauth.js',
+      'app/bower_components/oauth-ng/dist/oauth-ng.js',
       'app/bower_components/ngstorage/ngstorage.js',
       'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'app/bower_components/base64/base64.js',

@@ -1,14 +1,14 @@
 # Changelog
 
 
-## 0.1.0 (May 20, 2014)
+## 0.2.0 (June 1, 2014)
 
 * Moved the oauth directive to the [oauth-ng](https://github.com/andreareginato/oauth-ng) repo.
 * Moved from $resource to $http.
-* Full test suite working on top of Karma.
-* Full code refactoring and cleanup.
+* Refactoring test suite.
+* Code refactoring.
 
 
-## 0.0.1 (February 15, 2013)
+## 0.1.0 (February 15, 2013)
 
 * First version AngularJS client for Lelylan API.
