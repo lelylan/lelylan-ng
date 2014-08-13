@@ -23,5 +23,8 @@
     "jasmine-jquery": "~2.0.3",
     "angular-mocks": "1.2.22",
     "angular-scenario": "1.2.22"
+  },
+  "resolutions": {
+    "angular": "~1.2.22"
   }
 }
