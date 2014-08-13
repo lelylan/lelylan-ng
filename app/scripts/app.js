@@ -3,7 +3,6 @@
 angular.module('lelylan.client', [
   'oauth',
   'lelylan.client.utils',
-  'lelylan.client.config',
   'lelylan.client.category',
   'lelylan.client.device',
   'lelylan.client.activation',

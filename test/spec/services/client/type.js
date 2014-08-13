@@ -77,7 +77,7 @@ describe('Type', function() {
   describe('.public', function() {
 
     beforeEach(function() {
-      $httpBackend.when('GET', 'http://api.lelylan.com/types/public?name=alice', {}, headers)
+      $httpBackend.when('GET', 'http://api.lelylan.com/types/public?name=alice', {})
       .respond([resource]);
     });
 
@@ -89,6 +89,27 @@ describe('Type', function() {
 
     it('gets the resource', function() {
       Type.public({ name: 'alice' }).success(function(response) { result = response })
+      $httpBackend.flush();
+      expect(result[0].uri).toEqual('http://api.lelylan.com/types/1');
+    });
+  });
+
+
+  describe('.popular', function() {
+
+    beforeEach(function() {
+      $httpBackend.when('GET', 'http://api.lelylan.com/types/popular?name=alice', {})
+      .respond([resource]);
+    });
+
+    it('makes the request', function() {
+      $httpBackend.expect('GET', 'http://api.lelylan.com/types/popular?name=alice');
+      Type.popular({ name: 'alice' });
+      $httpBackend.flush();
+    });
+
+    it('gets the resource', function() {
+      Type.popular({ name: 'alice' }).success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/types/1');
     });

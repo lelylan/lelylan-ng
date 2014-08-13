@@ -3,7 +3,7 @@
 
 describe('Function', function() {
 
-  var $rootScope, $httpBackend, AccessToken, Function, result, resource;
+  var $rootScope, $httpBackend, $cacheFactory, AccessToken, Function, result, resource;
 
   var token       = { access_token: 'token', token_function: 'bearer', expires_in: '7200', state: 'state'};
   var headers     = { Accept: 'application/json, text/plain, */*', Authorization: 'Bearer token' };
@@ -12,10 +12,11 @@ describe('Function', function() {
 
   beforeEach(module('lelylan.client'));
 
-  beforeEach(inject(function($injector)   { Function     = $injector.get('Function') }));
-  beforeEach(inject(function($injector)   { AccessToken  = $injector.get('AccessToken') }));
-  beforeEach(inject(function($injector)   { $httpBackend = $injector.get('$httpBackend'); }));
-  beforeEach(inject(function($injector)   { $rootScope   = $injector.get('$rootScope'); }));
+  beforeEach(inject(function($injector)   { Function      = $injector.get('Function') }));
+  beforeEach(inject(function($injector)   { AccessToken   = $injector.get('AccessToken') }));
+  beforeEach(inject(function($injector)   { $cacheFactory = $injector.get('$cacheFactory'); }));
+  beforeEach(inject(function($injector)   { $httpBackend  = $injector.get('$httpBackend'); }));
+  beforeEach(inject(function($injector)   { $rootScope    = $injector.get('$rootScope'); }));
 
 
   beforeEach(function() {
@@ -48,6 +49,28 @@ describe('Function', function() {
       Function.find('1').success(function(response) { result = response })
       $httpBackend.flush();
       expect(result.uri).toEqual('http://api.lelylan.com/functions/1');
+      var cached = $cacheFactory.get('$http').get('http://api.lelylan.com/functions/1');
+      expect(cached).toBe(undefined);
+    });
+
+    describe('when not cached', function() {
+
+      it('does not cache the resource', function() {
+        Function.find('1')
+        $httpBackend.flush();
+        var cached = $cacheFactory.get('$http').get('http://api.lelylan.com/functions/1');
+        expect(cached).toBe(undefined);
+      });
+    });
+
+    describe('when cached', function() {
+
+      it('caches the resource', function() {
+        Function.find('1', { cache: true })
+        $httpBackend.flush();
+        var cached = $cacheFactory.get('$http').get('http://api.lelylan.com/functions/1')[1];
+        expect(cached).toEqual(resource);
+      });
     });
   });
 
@@ -70,13 +93,33 @@ describe('Function', function() {
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/functions/1');
     });
+
+    describe('when not cached', function() {
+
+      it('does not cache the resource', function() {
+        Function.all({ name: 'alice' })
+        $httpBackend.flush();
+        var cached = $cacheFactory.get('$http').get('http://api.lelylan.com/functions?name=alice');
+        expect(cached).toBe(undefined);
+      });
+    });
+
+    describe('when cached', function() {
+
+      it('caches the resource', function() {
+        Function.all({ name: 'alice' }, { cache: true })
+        $httpBackend.flush();
+        var cached = $cacheFactory.get('$http').get('http://api.lelylan.com/functions?name=alice')[1];
+        expect(cached).toEqual([resource]);
+      });
+    });
   });
 
 
   describe('.public', function() {
 
     beforeEach(function() {
-      $httpBackend.when('GET', 'http://api.lelylan.com/functions/public?name=alice', {}, headers)
+      $httpBackend.when('GET', 'http://api.lelylan.com/functions/public?name=alice', {})
       .respond([resource]);
     });
 
@@ -90,6 +133,26 @@ describe('Function', function() {
       Function.public({ name: 'alice' }).success(function(response) { result = response })
       $httpBackend.flush();
       expect(result[0].uri).toEqual('http://api.lelylan.com/functions/1');
+    });
+
+    describe('when not cached', function() {
+
+      it('does not cache the resource', function() {
+        Function.public({ name: 'alice' })
+        $httpBackend.flush();
+        var cached = $cacheFactory.get('$http').get('http://api.lelylan.com/functions/public?name=alice');
+        expect(cached).toBe(undefined);
+      });
+    });
+
+    describe('when cached', function() {
+
+      it('caches the resource', function() {
+        Function.public({ name: 'alice' }, { cache: true })
+        $httpBackend.flush();
+        var cached = $cacheFactory.get('$http').get('http://api.lelylan.com/functions/public?name=alice')[1];
+        expect(cached).toEqual([resource]);
+      });
     });
   });
 

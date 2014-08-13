@@ -77,7 +77,7 @@ describe('Status', function() {
   describe('.public', function() {
 
     beforeEach(function() {
-      $httpBackend.when('GET', 'http://api.lelylan.com/statuses/public?name=alice', {}, headers)
+      $httpBackend.when('GET', 'http://api.lelylan.com/statuses/public?name=alice', {})
       .respond([resource]);
     });
 

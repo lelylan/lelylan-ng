@@ -4,7 +4,7 @@ var client = angular.module('lelylan.client.status', []);
 
 client.factory('Status', [
   '$http',
-  'lelylan.client.config',
+  'lelylanClientConfig',
   'LelylanClientUtils',
 
   function($http, config, Utils) {
@@ -13,28 +13,34 @@ client.factory('Status', [
   var base = config.endpoint + '/statuses';
 
 
-  service.find = function(id) {
-    return $http.get(base + '/' + id, { headers: Utils.headers() });
+  service.find = function(id, _options) {
+    var options = { headers: Utils.headers() };
+    return $http.get(base + '/' + id, Utils.merge(options, _options));
   }
 
-  service.all = function(params) {
-    return $http.get(base, { params: params, headers: Utils.headers() });
+  service.all = function(params, _options) {
+    var options = { params: params, headers: Utils.headers() };
+    return $http.get(base, Utils.merge(options, _options));
   }
 
-  service.public = function(params) {
-    return $http.get(base + '/public', { params: params, headers: Utils.headers() });
+  service.public = function(params, _options) {
+    var options = { params: params };
+    return $http.get(base + '/public', Utils.merge(options, _options));
   }
 
-  service.create = function(params) {
-    return $http.post(base, params, { headers: Utils.headers() });
+  service.create = function(params, _options) {
+    var options = { headers: Utils.headers() };
+    return $http.post(base, params, Utils.merge(options, _options));
   }
 
-  service.update = function(id, params) {
-    return $http.put(base + '/' + id, params, { headers: Utils.headers() });
+  service.update = function(id, params, _options) {
+    var options = { headers: Utils.headers() };
+    return $http.put(base + '/' + id, params, Utils.merge(options, _options));
   }
 
-  service.delete = function(id) {
-    return $http.delete(base + '/' + id, { headers: Utils.headers() });
+  service.delete = function(id, _options) {
+    var options = { headers: Utils.headers() };
+    return $http.delete(base + '/' + id, Utils.merge(options, _options));
   }
 
   return service;

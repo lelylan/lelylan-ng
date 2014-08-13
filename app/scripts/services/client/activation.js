@@ -4,7 +4,7 @@ var client = angular.module('lelylan.client.activation', []);
 
 client.factory('Activation', [
   '$http',
-  'lelylan.client.config',
+  'lelylanClientConfig',
   'LelylanClientUtils',
 
   function($http, config, Utils) {
@@ -13,12 +13,14 @@ client.factory('Activation', [
   var base = config.endpoint + '/activations';
 
 
-  service.activate = function(params) {
-    return $http.post(base, params, { headers: Utils.headers() });
+  service.activate = function(params, _options) {
+    var options = { headers: Utils.headers() };
+    return $http.post(base, params, Utils.merge(options, _options));
   }
 
-  service.deactivate = function(id) {
-    return $http.delete(base + '/' + id, { headers: Utils.headers() });
+  service.deactivate = function(id, _options) {
+    var options = { headers: Utils.headers() };
+    return $http.delete(base + '/' + id, Utils.merge(options, _options));
   }
 
   return service;

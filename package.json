@@ -1,6 +1,6 @@
 {
   "name": "lelylan-ng",
-  "version": "0.2.0-beta",
+  "version": "0.2.0",
   "author": "Andrea Reginato <dev@lelylan.com>",
   "description": "AngularJS client library for Lelylan",
   "repository": {

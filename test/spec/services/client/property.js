@@ -76,7 +76,7 @@ describe('Property', function() {
   describe('.public', function() {
 
     beforeEach(function() {
-      $httpBackend.when('GET', 'http://api.lelylan.com/properties/public?name=alice', {}, headers)
+      $httpBackend.when('GET', 'http://api.lelylan.com/properties/public?name=alice', {})
       .respond([resource]);
     });
 

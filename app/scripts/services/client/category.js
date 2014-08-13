@@ -4,7 +4,7 @@ var client = angular.module('lelylan.client.category', []);
 
 client.factory('Category', [
   '$http',
-  'lelylan.client.config',
+  'lelylanClientConfig',
   'LelylanClientUtils',
 
   function($http, config, Utils) {
@@ -12,8 +12,9 @@ client.factory('Category', [
   var service = {};
   var base = config.endpoint + '/categories';
 
-  service.all = function(params) {
-    return $http.get(base, { params: params, headers: Utils.headers() });
+  service.all = function(params, _options) {
+    var options = { params: params, headers: Utils.headers() };
+    return $http.get(base, Utils.merge(options, _options));
   }
 
   return service;

@@ -5,11 +5,6 @@ describe('Category', function() {
 
   var $rootScope, $httpBackend, AccessToken, Category, result, resource;
 
-  var token       = { access_token: 'token', token_type: 'bearer', expires_in: '7200', state: 'state'};
-  var headers     = { Accept: 'application/json, text/plain, */*', Authorization: 'Bearer token' };
-  var dataHeaders = { Accept: 'application/json, text/plain, */*', Authorization: 'Bearer token', 'Content-Type': 'application/json;charset=utf-8' };
-
-
   beforeEach(module('lelylan.client'));
 
   beforeEach(inject(function($injector)   { Category       = $injector.get('Category') }));
@@ -26,16 +21,11 @@ describe('Category', function() {
     resource = JSON.parse(readFixtures('device.json'));
   });
 
-  beforeEach(function() {
-    AccessToken.setToken(token);
-  });
-
-
   describe('.all', function() {
 
     beforeEach(function() {
-      $httpBackend.when('GET', 'http://api.lelylan.com/categories', {}, headers)
-      .respond([resource]);
+      $httpBackend.when('GET', 'http://api.lelylan.com/categories', {})
+        .respond([resource]);
     });
 
     it('makes the request', function() {
