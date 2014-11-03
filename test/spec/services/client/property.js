@@ -3,7 +3,7 @@
 
 describe('Property', function() {
 
-  var $rootScope, $httpBackend, AccessToken, Property, result, resource;
+  var $rootScope, $httpBackend, $sessionStorage, AccessToken, Property, result, resource;
 
   var token       = { access_token: 'token', token_property: 'bearer', expires_in: '7200', state: 'state'};
   var headers     = { Accept: 'application/json, text/plain, */*', Authorization: 'Bearer token' };
@@ -12,10 +12,11 @@ describe('Property', function() {
 
   beforeEach(module('lelylan.client'));
 
-  beforeEach(inject(function($injector)   { Property     = $injector.get('Property') }));
-  beforeEach(inject(function($injector)   { AccessToken  = $injector.get('AccessToken') }));
-  beforeEach(inject(function($injector)   { $httpBackend = $injector.get('$httpBackend'); }));
-  beforeEach(inject(function($injector)   { $rootScope   = $injector.get('$rootScope'); }));
+  beforeEach(inject(function($injector)   { Property        = $injector.get('Property') }));
+  beforeEach(inject(function($injector)   { AccessToken     = $injector.get('AccessToken') }));
+  beforeEach(inject(function($injector)   { $sessionStorage = $injector.get('$sessionStorage') }));
+  beforeEach(inject(function($injector)   { $httpBackend    = $injector.get('$httpBackend'); }));
+  beforeEach(inject(function($injector)   { $rootScope      = $injector.get('$rootScope'); }));
 
 
   beforeEach(function() {
@@ -27,7 +28,8 @@ describe('Property', function() {
   });
 
   beforeEach(function() {
-    AccessToken.setToken(token);
+    $sessionStorage.token = token;
+    AccessToken.set();
   });
 
 

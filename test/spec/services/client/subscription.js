@@ -3,7 +3,7 @@
 
 describe('Subscription', function() {
 
-  var $rootScope, $httpBackend, AccessToken, Subscription, result, resource;
+  var $rootScope, $httpBackend, $sessionStorage, AccessToken, Subscription, result, resource;
 
   var credentials = { clientId: 'id', clientSecret: 'secret' };
   var token       = { access_token: 'token', token_subscription: 'bearer', expires_in: '7200', state: 'state'};
@@ -15,6 +15,7 @@ describe('Subscription', function() {
 
   beforeEach(inject(function($injector)   { Subscription     = $injector.get('Subscription') }));
   beforeEach(inject(function($injector)   { AccessToken  = $injector.get('AccessToken') }));
+  beforeEach(inject(function($injector)   { $sessionStorage = $injector.get('$sessionStorage') }));
   beforeEach(inject(function($injector)   { $httpBackend = $injector.get('$httpBackend'); }));
   beforeEach(inject(function($injector)   { $rootScope   = $injector.get('$rootScope'); }));
 
@@ -28,7 +29,8 @@ describe('Subscription', function() {
   });
 
   beforeEach(function() {
-    AccessToken.setToken(token);
+    $sessionStorage.token = token;
+    AccessToken.set();
   });
 
   beforeEach(function() {

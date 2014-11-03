@@ -21,8 +21,8 @@
     "jquery": "~2.1.0",
     "jasmine": "~2.0.0",
     "jasmine-jquery": "~2.0.3",
-    "angular-mocks": "1.2.22",
-    "angular-scenario": "1.2.22"
+    "angular-mocks": "1.2.26",
+    "angular-scenario": "1.2.26"
   },
   "resolutions": {
     "angular": "~1.2.26"

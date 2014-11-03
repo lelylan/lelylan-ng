@@ -3,7 +3,7 @@
 
 describe('Function', function() {
 
-  var $rootScope, $httpBackend, $cacheFactory, AccessToken, Function, result, resource;
+  var $rootScope, $httpBackend, $sessionStorage, $cacheFactory, AccessToken, Function, result, resource;
 
   var token       = { access_token: 'token', token_function: 'bearer', expires_in: '7200', state: 'state'};
   var headers     = { Accept: 'application/json, text/plain, */*', Authorization: 'Bearer token' };
@@ -14,6 +14,7 @@ describe('Function', function() {
 
   beforeEach(inject(function($injector)   { Function      = $injector.get('Function') }));
   beforeEach(inject(function($injector)   { AccessToken   = $injector.get('AccessToken') }));
+  beforeEach(inject(function($injector)   { $sessionStorage = $injector.get('$sessionStorage') }));
   beforeEach(inject(function($injector)   { $cacheFactory = $injector.get('$cacheFactory'); }));
   beforeEach(inject(function($injector)   { $httpBackend  = $injector.get('$httpBackend'); }));
   beforeEach(inject(function($injector)   { $rootScope    = $injector.get('$rootScope'); }));
@@ -28,7 +29,8 @@ describe('Function', function() {
   });
 
   beforeEach(function() {
-    AccessToken.setToken(token);
+    $sessionStorage.token = token;
+    AccessToken.set();
   });
 
 
