@@ -1,6 +1,10 @@
 # Changelog
 
 
+## 0.2.2 (November 3, 2014)
+
+* Fixed problem on dist
+
 ## 0.2.1 (November 3, 2014)
 
 * Upgrade to angularjs v1.2.26
