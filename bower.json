@@ -1,6 +1,6 @@
 {
   "name": "lelylan-ng",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": [
     "dist/lelylan-ng.js"
   ],
@@ -13,9 +13,9 @@
     "package.json"
   ],
   "dependencies": {
-    "angular": "1.2.22",
+    "angular": "1.2.26",
     "base64": "~0.3.0",
-    "oauth-ng": "~0.2.4"
+    "oauth-ng": "~0.3.0"
   },
   "devDependencies": {
     "jquery": "~2.1.0",
@@ -25,6 +25,6 @@
     "angular-scenario": "1.2.22"
   },
   "resolutions": {
-    "angular": "~1.2.22"
+    "angular": "~1.2.26"
   }
 }

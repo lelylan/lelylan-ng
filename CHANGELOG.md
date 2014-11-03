@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 0.2.1 (November 3, 2014)
+
+* Upgrade to angularjs v1.2.26
+* Upgrade to oauth-ng v0.3.0
+
+
 ## 0.2.0 (August 13, 2014)
 
 * Added caching system
