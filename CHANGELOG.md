@@ -1,8 +1,9 @@
 # Changelog
 
-## 0.2.3 (February 6, 2015)
+## 0.2.4 (February 6, 2015)
 
 * Upgrade to angularjs v1.3.12
+* Upgrade to oauth-ng v0.3.8
 
 ## 0.2.2 (November 3, 2014)
 

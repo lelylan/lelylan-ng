@@ -1,4 +1,4 @@
-/* lelylan-ng - v0.2.3 - 2015-02-06 */
+/* lelylan-ng - v0.2.4 - 2015-02-06 */
 
 'use strict';
 
