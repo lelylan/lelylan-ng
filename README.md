@@ -30,34 +30,34 @@ The new distribution files will be created in the `dist/` folder.
 
 Follow [github](https://github.com/styleguide/) guidelines.
 
-### Feedback
+## Feedback
 
-Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs.
-[Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that
-can improve the project.
+Use the [issue tracker](http://github.com/lelylan/lelylan-ng/issues) for bugs or [stack overflow](http://stackoverflow.com/questions/tagged/lelylan) for questions.
+[Mail](mailto:dev@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
+
 
 ## Links
 
-* [Github repository](http://github.com/lelylan/lelylan-ng)
-* [Github oauth-ng repository](http://andreareginato.github.io/oauth-ng)
+* [GIT Repository](http://github.com/lelylan/lelylan-ng)
 * [Lelylan Dev Center](http://dev.lelylan.com)
-* [Lelylan website](http://lelylan.com)
+* [Lelylan Site](http://lelylan.com)
+
 
 ## Authors
 
-[Andrea Reginato](http://twitter.com/andreareginato)
+[Andrea Reginato](https://www.linkedin.com/in/andreareginato)
+
 
 ## Contributors
 
 Special thanks to all [contributors](https://github.com/lelylan/lelylan-ng/contributors)
 for submitting patches.
 
-
 ## Changelog
 
-See [changelog](https://github.com/lelylan/lelylan-ng/blob/master/CHANGELOG.md).
+See [CHANGELOG](https://github.com/lelylan/lelylan-ng/blob/master/CHANGELOG.md)
 
 
 ## License
 
-See [license](https://github.com/lelylan/lelylan-ng/blob/master/LICENSE.md).
+Lelylan is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
