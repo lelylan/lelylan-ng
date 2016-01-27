@@ -1,10 +1,12 @@
-# AngularJS client for Lelylan API
+# AngularJS SDK for Lelylan
 
-AngularJS client library for [Lelylan API](http://dev.lelylan.com).
+AngularJS SDK for [Lelylan](http://lelylan.com).
+
 
 ## Documentation
 
 [![lelylan-ng](http://i.imgur.com/dLN4isF.png)](http://lelylan.github.com/lelylan-ng)
+
 
 ## Contributing
 
